@@ -1,0 +1,31 @@
+\contentsline {section}{\numberline {0.1}Introducci\'on }{3}{section.0.1}
+\contentsline {chapter}{\numberline {1}Ondas}{4}{chapter.1}
+\contentsline {section}{\numberline {1.1}Movimiento arm\'onico simple}{4}{section.1.1}
+\contentsline {section}{\numberline {1.2}Superposici\'on de dos vibraciones de la misma frecuencia}{10}{section.1.2}
+\contentsline {section}{\numberline {1.3}Superposici\'on de dos vibraciones de diferente frecuencia}{14}{section.1.3}
+\contentsline {section}{\numberline {1.4}El oscilador con dos masas}{14}{section.1.4}
+\contentsline {section}{\numberline {1.5}Modos Normales}{17}{section.1.5}
+\contentsline {section}{\numberline {1.6}Oscilador con tres masas}{18}{section.1.6}
+\contentsline {section}{\numberline {1.7}Oscilador con $N$ masas}{19}{section.1.7}
+\contentsline {section}{\numberline {1.8}$N \to \infty $ y la ecuaci\'on de onda}{22}{section.1.8}
+\contentsline {section}{\numberline {1.9}El principio de Hamilton}{24}{section.1.9}
+\contentsline {section}{\numberline {1.10}La energ\'ia del sistema Lagrangiano}{26}{section.1.10}
+\contentsline {chapter}{\numberline {2}El modelo de Ising}{30}{chapter.2}
+\contentsline {section}{\numberline {2.1}El modelo de Iising unidimensional}{30}{section.2.1}
+\contentsline {section}{\numberline {2.2}El modelo de ising bidimensional}{32}{section.2.2}
+\contentsline {chapter}{\numberline {3}El oscilador arm\'onico cu\'antico unidimensional}{33}{chapter.3}
+\contentsline {section}{\numberline {3.1}Operadores lineales }{33}{section.3.1}
+\contentsline {section}{\numberline {3.2}Operadores Herm\'iticos }{35}{section.3.2}
+\contentsline {section}{\numberline {3.3}Oscilador arm\'onico}{36}{section.3.3}
+\contentsline {section}{\numberline {3.4}El principio de incertidumbre de Heisenberg}{40}{section.3.4}
+\contentsline {section}{\numberline {3.5}Soluci\'on a la ecuaci\'on de Schr\"odinger para el oscilador arm\'onico unidimensional}{42}{section.3.5}
+\contentsline {chapter}{\numberline {4}Ondas electromag\'eticas}{45}{chapter.4}
+\contentsline {section}{\numberline {4.1}Ecuaciones de Maxwell y ondas electromagn\'eticas}{46}{section.4.1}
+\contentsline {section}{\numberline {4.2}Ondas planas}{48}{section.4.2}
+\contentsline {section}{\numberline {4.3}Polarizaci\'on}{49}{section.4.3}
+\contentsline {section}{\numberline {4.4}Interacci\'on materia con luz}{51}{section.4.4}
+\contentsline {section}{\numberline {4.5}Fotos\'intesis }{51}{section.4.5}
+\contentsline {chapter}{\numberline {5}Principios cu\'anticos de la luz}{52}{chapter.5}
+\contentsline {chapter}{\numberline {6}Entrelazamiento cu\'antico}{53}{chapter.6}
+\contentsline {chapter}{\numberline {7}Fotos\'intesis cu\'antica}{54}{chapter.7}
+\contentsline {chapter}{\numberline {8}Conclusiones}{55}{chapter.8}
