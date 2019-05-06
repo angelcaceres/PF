@@ -1,0 +1,175 @@
+\documentclass[letterpaper,12pt,oneside]{book}
+\usepackage{amsmath} 
+\usepackage{animate}
+\usepackage[utf8]{inputenc}
+\usepackage{bm}
+\usepackage{hyperref} 
+\usepackage{graphicx} 
+\usepackage{listings} 
+\usepackage{chapterbib}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{siunitx}
+\usepackage{gensymb}
+\usepackage{subfigure}
+
+\DeclareGraphicsExtensions{.bmp,.png,.pdf,.jpg,.gif}
+\addtolength{\hoffset}{-0.5 cm}
+\addtolength{\textwidth}{2 cm}
+\addtolength{\textheight}{1.3cm}
+\usepackage{xcolor}
+
+
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\renewcommand{\chaptername}{Cap\'itulo}
+\renewcommand{\figurename}{Figura}
+\renewcommand{\contentsname}{\'Indice}
+%\renewcommand{\appendixname}{Apéndice}
+
+\def\thebibliography#1{\chapter*{Referencias
+   }\list
+  {[\arabic{enumi}]}{\settowidth\labelwidth{[#1]}\leftmargin\labelwidth
+    \advance\leftmargin\labelsep
+\usecounter{enumi}}
+    \def\newblock{\hskip .11em plus .33em minus .07em}
+    \sloppy\clubpenalty4000\widowpenalty4000
+    \sfcode`\.=1000\relax}
+\let\endthebliography=\endlist
+
+
+\textwidth 14cm 
+%\theoremstyle{proposition}
+\newtheorem{proposition}{Proposici\'on}[section]
+ 
+\begin{document}
+
+%\pagestyle{myheadings}
+
+\pagestyle{plain}
+
+\begin{center}
+\includegraphics[scale=0.7]{uamL}
+\end{center}
+\begin{center}
+\textcolor{orange} { \Large UNIVERSIDAD AUT\'ONOMA METROPOLITANA\\ 
+UNIDAD CUAJIMALPA}\\
+{\bf Departamento de Matem\'aticas Aplicadas y Sistemas}
+\end{center}
+\vskip 1cm
+
+
+\begin{center}
+{ \large \it Licenciatura en Matem\'aticas Aplicadas}
+\end{center}
+
+
+
+
+\vskip 1.5cm
+
+\begin{center}
+\textcolor{red} {\bf Proyecto Terminal}: \\
+Modelo de comportamiento colectivo en el cerebro usando el modelo de Ising.
+\end{center}
+\vskip 1.5cm
+
+\begin{center}
+{{ \emph Alumno}:\\
+{\bf\'Angel C\'aceres Licona}\\
+Matrícula: 2133067715\\ 
+angelcaceres@outlook.com\\ }
+\end{center}
+
+
+
+\vskip 1cm
+
+\begin{center}
+{\bf Asesor: Juan Manuel Romero Sanpedro}
+\end{center}
+
+
+\vskip 1cm
+
+\begin{center}
+ \textcolor{purple} {\bf Ciudad de M\'exico, agosto de 2019}
+\end{center}
+%\maketitle
+
+\tableofcontents
+
+
+\newpage
+
+
+\section{Introducci\'on }
+Entender el funcionamiento del cerebro ha representado un reto para cient\'ficos de diversas \'areas, desde hace cientos de años. El primer registro que se tiene de un intento de describir el cerebro y su funcionamiento data de la \'epoca de los antiguos egipcios\cite{papiro}. Se tienen registros de lesiones y sus consecuencias en la movilidad del paciente, etc. M\'as tarde los griegos se preguntar\'ian si es el cerebro o el coraz\'on el \'organo que contiene el alma y mente de las personas. \'Esta incognita fue resuelta por Galeno de P\'ergamo, al descubrir que es el cerebro y no el coraz\'on el \'organo encargado de el racionamiento. M\'as recientemente el cient\'ifico espa\~nol Santiago Ram\'on y Cajal descubri\'o la estructura del sistema nervioso y las neuronas.\\
+%
+En la actualidad ha sido necesaria una aproximaci\'on interdisciplinaria al problema de entender el cerebro humano. Ya no es trabajo \'unicamente de m\'edicos. A esta tarea se han sumado f\'isicos y matem\'aticos.
+
+\chapter{Modelos matemáticos en física estadística}
+
+\section{El modelo de Ising}
+
+\section{El modelo de Potts}
+
+\section{Modelo con percolación}
+
+\chapter{Simulación en computadora} 
+\section{Algoritmo de Montecarlo/Metrópolis}
+\section{Código}
+\chapter{Conclusiones}
+....
+
+
+
+ \begin{thebibliography}{99}
+
+
+
+\bibitem{jn}
+J. M. Romero Sanpedro, {\it Funciones Especiales y Transformadas Integrales con Aplicaciones a la Mec\'anica Cu\'antica y Electrodin\'amica,} Primera Edici\'on, Universidad Aut\'onoma Metropolitana Unidad Cuajimalpa, 2013.
+
+\bibitem{papiro}
+Joost J. van Middendorp, Gonzalo M. Sanchez yand Alwyn L. Burridge, {\it  The Edwin Smith papyrus: a clinical reappraisal of the oldest known document on spinal injuries,} (European Spine Journal, 19:1815–1823, 2010).
+
+\bibitem{Galvani}
+L. Galvani, {\it  De viribus electricitatis in motu musculari commentarius,} (Bonon. Sci. Art, Bologna 1791).
+
+\bibitem{Bernoulli}
+L. Esteva, G. G\'omez,J. Hern\'andez y M. Zepeda {\it Matem\'aticas y epidemiolog\'ia,} Ciencias {\bf 24}, 57-63  (1991)
+
+\bibitem{marsden}
+J. E. Marsden, {\it Vector Calculus,} Sixth Edition, (W. H. Freeman and Company, New York, 2012).
+
+\bibitem{WG} 
+W. Greiner, {\it Classical Electrodynamics,} (First Edition, Springer, New, York, 1991).
+
+\bibitem{ES} 
+E. Schr\"odinger, {\it What is life,} Cambridge University Press, 1944.
+
+\bibitem{jackson} 
+J. D. Jackson, {\it  Classical Electrodynamics}  (John Wiley and Sons, New York, 1999).
+
+\bibitem{dawn}
+P. Ball, {\it The dawn of quantum biology,} Nature {\bf 474}, 272  (2011).
+
+\bibitem{lambert}
+N. Lambert et al, {\it Quantum biology,} Nature Physics {\bf 9}, 10  (2013).
+
+\bibitem{engel}
+G. S. Engel, {\it Evidence for wavelike energy transfer through quantum coherence in photosynthetic systems,} Nature {\bf 446}, 782  (2007).
+
+\bibitem{collini}
+E. Collini, C, Wong, K. Wilk, P. Curmi, P. Brumer and G. Scholes {\it Coherently wired light-harvesting in photosynthetic marine algae at ambient temperature,} Nature {\bf 463}, 644  (2010).
+
+{\bf Checar  formato de referencias}
+
+\end{thebibliography}
+
+
+
+  \end{document}
+  %
+
+
