@@ -437,7 +437,7 @@ Para el \'angulo de la fase de la vibraci\'on resultante tenemos lo siguiente:
 \tan(\phi)=\frac{A\sin(\phi)}{A\cos(\phi)}=\frac{A_1\sin(\phi_1)+A_2\sin(\phi_2)}{A_1\cos(\phi_1)+A_2\cos(\phi_2)}\nonumber
 \end{eqnarray}
 %
-\animategraphics[label=anim,autoplay,controls]
+\animategraphics[\label{anim},autoplay,controls]
 {12}{fig/anim}{00}{85}
 %
 En la figura (\ref{anim}) se puede apreciar el comportamiento descrito.
@@ -1390,6 +1390,17 @@ La magnatizaci\'on por spin est\'a dada por
 m(T,B)=-\frac{\partial g}{\partial B} = \frac{\sinh(\beta B)}{[\sin^2(\beta B)+ e^{-4 B\epsilon}]\frac{1}{2}}.
 \end{eqnarray}
 %
+
+
+\subsection{Un ejemplo de aplicaci\'on: Teoría de juegos.}
+La teor\'ia de juegos estudia modelos matem\'aticos de conflicto y cooperaci\'on entre tomadores de decisiones racionales. Los problemas en teor\'ia de juegos son descritos generalmente con $N$ jugadores que tienen un conjunto $s_x = {1,2,4,...,N}$ estrategias disponibles. Cada jugador adoptar\'a una estrategia que maximizar\'a su ganancia $u_x$ en el siguiente paso. En casos especiales existe un estado estacionario en el que a ning\'un jugador le favorece cambiar de estrategia. Matem\'aticamente este estado satisface la siguiente condici\'on.
+%
+\begin{eqnarray}
+  u_x = {s_1^*, s_2^*, ..., s_N^*} \leq u_x={s_1^*, s_2^*, ...s_x',..., s_N^*} \qquad \forall x, \forall s_x' \neq s_x*
+\end{eqnarray}%
+
+  
+
 \section{El modelo de ising bidimensional}
 Considere un enrejado bidimensional como el que se muestra\\
 %
@@ -1400,7 +1411,7 @@ n+1 && \cdot && \cdot && \cdot && \cdot  \\
 3 && \cdot && \cdot && \cdot && \cdot  \\
 2 && \cdot && \cdot && \cdot && \cdot  \\
 1 && \cdot && \cdot && \cdot && \cdot  \\
- &&1 && 2 &&   \dots&&  && n+1
+1 && 2 &&   \dots&&  && n+1
 \end{matrix} \nonumber
 \end{eqnarray}
 %
@@ -1467,7 +1478,7 @@ donde
 De esta forma la magnetizaci\'on se convierte en
 %
 \begin{eqnarray}
-m={1-[\sinh(2\betaJ)]^{-4}}^{\frac{1}{8}},
+m={1-[\sinh(2 \beta J)]^{-4}}^{\frac{1}{8}},
 \end{eqnarray}
 %
 para $T>T_c$ y 0 para $T>T_c$ indicando una transici\'on de fase de orden a desorden para el campo cero. La condici\'on para determinar la temperatura cr\'itica a la que ocurre la transici\'on de fase  resulta ser
