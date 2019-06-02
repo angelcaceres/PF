@@ -1403,24 +1403,96 @@ n+1 && \cdot && \cdot && \cdot && \cdot  \\
  &&1 && 2 &&   \dots&&  && n+1
 \end{matrix} \nonumber
 \end{eqnarray}
+%
 El Hamiltoniano se escribe como 
 \begin{eqnarray}
 \mathbb{H}= -J \sum_{i,j} (\sigma_{i,j}\sigma_{i+1}+\sigma_{i,j+1}\sigma_{i,j}) - h \sum_{i,j}\sigma_{j},
 \end{eqnarray}
-donde los espines ahora son indexados por dos índices 
- 
-
-
-
-
-
-
-
-
-
-
-
-
+donde los espines ahora son indexados por dos \'indices que corresponden a las coordenadas de un punto en el enrejado. Se introduce una notaci\'on corta para $\mathbb{H}$:
+%
+\begin{eqnarray}
+\mathbb{H}=\sum_{j=1}^{n}[E(\mu_j,\mu_{j+1} + E(\mu_j))], 
+\end{eqnarray}
+%
+donde
+%
+\begin{eqnarray}
+E(\mu_j,\mu_k)\equiv-\sum_{i=1}^{n}\sigma_{ij}\sigma{ik}, 
+E(\mu_j)\equiv-J\sum_{i=1}^{n}\sigma_{ij}\sigma{i+1}-h\sum_{i,j}\sigma_{j},
+\end{eqnarray}
+%
+y $\mu_j$ se define como el conjunto de los espines en una columna en particular:
+%
+\begin{eqnarray}
+\mu_j \equiv {\sigma_{1j},...,\sigma_{n_j}}.
+\end{eqnarray}
+%
+Luego se define una matriz de transferencia con elementos:
+% 
+\begin{eqnarray}
+\langle \mu_j |P| \mu_k\rangle = e^{-\beta [E(\mu_j,\mu_k)+E(\mu_j)]},
+\end{eqnarray}
+%
+que es una matriz de $2x2$. La funci\'on de partici\'on ser\'a dada por
+% 
+\begin{eqnarray}
+\Delta = Tr(P^n),
+\end{eqnarray}
+%
+e, igual que en el caso unidimensional, el eigenvalor mayor es el buscado. 
+En el l\'imite termodin\'amico, el resultado final es
+%
+\begin{eqnarray}
+g(T)=-kTln[2\cosh(2\beta J)]  - \frac{kT}{2\pi}\int_{0}^{\pi}d\phi ln\frac{1}{2}\left (1 + \sqrt{1-K^2sin^2\phi} \right),
+\end{eqnarray}
+%
+donde
+%
+\begin{eqnarray}
+K=\frac{2}{\cosh(2\beta J)\coth(2\beta J)}.
+\end{eqnarray}
+%
+La energía por esp\'in está dada por
+% 
+\begin{eqnarray}
+\epsilon (T)=-2Jtanh(2 \beta J) + \frac{k}{2 \pi}\frac{dK}{d\beta}\int_{0}^{\pi}d\phi\frac{\sin^2\phi}{\Delta(1+\Delta)}
+\end{eqnarray}
+%
+donde 
+%
+\begin{eqnarray}
+\Delta = \sqrt{1-K^2\sin^\phi}.
+\end{eqnarray}
+%
+De esta forma la magnetizaci\'on se convierte en
+%
+\begin{eqnarray}
+m={1-[\sinh(2\betaJ)]^{-4}}^{\frac{1}{8}},
+\end{eqnarray}
+%
+para $T>T_c$ y 0 para $T>T_c$ indicando una transici\'on de fase de orden a desorden para el campo cero. La condici\'on para determinar la temperatura cr\'itica a la que ocurre la transici\'on de fase  resulta ser
+%
+\begin{eqnarray}
+2\tanh^2(2\beta J)=1,
+kT_c \approx 2.269185 J.
+\end{eqnarray}
+%
+Cerca de $T = T_c$ la capacidad calor\'ifica por esp\'in est\'a dada por:
+%
+\begin{eqnarray}
+\frac{C(t)}{k} = \frac{2}{\pi} \left(\frac{2J}{kT_c}\right)^2\left[-ln\left(1-\frac{T}{T_c}\right)+ln\left(\frac{kT_c}{2J}\right)-\left(1+\frac{\pi}{4}\right)\right].
+\end{eqnarray}
+%
+Entonces se ve que la capacidad calor\'ifica diverge conforme $T->T_c$.
+Los exponentes cr\'iticos obtenidos de la soluci\'on de Onsager son:
+%
+\begin{eqnarray}
+\alpha = 0,\\
+\beta = \frac{1}{8},\\
+\gamma = \frac{7}{4},\\
+\delta = 15.
+\end{eqnarray}
+%
 
 
 
