@@ -12,13 +12,13 @@
 \usepackage{siunitx}
 \usepackage{gensymb}
 \usepackage{subfigure}
-
+\hbadness=99999 
 \DeclareGraphicsExtensions{.bmp,.png,.pdf,.jpg,.gif}
 \addtolength{\hoffset}{-0.5 cm}
 \addtolength{\textwidth}{2 cm}
 \addtolength{\textheight}{1.3cm}
 \usepackage{xcolor}
-
+\let\perthousand\perthousand
 
 \newcommand{\abs}[1]{\left\lvert#1\right\rvert}
 \renewcommand{\chaptername}{Cap\'itulo}
@@ -103,7 +103,7 @@ angelcaceres@outlook.com\\ }
 
 
 \section{Introducci\'on }
-La biof\'isica ha sido una herramienta que nos ayude a explicar fen\'omenos biol\'ogicos.  
+La biof\'isica ha sido una herramienta que nos ayude a explicar fen\'omenos biol\'ogicos.
 %
 Desde el renacimiento, Leonardo Da Vinci estudi\'o la anatom\'ia humana para aplicar este conocimiento a la construcci\'on de aut\'omatas \cite{DaVinci}.  
 %
@@ -320,7 +320,7 @@ Sus principales caracter\'sticas son las siguientes:
 %
 \begin{figure*}
 \centering
-\includegraphics[scale=0.8]{onda}
+\includegraphics[scale=0.75]{onda}
 \caption{\label{onda}  En la gr\'afica se muestran las partes de la onda.  }
 \end{figure*}
 % 
@@ -437,10 +437,10 @@ Para el \'angulo de la fase de la vibraci\'on resultante tenemos lo siguiente:
 \tan(\phi)=\frac{A\sin(\phi)}{A\cos(\phi)}=\frac{A_1\sin(\phi_1)+A_2\sin(\phi_2)}{A_1\cos(\phi_1)+A_2\cos(\phi_2)}\nonumber
 \end{eqnarray}
 %
-\animategraphics[\label{anim},autoplay,controls]
+\animategraphics[autoplay,controls]
 {12}{fig/anim}{00}{85}
 %
-En la figura (\ref{anim}) se puede apreciar el comportamiento descrito.
+En la figura animaci\'on se puede apreciar el comportamiento descrito.
 %
 De las ecuaciones (\ref{restavib1})-(\ref{restavib4}) concluimos que, cuando la diferencia de las fases es $\pi$ entonces la amplitud de la vibraci\'on resultante es igual a la resta de las amplitudes originales. En particular, si además las amplitudes son iguales la amplitud resultante es igual a cero. 
 \section{Superposici\'on de dos vibraciones de diferente frecuencia}
@@ -1396,10 +1396,82 @@ m(T,B)=-\frac{\partial g}{\partial B} = \frac{\sinh(\beta B)}{[\sin^2(\beta B)+ 
 La teor\'ia de juegos estudia modelos matem\'aticos de conflicto y cooperaci\'on entre tomadores de decisiones racionales. Los problemas en teor\'ia de juegos son descritos generalmente con $N$ jugadores que tienen un conjunto $s_x = {1,2,4,...,N}$ estrategias disponibles. Cada jugador adoptar\'a una estrategia que maximizar\'a su ganancia $u_x$ en el siguiente paso. En casos especiales existe un estado estacionario en el que a ning\'un jugador le favorece cambiar de estrategia. Matem\'aticamente este estado satisface la siguiente condici\'on.
 %
 \begin{eqnarray}
-  u_x = {s_1^*, s_2^*, ..., s_N^*} \leq u_x={s_1^*, s_2^*, ...s_x',..., s_N^*} \qquad \forall x, \forall s_x' \neq s_x*
+  u_x \{s_1^*, s_2^*, ..., s_N^*\} \leq u_x\{s_1^*, s_2^*, ...s_x',..., s_N^*\} \qquad \forall x, \forall s_x' \neq s_x*.
 \end{eqnarray}%
+Esto se conoce como el equilibrio de Nash y cuando la desigualdad es estricta se le llama equilibrio puro de Nash.\\
+Tambi\'en se puede modelar de forma que, en lugar de buscar maximizar la ganancia, los individuos escojan una estrategia que tienen una cierta probabilidad y es a su vez una función de la ganancia: 
+%
+\begin{eqnarray}
+  p(s_x \to s'_x) = f(u_x \{s_1, s_2, ... , s'_x, ..., s_N\}) - u_x\{s_1, s_2, ... , s_x, ... s_N\}.
+\end{eqnarray}
+%
+Este ruido alrededor de la estrategia \'optima es el equivalente a la temperatura en un sistema termodin\'amico y la probabilidad de transici\'on est\'a dada por: 
+%
+\begin{eqnarray}
+  p(s_x \to s'_x) &=& \frac{1}{1+e^{\beta \Delta u_x}}\\
+  \Delta u_x &=& u_x\{s_1, s_2, ... , s_x, ..., s_N\} - u_x\{s_1, s_2, ... ,s_x, ..., s_N\}.
+\end{eqnarray}
+%
+En este caso $\frac{1}{\beta}$ denota el "ruido" en el sistema. En el caso donde la toma de decisiones es probabilist\'ica no existe el equiibrio puro pero en sistemas con un n\'mero largo de individuos con funciones de ganancia id\'enticas el sistema alcanza valores estables en sus par\'ametros promediados entre la poblaci\'on entera.
+\subsection{El caso de N jugadores y 2 estrategias}
+Un problema b\'asico en teor\'ia de juegos es aquel en el que se tienen dos jugadores y dos estrategias: Cooperaci\'on (C) y deserci\'on (D). La ganancia en esta situaci\'on puede ser representada usando esta matriz:
+%
+\begin{eqnarray}
+\begin{bmatrix}
+  C & D
+\end{bmatrix} \\ \nonumber
+\begin{bmatrix}
+  C\\
+  D
+\end{bmatrix}\nonumber
+\begin{bmatrix}
+  R & S\\
+  T & P
+\end{bmatrix}\label{matrizNash}
+\end{eqnarray}
+%
+donde la fila $(C,D)$ demnota las opciones de estrategia del jugador que estamos intentando determinar y la columna $(C, D)$ las de el otro jugador. $R$ es la recompensa obtenida cuando ambos cooperan, $S$ es el costo que se paga por un jugador cuando \'este coopera y el otro no, $T$ es la ganancia por desertar cuando el otro jugador si coopera y $P$ es el castigo que se paga cuando ambos jugadores desertan.
+Un ejemplo de un sistema es el que se conoce como el dilema del prisionero. La encunciación es la siguiente: \\
+La polic\'ia arresta a dos personas. No hay pruebas suficientes para condenarlas y tras haberlas separado las visita individualmente y les ofrece un trato: Si una confiesa y su c\'omplice no, la c\'omplice será condenada a diez a\~nos en prisi\'on. Si la primera calla y la c\'mplice confiesa, la primera recibir\'a la condena. Si ambas personas confiesan, ser\'an condenadas a seis años. Si ninguna confiesa, a lo m\'as podr\'an ser condenadas a un año en prisi\'on.
+En este caso el equilibrio de Nash se obtiene cuando ambas personas confiesan y la ganancia combinada se maximiza cuando ambas personas cooperan.
+En un sistema probabil\'istico con $N$ participantes el inter\'es principal es saber cu\'antos participantes desertan comparado con el n\'umero de participantes. Esto est\'a dado por: 
+%
+\begin{eqnarray}
+m=\frac{P_C - P_D}{N}, \label{mJuegos}
+\end{eqnarray}
+%
+donde $P_C$ y $P_D$ es el n\'umero de agentes que cooperan y desertan, respectivamente. La transici\'on de fase se da cuando el signo de $m$ cambia.
+\subsection{Analog\'ias con los sistemas termodin\'amicos}
+En este sistema, al convertir a os agentes en part\'iculas, cada uno de las estrategias se convierte en un estado del esp\'in: $\sigma = +1$ para la cooperaci\'on y $\sigma = -1$ para la deserci\'on.\\
+La ecuaci\'on \ref{mJuegos} se convierte en la ecuaci\'on de la magnetizaci\'on promedio del sistema. \\
+El objetivo principal es, entonces, encontrar el Hamiltoniano del sistema. 
+Se pueden comprobar los c\'alculos termodin\'amicos al tomar el l\'imite de la temperatura cr\'itica $(\beta \to \infty)$ que debe corresponer con el equilibrio de Nash.
+Para lograr esto, Sarkar y Benjamin (\cite{benjamin}) desarrollaron el siguiente me\'etodo.\\
+La premisa es que el equilibrio de Nash se mantiene intacto si transformamos la matriz (\ref{matrizNash}) de esta forma:
+%
+\begin{eqnarray}
+  U =
+  \begin{bmatrix}
+    R & S\\
+    T & P
+  \end{bmatrix} \to 
+  \begin{bmatrix}
+    R - \lambda & S - \mu \\
+    T - \lambda & P - \mu
+  \end{bmatrix} = U'
+\end{eqnarray}
+%
+para $\lambda = \frac{R+T}{2}$ y $\mu = \frac{S+P}{2}$ obtenemos: 
+%
+\begin{eqnarray}
+U' = 
+\begin{bmatrix}
+  \frac{R-T}{2} & \frac{S-P}{2}\\
+  \frac{T-R}{2} & \frac{P-S}{2} 
+\end{bmatrix}
+\end{eqnarray}
 
-  
+
 
 \section{El modelo de ising bidimensional}
 Considere un enrejado bidimensional como el que se muestra\\
@@ -2444,7 +2516,7 @@ G. S. Engel, {\it Evidence for wavelike energy transfer through quantum coherenc
 \bibitem{collini}
 E. Collini, C, Wong, K. Wilk, P. Curmi, P. Brumer and G. Scholes {\it Coherently wired light-harvesting in photosynthetic marine algae at ambient temperature,} Nature {\bf 463}, 644  (2010).
 
-{\bf Checar  formato de referencias}
+\bibitem{benjamin}  S. Sarkar y C. Benjamin {\it Emergence of Cooperation in the thermodynamic limit,} ArXiv e-prints, arXiv:1803.10083 (2018).
 
 \end{thebibliography}
 
