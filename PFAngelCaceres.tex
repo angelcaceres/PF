@@ -10,6 +10,7 @@
 \usepackage{amssymb}
 \usepackage{amsthm}
 \usepackage{siunitx}
+\usepackage{pgfplots}
 \usepackage{gensymb}
 \usepackage{subfigure}
 \hbadness=99999 
@@ -1384,7 +1385,7 @@ esto es:
 g(T,B)=-\frac{1}{\beta}\log{e^{\beta \epsilon} \cosh(\beta B) + \left[e^{2\beta \epsilon } \cosh^2 (\beta B) - 2\sinh (2\beta B)\right]^{\frac{1}{2}}}.
 \end{eqnarray}
 %
-La magnatizaci\'on por spin est\'a dada por 
+La magnatizaci\'on por esp\'in est\'a dada por 
 %
 \begin{eqnarray}
 m(T,B)=-\frac{\partial g}{\partial B} = \frac{\sinh(\beta B)}{[\sin^2(\beta B)+ e^{-4 B\epsilon}]\frac{1}{2}}.
@@ -1544,9 +1545,27 @@ n+1 && \cdot && \cdot && \cdot && \cdot  \\
 2 && \cdot && \cdot && \cdot && \cdot  \\
 1 && \cdot && \cdot && \cdot && \cdot  \\
 1 && 2 &&   \dots&&  && n+1
-\end{matrix} \nonumber
+\end{matrix}, \nonumber
 \end{eqnarray}
 %
+se imponen condiciones de frontera periódicas de forma que la part\'cula al final de cada fila y columna están conectadas. Esta configuraci\'on puede ser pensada como la superficie de un toro: 
+%
+\begin{center}
+\begin{tikzpicture}
+  \begin{axis}
+     \addplot3[surf,
+     colormap/blackwhite,
+     samples=20,
+     domain=0:2*pi,y domain=0:2*pi,
+     z buffer=sort]
+     ({(2+cos(deg(x)))*cos(deg(y+pi/2))}, 
+      {(2+cos(deg(x)))*sin(deg(y+pi/2))}, 
+      {sin(deg(x))});
+  \end{axis}
+\end{tikzpicture}
+\end{center}
+%
+
 El Hamiltoniano se escribe como 
 \begin{eqnarray}
 \mathbb{H}= -J \sum_{i,j} (\sigma_{i,j}\sigma_{i+1}+\sigma_{i,j+1}\sigma_{i,j}) - h \sum_{i,j}\sigma_{i,j},
@@ -1630,16 +1649,83 @@ Entonces se ve que la capacidad calor\'ifica diverge conforme $T->T_c$.
 Los exponentes cr\'iticos obtenidos de la soluci\'on de Onsager \cite{Onsager} son:
 %
 \begin{eqnarray}
-\alpha = 0,\\
-\beta = \frac{1}{8},\\
-\gamma = \frac{7}{4},\\
-\delta = 15\\
-\mu = \frac{1}{4}\\
-\nu = 1\\
-\omega = 2.
+\alpha &=& 0,\\
+\beta &=& \frac{1}{8},\\
+\gamma &=& \frac{7}{4},\\
+\delta &=& 15,\\
+\mu &=& \frac{1}{4},\\
+\nu &=& 1,\\
+\omega &=& 2.
 \end{eqnarray}
 %
-.
+
+\section{Aproximaci\'on del campo promedio para un enrejado en d dimensiones}
+Se pueden obtener aproximaciones de las propiedades termodin\'amicas de un enrejado de d dimensiones usando la aproximaci\'on del campo promedio. En esta aproximaci\'on el Hamiltoniano toma la siguiente forma:
+%
+\begin{eqnarray}
+\mathbb{H} = -\frac{1}{2} \sum_{i=1}^N \nu \epsilon \langle s \rangle s_i - \mu B \sum_{i=1}^N s_i = \sum_{i=1}^N E(\epsilon, B)s_i,
+\end{eqnarray}
+%
+donde $\epsilon$ es la constante de acoplapiento, $\nu$ es el numero de vecinos cercanos y $E( \nu , B) = \frac{1}{2}\nu \epsilon \langle s \rangle + \mu B$. El t\'ermino $\frac{1}{2}$ nos asegura que s\'olo contemos cada esp\'in una vez. La cantidad $\langle s \rangle \equiv \langle s_i \rangle$ es el esp\'in promedio por sitio. La cantidad $\nu \epsilon \langle s \rangle s_i$ es la magnetizaci\'on promedio entre el sitio $i$ y sus vecinos m\'as cercanos suponiendo que todos los vecinos tienen esp\'in $\langle s \rangle$. \\
+La funci\'on de partici\'on puede ser escritta como 
+%
+\begin{eqnarray}
+Z_n = \left (\sum_{s_i \pm 1} e^{\beta E s_i}\right)^N  = (2 \cosh (\beta E))^N.
+\end{eqnarray}
+%
+La energ\'ia libre de Gibbs es:
+%
+\begin{eqnarray}
+g(\epsilon, B)= -k_B T \lim_{N \to infty} \left(\frac{1}{N} \ln(Z_N) \right) = -k_B T \ln[2 \cosh (\beta E)].
+\end{eqnarray}
+%
+La probablilidad $P(s_i)$ de que el sitio $i$ tenga esp\'in $s_i$ est\'a dada por:
+%
+\begin{eqnarray}
+P(s_i) = \frac{e^{\beta E s_i}}{\sum_{s_i \pm 1}e^{\beta E s_i}} = \frac{e^{\beta E s_i}}{2\cosh (\beta E)}.
+\end{eqnarray}
+%
+La magnetizaci\'on promedio est\'a dada por:
+%
+\begin{eqnarray}
+\langle M \rangle = N \mu\langle s\rangle,  
+\end{eqnarray}
+%
+donde 
+%
+\begin{eqnarray}
+\langle s \rangle  = \frac{\sum_{s_i=\pm 1}s_i e^{\beta E s_i}}{\sum_{s_j=\pm 1}s_i e^{\beta E s_j}} = \tanh [\beta E] = \tanh \left[\beta\left(\frac{1}{2} \nu \epsilon \langle s \rangle + \mu B \right)\right] \label{espinPromedio}.
+\end{eqnarray}
+%
+Podemos determinar la temperatura cr\'itica $T_c$ a la que el enrejado comienza a ordenarse mientras la temperatura va descendiendo de la expresi\'on del esp\'in promedio (\ref{espinPromedio}). Escribamos (\ref{espinPromedio}) para $B = 0$:
+%
+\begin{eqnarray}
+\langle s \rangle = \tanh \left[\frac{1}{2} \beta \nu \epsilon \langle s \rangle \right] = \tanh \left[ \frac{\nu \epsilon \langle s \rangle}{2k_B T}\right]. \label{magPromedio}
+\end{eqnarray}
+% 
+La ecuaci\'on (\ref{magPromedio}) puede resolverse de manera gr\'afica. Vemos que la ecuaci\'on es de la forma $\tanh(\alpha \langle s \rangle)$. Entonces, tomamos $f\equiv \langle s \rangle$ y graficamos $\tanh (\alpha \langle s \rangle)$ vs $\langle s \rangle$. Y obtenemos las siguientes gr\'aficas para $\alpha <1 $ y $\alpha > 1$. 
+\begin{figure*}
+\centering
+\includegraphics[scale=0.75]{fig/solucion1.jpeg}
+\caption{Gr\'afica de (\ref{magPromedio}) para $\alpha < 1$ \label{meanField1}}
+\end{figure*}
+\begin{figure*}
+\centering
+\includegraphics[scale=0.75]{fig/solucion2.jpeg}
+\caption{Gr\'afica de (\ref{magPromedio}) para $\alpha > 1$ \label{meanField2}}
+\end{figure*}
+Notamos que para el caso $\alpha <1$ s\'olo se intersectan en un punto, en $\langle s \rangle =0$. Para $\alpha > 1$ se intersectan entres puntos: en $\langle s \rangle = 0 y en \langle s \rangle \pm s_0$. La energ\'ia libre para estos casos est\'a dada por:
+%
+\[
+  X(m, n) = 
+  \begin{cases}
+    -k_B T \ln(2), & \text{si } \langle s \rangle = 0 \\
+    -k_B T\ln(2\cosh(\frac{1}{2}\beta \nu \epsilon s_0)), & \text{si } \langle s \rangle \pm s_0
+  \end{cases}
+\]
+%
+
+
 
 
 
