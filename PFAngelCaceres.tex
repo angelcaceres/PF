@@ -1468,10 +1468,70 @@ U' =
 \begin{bmatrix}
   \frac{R-T}{2} & \frac{S-P}{2}\\
   \frac{T-R}{2} & \frac{P-S}{2} 
-\end{bmatrix}
+\end{bmatrix} \label{payoff}
 \end{eqnarray}
-
-
+%
+Ahora consideramos un Hamiltoniano de un sistema de Ising 1D usando dos espines: 
+%
+\begin{eqnarray}
+  \mathbb{H}=-2J \sigma_1 \sigma_2 -h\sigma_1 - h\sigma_2, \label{hamilNash}
+\end{eqnarray}
+%
+donde $\sigma \pm 1$  denota los espines. Para este Hamiltoniano la energ\'ia que contribuye cada espin puede ser escrita como:
+%
+\begin{eqnarray}
+  E = \begin{bmatrix}
+    -J - h & J- h\\
+    J+ h & -J + h
+  \end{bmatrix}
+\end{eqnarray}
+%
+En esta matriz las columnas representan el estado del esp\'in $\sigma_2 = (+1,-1)$ y las filas el estado del esp\'in $\sigma_1 = (+1, -1)$. Se puede formular un juego en el que cada jugador obtiene una ganandcia dada por $-E$ . A estos juegos se le llaman juegos de Ising. Tienen la propiedad de que minimizar (\ref{hamilNash}) corresponde con el equilibrio de Nash. 
+N\'otese que la ganancia dada por la ecuaci\'on (\ref{payoff}) se parece a la ganancia de un juego de Ising. Entonces, el equilibrio de Nash para cualquier juego simetrico de 2x2 es el mismo que el de un juego de Ising en el que
+%
+\begin{eqnarray}
+  J=\frac{R-T+P-S}{4} \qquad h = \frac{R-T+S-P}{4} \label{hjprisionero}
+\end{eqnarray}
+%
+Entonces, al usar herramientas termodin\'amicas en el juego de Ising podemos encontrar el estado de equilibrio que es equivalente al equilibrio de Nash. 
+Sarkar y Benjamin (\cite{benjamin}) extendieron esta equivalencia para cuando uno tiene $N$ jugadores en el dilema del prisionero. EL Hamiltoniano para este sistema est\'a dado por: 
+%
+\begin{eqnarray}
+  \mathbb{H} = -\sum_{i=1}^{N} J\sigma_{i} \sigma_{i+1} - \sum_{i=1}^{n}\frac{h}{2} (\sigma_{i} \sigma_{i+1}).
+\end{eqnarray}
+%
+La funci\'on de partici\'on est\'a dada por 
+%
+\begin{eqnarray}
+  Z= e^{N \beta J}(\cosh(\beta h) + \sqrt{\sinh^2(\beta h) + e^{-4 \beta J}}).
+\end{eqnarray}
+%
+Usando esta funci\'on de partici\'on podemos calcular la magnetizaci\'on promedio.
+%
+\begin{eqnarray}
+  m = \frac{1}{N}\langle J_z \rangle = \frac{1}{N}\frac{\partial \log z}{\partial \beta h} = \frac{\sinh \beta h}{\sqrt{\sinh^2(\beta h) +e^{-4 \beta J}}}
+\end{eqnarray}
+%
+En el caso del dilema del prisionero, $(T>R>P>S)$, usando la relaci\'on de (\ref{hjprisionero}) tenemos que $h<0$ y $j>0$. Entonces, en el l\'imite $\beta \to \infty$:
+%
+\begin{eqnarray}
+m \approx -1, \nonumber
+\end{eqnarray}
+%
+que corresponde a cuando todos los jugadores desertan, y entonces este resultado no contradice al equilibrio de Nash.
+Podemos calcular tambi\'en la energ\'ia promedio por part\'icula:
+%
+\begin{eqnarray}
+  E = \frac{1}{N} \langle \mathbb{H}\rangle = -\frac{1}{N} \frac{\partial \log Z}{\partial \beta} = -J -h \frac{\sin(\beta h)+ \frac{1}{2}\frac{\sinh(2\beta h) -4e^{-4 \beta J}J/h}{\sqrt{\sinh^2(\beta h)+ e^{-4 \beta J}}}}{\cosh (\beta h) + \sqrt{\sinh^2(\beta h) + e^{-4\beta J}}}
+\end{eqnarray}
+%
+En el l\'imite $\beta \to \infty$ para $h<0$ y $J>0$, 
+%
+\begin{eqnarray}
+  E \approx -J +h,  
+\end{eqnarray}
+%
+que corresponde al estado en el que ambas part\'iculas tienen espin $-1$ lo cual no contradice los resultados conocidos sobre el equilibrio de Nash.
 
 \section{El modelo de ising bidimensional}
 Considere un enrejado bidimensional como el que se muestra\\
@@ -1489,7 +1549,7 @@ n+1 && \cdot && \cdot && \cdot && \cdot  \\
 %
 El Hamiltoniano se escribe como 
 \begin{eqnarray}
-\mathbb{H}= -J \sum_{i,j} (\sigma_{i,j}\sigma_{i+1}+\sigma_{i,j+1}\sigma_{i,j}) - h \sum_{i,j}\sigma_{j},
+\mathbb{H}= -J \sum_{i,j} (\sigma_{i,j}\sigma_{i+1}+\sigma_{i,j+1}\sigma_{i,j}) - h \sum_{i,j}\sigma_{i,j},
 \end{eqnarray}
 donde los espines ahora son indexados por dos \'indices que corresponden a las coordenadas de un punto en el enrejado. Se introduce una notaci\'on corta para $\mathbb{H}$:
 %
@@ -1500,8 +1560,8 @@ donde los espines ahora son indexados por dos \'indices que corresponden a las c
 donde
 %
 \begin{eqnarray}
-E(\mu_j,\mu_k)\equiv-\sum_{i=1}^{n}\sigma_{ij}\sigma{ik}, 
-E(\mu_j)\equiv-J\sum_{i=1}^{n}\sigma_{ij}\sigma{i+1}-h\sum_{i,j}\sigma_{j},
+E(\mu_j,\mu_k)\equiv-\sum_{i=1}^{n}\sigma_{ij}\sigma_{ik},\\ 
+E(\mu_j)\equiv-J\sum_{i=1}^{n}\sigma_{ij}\sigma_{i+1}-h\sum_{i,j}\sigma_{j},
 \end{eqnarray}
 %
 y $\mu_j$ se define como el conjunto de los espines en una columna en particular:
@@ -1516,7 +1576,7 @@ Luego se define una matriz de transferencia con elementos:
 \langle \mu_j |P| \mu_k\rangle = e^{-\beta [E(\mu_j,\mu_k)+E(\mu_j)]},
 \end{eqnarray}
 %
-que es una matriz de $2x2$. La funci\'on de partici\'on ser\'a dada por
+que es una matriz de $2\times2$. La funci\'on de partici\'on ser\'a dada por
 % 
 \begin{eqnarray}
 \Delta = Tr(P^n),
@@ -1526,7 +1586,7 @@ e, igual que en el caso unidimensional, el eigenvalor mayor es el buscado.
 En el l\'imite termodin\'amico, el resultado final es
 %
 \begin{eqnarray}
-g(T)=-kTln[2\cosh(2\beta J)]  - \frac{kT}{2\pi}\int_{0}^{\pi}d\phi ln\frac{1}{2}\left (1 + \sqrt{1-K^2sin^2\phi} \right),
+g(T)=-kT\ln[2\cosh(2\beta J)]  - \frac{kT}{2\pi}\int_{0}^{\pi}d\phi \ln\frac{1}{2}\left (1 + \sqrt{1-K^2sin^2\phi} \right),
 \end{eqnarray}
 %
 donde
@@ -1538,19 +1598,19 @@ K=\frac{2}{\cosh(2\beta J)\coth(2\beta J)}.
 La energía por esp\'in está dada por
 % 
 \begin{eqnarray}
-\epsilon (T)=-2Jtanh(2 \beta J) + \frac{k}{2 \pi}\frac{dK}{d\beta}\int_{0}^{\pi}d\phi\frac{\sin^2\phi}{\Delta(1+\Delta)}
+\epsilon (T)=-2J\tanh(2 \beta J) + \frac{k}{2 \pi}\frac{dK}{d\beta}\int_{0}^{\pi}d\phi\frac{\sin^2\phi}{\Delta(1+\Delta)}
 \end{eqnarray}
 %
 donde 
 %
 \begin{eqnarray}
-\Delta = \sqrt{1-K^2\sin^\phi}.
+\Delta = \sqrt{1-K^2\sin^2\phi}.
 \end{eqnarray}
 %
 De esta forma la magnetizaci\'on se convierte en
 %
 \begin{eqnarray}
-m={1-[\sinh(2 \beta J)]^{-4}}^{\frac{1}{8}},
+m=\{1-[\sinh(2 \beta J)]^{-4}\}^{\frac{1}{8}},
 \end{eqnarray}
 %
 para $T>T_c$ y 0 para $T>T_c$ indicando una transici\'on de fase de orden a desorden para el campo cero. La condici\'on para determinar la temperatura cr\'itica a la que ocurre la transici\'on de fase  resulta ser
@@ -1563,20 +1623,23 @@ kT_c \approx 2.269185 J.
 Cerca de $T = T_c$ la capacidad calor\'ifica por esp\'in est\'a dada por:
 %
 \begin{eqnarray}
-\frac{C(t)}{k} = \frac{2}{\pi} \left(\frac{2J}{kT_c}\right)^2\left[-ln\left(1-\frac{T}{T_c}\right)+ln\left(\frac{kT_c}{2J}\right)-\left(1+\frac{\pi}{4}\right)\right].
+\frac{C(t)}{k} = \frac{2}{\pi} \left(\frac{2J}{kT_c}\right)^2\left[-\ln\left(1-\frac{T}{T_c}\right)+\ln\left(\frac{kT_c}{2J}\right)-\left(1+\frac{\pi}{4}\right)\right].
 \end{eqnarray}
 %
 Entonces se ve que la capacidad calor\'ifica diverge conforme $T->T_c$.
-Los exponentes cr\'iticos obtenidos de la soluci\'on de Onsager son:
+Los exponentes cr\'iticos obtenidos de la soluci\'on de Onsager \cite{Onsager} son:
 %
 \begin{eqnarray}
 \alpha = 0,\\
 \beta = \frac{1}{8},\\
 \gamma = \frac{7}{4},\\
-\delta = 15.
+\delta = 15\\
+\mu = \frac{1}{4}\\
+\nu = 1\\
+\omega = 2.
 \end{eqnarray}
 %
-
+.
 
 
 
@@ -2518,6 +2581,7 @@ E. Collini, C, Wong, K. Wilk, P. Curmi, P. Brumer and G. Scholes {\it Coherently
 
 \bibitem{benjamin}  S. Sarkar y C. Benjamin {\it Emergence of Cooperation in the thermodynamic limit,} ArXiv e-prints, arXiv:1803.10083 (2018).
 
+\bibitem{Onsager} L. Onsager, \it{Crystal statistics. I. A two-dimensional model with an order-disorder transition}, Physical Review, Series II, 65 (3–4): 117–149 (1944).
 \end{thebibliography}
 
 
