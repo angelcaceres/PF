@@ -1724,8 +1724,50 @@ Notamos que para el caso $\alpha <1$ s\'olo se intersectan en un punto, en $\lan
   \end{cases}
 \]
 %
-
-
+Entonces los valores $\langle s \rangle = \pm s_0$ describen estados de posible equilibrio termodin\'amico ya que minimizan la energ\'ia libre. El punto de transici\'on ocurre en $\alpha = 1$ y por lo tanto cuando $\frac{\nu \epsilon}{2k_B   T} = 1$. 
+La temperatura cr\'itica en la aproximaci\'on de campo promedio es  $T= T_c = \frac{\nu \epsilon}{2k_B }$.
+Ahora analizaremos el comportamiento de la capacidad calorifica cerca de la temperatura cr\'itica. La energ\'ia interna para $B=0$ es:
+%
+\begin{eqnarray}
+U = -\frac{1}{Z_N} \frac{\partial Z_N}{\partial \beta} = -\frac{1}{2} N \nu \epsilon \langle s \rangle^2.
+\end{eqnarray}
+%
+La capacidad calorifica es 
+%
+\begin{eqnarray}
+C_N = \left( \frac{\partial U}{\partial T}\right)_N = - k_B\beta^2 \left(\frac{\partial U}{\partial \beta} \right)_N = N k_B \nu \epsilon \beta^2 \langle s \rangle \left (\frac{\partial \langle s \rangle}{\partial \beta} \right)_N
+\end{eqnarray}
+%
+pero
+%
+\begin{eqnarray}
+\left (\frac{\partial \langle s \rangle}{\partial \beta} \right)_N = sech^2 \left(\beta \frac{\nu \epsilon}{2} \langle s \rangle \right) \left [\frac{\nu \epsilon}{2} \langle s \rangle + \beta \frac{\nu \epsilon}{2} \left( \frac{\partial \langle s \rangle}{\partial \beta}\right)_N \right],
+\end{eqnarray}
+%
+entonces
+%
+\begin{eqnarray}
+\left (\frac{\partial \langle s \rangle}{\partial \beta} \right)_N = \frac{\nu \epsilon \langle s \rangle}{3 \cosh^2 \left(\beta \frac{\nu \epsilon \partial \langle s \rangle}{2} \right)- \beta \nu \epsilon},
+\end{eqnarray}
+%
+entonces la capacidad calor\'ifica se convierte en
+%
+\begin{eqnarray}
+C_N =\frac{N k_B \beta^2 \nu^2 \epsilon^2 \langle s \rangle^2}{2 \cosh^2\left(\beta \frac{\nu \epsilon}{2}\langle s \rangle \right) -\beta \nu \epsilon} = \frac{2Nk_B\langle s \rangle^2(\frac{T_c}{t})}{[\cosh^2 (\langle s \rangle \frac{T_c}{T})-\frac{T_c}{T}]}.
+\end{eqnarray}
+%
+La \'ultima cantidad que queremos calcular es la susceptividad magn\'etica $X_{T,N}$ que se define de la siguiente manera.
+%
+\begin{eqnarray}
+X_{T,N} (B) = \left(\frac{\partial \langle M \rangle}{\partial B} \right)_{T,N} = N\mu \left(\frac{\partial \langle M \rangle}{\partial B} \right)_{t,n}.
+\end{eqnarray}
+%
+De (\ref{espinPromedio}) podemos escribir:
+%
+\begin{eqnarray}
+\left(\frac{\partial \langle s \rangle}{\partial B}\right)_{T,N} = sech^2 \left(\beta \frac{\nu \epsilon}{2}\langle s \rangle + \beta \mu B\right)\left(\beta \frac{\nu \epsilon}{2}\left(\frac{\partial \langle s \rangle}{\partial B} \right)_{T,N} + \beta \mu \right)
+\end{eqnarray}
+%
 
 
 
