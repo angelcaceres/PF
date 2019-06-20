@@ -1,0 +1,453 @@
+\documentclass[letterpaper,12pt,oneside]{book}
+\usepackage{amsmath} 
+\usepackage{animate}
+\usepackage[utf8]{inputenc}
+\usepackage{bm}
+\usepackage{hyperref} 
+\usepackage{graphicx} 
+\usepackage{listings} 
+\usepackage{chapterbib}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{siunitx}
+\usepackage{pgfplots}
+\usepackage{gensymb}
+\usepackage{subfigure}
+\hbadness=99999 
+\DeclareGraphicsExtensions{.bmp,.png,.pdf,.jpg,.gif}
+\addtolength{\hoffset}{-0.5 cm}
+\addtolength{\textwidth}{2 cm}
+\addtolength{\textheight}{1.3cm}
+\usepackage{xcolor}
+\let\perthousand\perthousand
+
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\renewcommand{\chaptername}{Cap\'itulo}
+\renewcommand{\figurename}{Figura}
+\renewcommand{\contentsname}{\'Indice}
+%\renewcommand{\appendixname}{Apéndice}
+
+\def\thebibliography#1{\chapter*{Referencias
+   }\list
+  {[\arabic{enumi}]}{\settowidth\labelwidth{[#1]}\leftmargin\labelwidth
+    \advance\leftmargin\labelsep
+\usecounter{enumi}}
+    \def\newblock{\hskip .11em plus .33em minus .07em}
+    \sloppy\clubpenalty4000\widowpenalty4000
+    \sfcode`\.=1000\relax}
+\let\endthebliography=\endlist
+
+
+\textwidth 14cm 
+%\theoremstyle{proposition}
+\newtheorem{proposition}{Proposici\'on}[section]
+ 
+\begin{document}
+
+%\pagestyle{myheadings}
+
+\pagestyle{plain}
+
+\begin{center}
+\includegraphics[scale=0.7]{uamL}
+\end{center}
+\begin{center}
+\textcolor{orange} { \Large UNIVERSIDAD AUT\'ONOMA METROPOLITANA\\ 
+UNIDAD CUAJIMALPA}\\
+{\bf Departamento de Matem\'aticas Aplicadas y Sistemas}
+\end{center}
+\vskip 1cm
+
+
+\begin{center}
+{ \large \it Licenciatura en Matem\'aticas Aplicadas}
+\end{center}
+
+
+
+
+\vskip 1.5cm
+
+\begin{center}
+ \textcolor{red} {\bf Proyecto Terminal}: \\
+ Fotos\'intesis Cu\'antica
+\end{center}
+\vskip 1.5cm
+
+\begin{center}
+{{ \emph Alumno}:\\
+{\bf\'Angel C\'aceres Licona}\\
+Matrícula: 2133067715\\ 
+angelcaceres@outlook.com\\ }
+\end{center}
+
+
+
+\vskip 1cm
+
+\begin{center}
+{\bf Asesor: Juan Manuel Romero Sanpedro}
+\end{center}
+
+
+\vskip 1cm
+
+\begin{center}
+ \textcolor{purple} {\bf Ciudad de M\'exico, diciembre de 2018}
+\end{center}
+%\maketitle
+
+\tableofcontents
+
+
+\newpage
+
+
+\chapter{El modelo de Ising}
+\section{El modelo de Ising unidimensional}
+%
+El modelo de Ising es uno de los pocos modelos de part\'iculas interactuantes para el cual se conoce una soluci\'on exacta. Es de gran utilidad ya que, aunque originalmente fue formulado para resolver problemas f\'isicos (ferromagnetismo) tiene much\'isima aplicaciones en el modelado de problemas de otras \'areas como la biolog\'ia, finanzas, etc.\\
+
+En una dimensi\'on, la energ\'ia del modelo de Ising puede ser escrita como \\
+%
+\begin{eqnarray}
+  \mathbb{H}=-\epsilon\sum_{i=1}^{N}\sigma_i\sigma_{i+1}-\mu B\sum_{i=1}^{N}\sigma_i \label{hamilIsing}
+\end{eqnarray}
+%
+donde $\sigma=\pm1$ y estos valores indican cada uno de los estados posibles: Si la part\'icula apunta hacia arriba o hacia abajo. Se usa tambi\'en la siguiente representaci\'on matricial:
+%
+\begin{eqnarray}
+  |\uparrow\rangle &=&\begin{bmatrix}1\\0\end{bmatrix}\label{spinup},\\
+  |\downarrow\rangle&=&\begin{bmatrix}0\\1\end{bmatrix}\label{spindown},
+\end{eqnarray}
+%
+y se considera que la red es c\'iclica, es decir:
+%
+$$
+\sigma_{N}=\sigma_{N+1},
+$$
+%
+lo cual equivale a resolver el problema en un anillo. En este caso tenemos la siguiente relaci\'on:
+%
+\begin{eqnarray}
+ \sum_{i=1}^{N}\sigma_{i}=\frac{1}{2}\sum_{i=1}^{N}(\sigma_{i}+\sigma_{i+1}).\label{isingperiod}
+\end{eqnarray}
+%
+Definimos la funci\'on de partici\'on $Z$ como la suma de todos los microestados. 
+Tomando (\ref{isingperiod}) la funci\'on de partici\'on puede ser escrita como
+%
+\begin{eqnarray}
+  Z_{N}(T,B)=\sum_{\sigma_{1}=\pm 1}\cdots\sum_{\sigma_{N=\pm 1}}e^{\beta\sum_{i=1}^N\left[\epsilon\sigma_{i}\sigma_{i+1}+\frac{1}{2}\mu \beta (\sigma_{i}\sigma{i+1}) \right]} .\label{partising}
+\end{eqnarray}
+%
+La funci\'on de partici\'on es importante ya que es funci\'on de las variables del sistema y nos ayuda a calcular las dem\'as propiedades termodin\'amicas del sistema. 
+%En particular, la probabilidad $P_s$ de que el sistema ocupe el microestado $s$ es
+%%
+%\begin{eqnarray}
+%P_s = \frac{1}{Z}e^{-\beta E_s} 
+%\end{eqnarray}
+%
+Entonces introducimos la siguiente matriz: 
+%
+\begin{eqnarray}
+\bar P= \begin{pmatrix}
+e^{\beta(\epsilon + \mu \beta )} && e^{-\beta \epsilon} \\
+e^{-\beta \epsilon} && e^{\beta(\epsilon - \mu \beta )}
+\end{pmatrix},\label{matrizP}
+\end{eqnarray}
+%
+notando que 
+%
+\begin{eqnarray}
+\langle \sigma_{i}|\bar P |\sigma_{i+1}\rangle = e^{\beta\left[\epsilon \sigma_{i}\sigma_{i+1} +\frac{1}{2}\mu B(\sigma_{i} +\sigma_{i+1}) \right]}.
+\end{eqnarray}
+%
+Esto se comprueba f\'acilmente usando la forma matricial que se muestra en (\ref{spinup}) , (\ref{spindown}), la matriz que contiene cada uno de los dos estados posible para cada espin y haciendo el producto de matrices:
+%
+\begin{eqnarray}
+\langle \sigma_{i}|\bar P |\sigma_{i+1}\rangle &=& \begin{pmatrix}
+\sigma_{i}^{+}\\\sigma_{i}^{-}
+\end{pmatrix}
+\begin{pmatrix}
+e^{\beta(\epsilon + \mu \beta )} && e^{-\beta \epsilon} \\
+e^{-\beta \epsilon} && e^{\beta(\epsilon - \mu \beta )}
+\end{pmatrix}
+\begin{pmatrix}
+\sigma_{i+1}^{+}\\\sigma_{i+1}^{-}
+\end{pmatrix} \nonumber \\
+&=& \begin{pmatrix}
+\sigma_{i}^{+}\\\sigma_{i}^{-}
+\end{pmatrix} 
+\begin{pmatrix}
+e^{\beta(\epsilon + \mu \beta )}\sigma_{i+1}^{+} + e^{-\beta \epsilon} \sigma_{i+1}^{-}\\
+e^{-\beta \epsilon}\sigma_{i+1}^{+} +e^{\beta(\epsilon - \mu \beta )}\sigma_{i+1}^{-}
+\end{pmatrix} \nonumber\\
+&=& e^{\beta(\epsilon + \mu \beta )}\sigma_{i+1}^{+}\sigma_{i}^{+} + e^{-\beta \epsilon} \sigma_{i+1}^{-}\sigma_{i}^{+} + e^{-\beta \epsilon}\sigma_{i+1}^{+}\sigma_{i}^{-} +e^{\beta(\epsilon - \mu \beta )}\sigma_{i+1}^{-}\sigma_{i}^{-}\nonumber.
+\end{eqnarray}
+%
+Sabemos que $\sigma$ toma los valores $\pm 1$, entonces identificamos los siguientes casos:
+%
+\begin{enumerate}
+\item $\sigma_{i}^{+}\sigma_{i}^{+}$ da un signo positivo.
+\item $\sigma_{i}^{-}\sigma_{i}^{-}$ da un signo positivo.
+\item $\sigma_{i}^{+}\sigma_{i}^{-}$ da un signo negativo.
+\end{enumerate}
+%
+De esta manera obtenemos el resultado esperado: 
+%
+\begin{eqnarray}
+\langle \sigma_{i}|\bar P |\sigma_{i+1}\rangle = e^{\beta\left[\epsilon \sigma_{i}\sigma_{i+1} +\frac{1}{2}\mu B(\sigma_{i} +\sigma_{i+1}) \right]}.
+\end{eqnarray}
+%
+Usando (\ref{matrizP}), reescribimos la funci\'on de partici\'on:
+%
+\begin{eqnarray}
+Z_{N}(T,B)=\sum_{\sigma_1=\pm 1} \cdots \sum_{\sigma_N=\pm 1} \langle \sigma_{1}|\bar P | \sigma_{2}\rangle\langle \sigma_{2}|\bar P | \sigma_{3}\rangle \cdots \langle \sigma_{N}|\bar P | \sigma_{1}\rangle.
+\end{eqnarray}
+%
+N\'otese que:
+%
+\begin{eqnarray}
+\sum_{\sigma = \pm 1} |\sigma\rangle\langle\sigma|  = \mathbb{I}
+\end{eqnarray}
+%
+de manera que
+%
+\begin{eqnarray}
+Z_N(T,B)=\sum_{\sigma_1 = \pm 1} \langle \sigma_1|\bar P^N |\sigma_1 \rangle = Tr(\bar P^N).
+\end{eqnarray}
+%
+La matriz $\bar P$ es sim\'etrica por construcci\'on, por lo tanto sus valores propios son reales. Si $\lambda_{\pm}$ son sus valores propios, entonces: 
+%
+\begin{eqnarray}
+Z_N(T,B)=\lambda_{+}^N+\lambda_{-}^N.
+\end{eqnarray}
+%
+Obtenemos los valores propios de:
+%
+\begin{eqnarray}
+\begin{vmatrix}
+e^{\beta(\epsilon + \mu \beta )} && e^{-\beta \epsilon} \\
+e^{-\beta \epsilon} && e^{\beta(\epsilon - \mu \beta )}
+\end{vmatrix}=\lambda^2-2\lambda e^{\beta \epsilon}\cosh(\beta \mu B) + 2 \sinh(2\beta\epsilon)=0,
+\end{eqnarray}
+%
+de donde obtenemos los valores propios
+%
+\begin{eqnarray}
+\lambda_{\pm}=e^{\beta \epsilon}\left[\cosh(\beta\mu B)\pm\sqrt{\cosh^2(\beta\mu B)-2e^{-2\beta\epsilon\sinh(2\beta\epsilon)}}\right],
+\end{eqnarray}
+%
+y tomamos $\lambda_{+}>\lambda_{-}$. Para obtener la energ\'ia libre es conveniente reescribir la función de partici\'on como:
+%
+\begin{eqnarray}
+Z_{N}(T,B)=\lambda_{+}^N\left[1+\left(\frac{\lambda_{-}}{\lambda_{+}}\right)^N\right].
+\end{eqnarray}
+%
+Como $\lambda_{-}<\lambda_{+}$, para calcular la energía libre, obtenemos el siguiente l\'imite:
+%
+\begin{eqnarray}
+g(T,B)=\lim_{N\to\infty}\left[-\frac{1}{\beta N}\log Z_N\right]=-\frac{1}{\beta}\log\lambda_{+},
+\end{eqnarray}
+%
+esto es:
+%
+\begin{eqnarray}
+g(T,B)=-\frac{1}{\beta}\log{e^{\beta \epsilon} \cosh(\beta B) + \left[e^{2\beta \epsilon } \cosh^2 (\beta B) - 2\sinh (2\beta B)\right]^{\frac{1}{2}}}.
+\end{eqnarray}
+%
+La magnatizaci\'on por esp\'in est\'a dada por 
+%
+\begin{eqnarray}
+m(T,B)=-\frac{\partial g}{\partial B} = \frac{\sinh(\beta B)}{[\sin^2(\beta B)+ e^{-4 B\epsilon}]\frac{1}{2}}.
+\end{eqnarray}
+%
+Se identifican diferentes fases en el sistema. Una fase cuando la mayor\'ia de los espines apunta hacia arriba, cuando apuntan hacia abajo o cuando hay un mismo n\'umero de espines apuntan hacia arriba que hacia abajo. Cuando el sistema pasa de una fase a otra se dice que hay una transici\'on de fase. 
+
+\section{Teor\'ia de juegos y Modelo de Ising}
+
+La teor\'ia de juegos estudia modelos matem\'aticos de conflicto y cooperaci\'on entre tomadores de decisiones racionales. Los problemas en teor\'ia de juegos son descritos generalmente con $N$ jugadores que tienen un conjunto $s_x = {1,2,4,...,N}$ estrategias disponibles. Cada jugador adoptar\'a una estrategia que maximizar\'a su ganancia $u_x$ en el siguiente paso. En casos especiales existe un estado estacionario en el que a ning\'un jugador le favorece cambiar de estrategia. Matem\'aticamente este estado satisface la siguiente condici\'on.
+%
+\begin{eqnarray}
+  u_x \{s_1^*, s_2^*, ..., s_N^*\} \leq u_x\{s_1^*, s_2^*, ...s_x',..., s_N^*\} \qquad \forall x, \forall s_x' \neq s_x*.
+\end{eqnarray}%
+Esto se conoce como el equilibrio de Nash y cuando la desigualdad es estricta se le llama equilibrio puro de Nash.\\
+Tambi\'en se puede modelar de forma que, en lugar de buscar maximizar la ganancia, los individuos escojan una estrategia que tienen una cierta probabilidad y es a su vez una función de la ganancia: 
+%
+\begin{eqnarray}
+  p(s_x \to s'_x) = f(u_x \{s_1, s_2, ... , s'_x, ..., s_N\}) - u_x\{s_1, s_2, ... , s_x, ... s_N\}.
+\end{eqnarray}
+%
+Este ruido alrededor de la estrategia \'optima es el equivalente a la temperatura en un sistema termodin\'amico y la probabilidad de transici\'on est\'a dada por: 
+%
+\begin{eqnarray}
+  p(s_x \to s'_x) &=& \frac{1}{1+e^{\beta \Delta u_x}}\\
+  \Delta u_x &=& u_x\{s_1, s_2, ... , s_x, ..., s_N\} - u_x\{s_1, s_2, ... ,s_x, ..., s_N\}.
+\end{eqnarray}
+%
+En este caso $\frac{1}{\beta}$ denota el "ruido" en el sistema. En el caso donde la toma de decisiones es probabilist\'ica no existe el equilibrio puro pero en sistemas con un n\'mero largo de individuos con funciones de ganancia id\'enticas el sistema alcanza valores estables en sus par\'ametros promediados entre la poblaci\'on entera.
+\subsection{El caso de N jugadores y 2 estrategias}
+Un problema b\'asico en teor\'ia de juegos es aquel en el que se tienen dos jugadores y dos estrategias: Cooperaci\'on (C) y deserci\'on (D). La ganancia en esta situaci\'on puede ser representada usando esta matriz:
+%
+\begin{eqnarray}
+\begin{bmatrix}
+  C & D
+\end{bmatrix} \\ \nonumber
+\begin{bmatrix}
+  C\\
+  D
+\end{bmatrix}\nonumber
+\begin{bmatrix}
+  R & S\\
+  T & P
+\end{bmatrix}\label{matrizNash}
+\end{eqnarray}
+%
+donde la fila $(C,D)$ demnota las opciones de estrategia del jugador que estamos intentando determinar y la columna $(C, D)$ las de el otro jugador. $R$ es la recompensa obtenida cuando ambos cooperan, $S$ es el costo que se paga por un jugador cuando \'este coopera y el otro no, $T$ es la ganancia por desertar cuando el otro jugador si coopera y $P$ es el castigo que se paga cuando ambos jugadores desertan.
+Un ejemplo de un sistema es el que se conoce como el dilema del prisionero. La encunciación es la siguiente: \\
+La polic\'ia arresta a dos personas. No hay pruebas suficientes para condenarlas y tras haberlas separado las visita individualmente y les ofrece un trato: Si una confiesa y su c\'omplice no, la c\'omplice será condenada a diez a\~nos en prisi\'on. Si la primera calla y la c\'mplice confiesa, la primera recibir\'a la condena. Si ambas personas confiesan, ser\'an condenadas a seis años. Si ninguna confiesa, a lo m\'as podr\'an ser condenadas a un año en prisi\'on.
+En este caso el equilibrio de Nash se obtiene cuando ambas personas confiesan y la ganancia combinada se maximiza cuando ambas personas cooperan.
+En un sistema probabil\'istico con $N$ participantes el inter\'es principal es saber cu\'antos participantes desertan comparado con el n\'umero de participantes. Esto est\'a dado por: 
+%
+\begin{eqnarray}
+m=\frac{P_C - P_D}{N}, \label{mJuegos}
+\end{eqnarray}
+%
+donde $P_C$ y $P_D$ es el n\'umero de agentes que cooperan y desertan, respectivamente. La transici\'on de fase se da cuando el signo de $m$ cambia, es decir, cuando pasamos de tener una mayoría de agentes cooperando que desertando. 
+\subsection{Analog\'ias con los sistemas termodin\'amicos}
+En este sistema, al convertir a os agentes en part\'iculas, cada uno de las estrategias se convierte en un estado del esp\'in: $\sigma = +1$ para la cooperaci\'on y $\sigma = -1$ para la deserci\'on.\\
+La ecuaci\'on (\ref{mJuegos}) se convierte en la ecuaci\'on de la magnetizaci\'on promedio del sistema. \\
+El objetivo principal es, entonces, encontrar el Hamiltoniano del sistema. 
+Se pueden comprobar los c\'alculos termodin\'amicos al tomar el l\'imite de la temperatura cr\'itica $(\beta \to \infty)$ que debe corresponer con el equilibrio de Nash.
+Para lograr esto, Sarkar y Benjamin \cite{benjamin}  desarrollaron el siguiente me\'etodo.\\
+La premisa es que el equilibrio de Nash se mantiene intacto si transformamos la matriz (\ref{matrizNash}) de esta forma:
+%
+\begin{eqnarray}
+  U =
+  \begin{bmatrix}
+    R & S\\
+    T & P
+  \end{bmatrix} \to 
+  \begin{bmatrix}
+    R - \lambda & S - \mu \\
+    T - \lambda & P - \mu
+  \end{bmatrix} = U'
+\end{eqnarray}
+%
+para $\lambda = \frac{R+T}{2}$ y $\mu = \frac{S+P}{2}$ obtenemos: 
+%
+\begin{eqnarray}
+U' = 
+\begin{bmatrix}
+  \frac{R-T}{2} & \frac{S-P}{2}\\
+  \frac{T-R}{2} & \frac{P-S}{2} 
+\end{bmatrix} \label{payoff}
+\end{eqnarray}
+%
+Ahora consideramos un Hamiltoniano de un sistema de Ising 1D usando dos espines: 
+%
+\begin{eqnarray}
+  \mathbb{H}=-2J \sigma_1 \sigma_2 -h\sigma_1 - h\sigma_2, \label{hamilNash}
+\end{eqnarray}
+%
+donde $\sigma \pm 1$  denota los espines. Para este Hamiltoniano la energ\'ia que contribuye cada espin puede ser escrita como:
+%
+\begin{eqnarray}
+  E = \begin{bmatrix}
+    -J - h & J- h\\
+    J+ h & -J + h
+  \end{bmatrix}
+\end{eqnarray}
+%
+En esta matriz las columnas representan el estado del esp\'in $\sigma_2 = (+1,-1)$ y las filas el estado del esp\'in $\sigma_1 = (+1, -1)$. Se puede formular un juego en el que cada jugador obtiene una ganandcia dada por $-E$ . A estos juegos se le llaman juegos de Ising. Tienen la propiedad de que minimizar (\ref{hamilNash}) corresponde con el equilibrio de Nash. 
+N\'otese que la ganancia dada por la ecuaci\'on (\ref{payoff}) se parece a la ganancia de un juego de Ising. Entonces, el equilibrio de Nash para cualquier juego simetrico de 2x2 es el mismo que el de un juego de Ising en el que
+%
+\begin{eqnarray}
+  J=\frac{R-T+P-S}{4} \qquad h = \frac{R-T+S-P}{4} \label{hjprisionero}
+\end{eqnarray}
+%
+Entonces, al usar herramientas termodin\'amicas en el juego de Ising podemos encontrar el estado de equilibrio que es equivalente al equilibrio de Nash. 
+Sarkar y Benjamin (\cite{benjamin}) extendieron esta equivalencia para cuando uno tiene $N$ jugadores en el dilema del prisionero. EL Hamiltoniano para este sistema est\'a dado por: 
+%
+\begin{eqnarray}
+  \mathbb{H} = -\sum_{i=1}^{N} J\sigma_{i} \sigma_{i+1} - \sum_{i=1}^{n}\frac{h}{2} (\sigma_{i} \sigma_{i+1}).
+\end{eqnarray}
+%
+La funci\'on de partici\'on est\'a dada por 
+%
+\begin{eqnarray}
+  Z= e^{N \beta J}(\cosh(\beta h) + \sqrt{\sinh^2(\beta h) + e^{-4 \beta J}}).
+\end{eqnarray}
+%
+Usando esta funci\'on de partici\'on podemos calcular la magnetizaci\'on promedio.
+%
+\begin{eqnarray}
+  m = \frac{1}{N}\langle J_z \rangle = \frac{1}{N}\frac{\partial \log z}{\partial \beta h} = \frac{\sinh \beta h}{\sqrt{\sinh^2(\beta h) +e^{-4 \beta J}}}
+\end{eqnarray}
+%
+En el caso del dilema del prisionero, $(T>R>P>S)$, usando la relaci\'on de (\ref{hjprisionero}) tenemos que $h<0$ y $j>0$. Entonces, en el l\'imite $\beta \to \infty$:
+%
+\begin{eqnarray}
+m \approx -1, \nonumber
+\end{eqnarray}
+%
+que corresponde a cuando todos los jugadores desertan, y entonces este resultado no contradice al equilibrio de Nash.
+Podemos calcular tambi\'en la energ\'ia promedio por part\'icula:
+%
+\begin{eqnarray}
+  E = \frac{1}{N} \langle \mathbb{H}\rangle = -\frac{1}{N} \frac{\partial \log Z}{\partial \beta} = -J -h \frac{\sin(\beta h)+ \frac{1}{2}\frac{\sinh(2\beta h) -4e^{-4 \beta J}J/h}{\sqrt{\sinh^2(\beta h)+ e^{-4 \beta J}}}}{\cosh (\beta h) + \sqrt{\sinh^2(\beta h) + e^{-4\beta J}}}
+\end{eqnarray}
+%
+En el l\'imite $\beta \to \infty$ para $h<0$ y $J>0$, 
+%
+\begin{eqnarray}
+  E \approx -J +h,  
+\end{eqnarray}
+%
+que corresponde al estado en el que ambas part\'iculas tienen espin $-1$ lo cual no contradice los resultados conocidos sobre el equilibrio de Nash.
+
+
+
+\section{Una aplicaci\'on a la ciencia pol\'itica}
+Muchas situaciones en la ciancia pol\'itica pueden ser vistas como agentes jugando el mismo juego una y otra vez. Es de inter\'es estudiar como ciertas pr\'acticas, convenciones y cooperaci\'on se sostienen cuando los involucrados pueden tener alg\'un inventivo en el corto plazo por desviarse de el comportamiento esperado. Por ejemplo: Los tratados de libre comercio. Muchas veces se cree que la econom\'ia global mejorar\'ia si todos los pa\'ises accedieran a el libre comercio, pero que individulmeante les ir\'ia mejor si adoptan medidas proteccionistas. Por ejemplo, se considera la siguiente representaci\'on de las pol\'iticas de comercio entre M\'exico y Estados Unidos:
+%
+\begin{eqnarray}
+    \begin{tabular}{ |c|c|c| } 
+     \hline
+     MX/EU & Libre Mercado & Proteccionismo \\ 
+     \hline
+     Libre Mercado & 10,10 & 1,12 \\ 
+     \hline
+     Proteccionismo & 12,1 & 4,4 \\ 
+     \hline
+    \end{tabular} 
+\end{eqnarray}
+%
+Hay datos que indican que, el libre mercado puede implicar un ahorro de el 10\% en los costos al consumidor de alg\'un producto \cite{BMW} y al contrario, imponer restricciones a la importaci\'on de alg\'un producto puede implicar que el consumidor termine pagando 12\% m\'as  \cite{NYT}. Para el caso en que ambos pa\'ises son proteccionistas, se les asigna una ganancia de 4 relacionada con los beneficios para la econom\'ia de la creaci\'on de compañ\'ias que tal vez no podr\'ian compatir en un ambiente de libre mercado.
+
+En este caso, si el juego es jugado s\'olo una vez, el equilibrio de Nash se da cuando los dos pa\'ises eligen las pol\'iticas proteccionistas. Al generalizar para un n\'umero infinito de juegos podemos ver que se repite el patr\'on en el que cada pa\'is elige las pol\'iticas proteccionistas. 
+
+
+
+ \begin{thebibliography}{99}
+
+
+
+
+\bibitem{benjamin}  S. Sarkar y C. Benjamin {\it Emergence of Cooperation in the thermodynamic limit,} ArXiv e-prints, arXiv:1803.10083 (2018).
+
+\bibitem{Onsager} L. Onsager, \it{Crystal statistics. I. A two-dimensional model with an order-disorder transition}, Physical Review, Series II, 65 (3–4): 117–149 (1944).
+
+\bibitem{BMW} Galles, Gary \it{Mexican BMW Factory Shows Us the Benefits of Free Trade, } Mises Institute, url  = "https://mises.org/wire/mexican-bmw-factory-shows-us-benefits-free-trade"
+
+\bibitem{NYT} Galles, Gary \it{Mexican BMW Factory Shows Us the Benefits of Free Trade, } Mises Institute, url  = "https://mises.org/wire/mexican-bmw-factory-shows-us-benefits-free-trade"
+
+\end{thebibliography}
+
+
+
+
+  \end{document}
+  %
+
+
