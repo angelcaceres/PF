@@ -1759,15 +1759,50 @@ C_N =\frac{N k_B \beta^2 \nu^2 \epsilon^2 \langle s \rangle^2}{2 \cosh^2\left(\b
 La \'ultima cantidad que queremos calcular es la susceptividad magn\'etica $X_{T,N}$ que se define de la siguiente manera.
 %
 \begin{eqnarray}
-X_{T,N} (B) = \left(\frac{\partial \langle M \rangle}{\partial B} \right)_{T,N} = N\mu \left(\frac{\partial \langle M \rangle}{\partial B} \right)_{t,n}.
+\chi_{T,N} (B) = \left(\frac{\partial \langle M \rangle}{\partial B} \right)_{T,N} = N\mu \left(\frac{\partial \langle M \rangle}{\partial B} \right)_{t,n}.
 \end{eqnarray}
 %
 De (\ref{espinPromedio}) podemos escribir:
 %
 \begin{eqnarray}
-\left(\frac{\partial \langle s \rangle}{\partial B}\right)_{T,N} = sech^2 \left(\beta \frac{\nu \epsilon}{2}\langle s \rangle + \beta \mu B\right)\left(\beta \frac{\nu \epsilon}{2}\left(\frac{\partial \langle s \rangle}{\partial B} \right)_{T,N} + \beta \mu \right)
+\left(\frac{\partial \langle s \rangle}{\partial B}\right)_{T,N} = sech^2 \left(\beta \frac{\nu \epsilon}{2}\langle s \rangle + \beta \mu B\right)\left(\beta \frac{\nu \epsilon}{2}\left(\frac{\partial \langle s \rangle}{\partial B} \right)_{T,N} + \beta \mu \right), 
 \end{eqnarray}
 %
+O
+%
+\begin{eqnarray}
+\left(\frac{\partial\langle s \rangle}{\partial B}\right)_{T,N} = \frac{2\beta \mu}{2\cosh^2 \left[\beta  \frac{\nu \epsilon}{2}\langle s \rangle + \beta \mu B\right] - \beta \nu \epsilon}
+\end{eqnarray}
+%
+La susceptibilidad magn\'etica $\chi_{T,N}(B)$ est\'a entonces dada por:
+%
+\begin{eqnarray}
+\chi_{T,N}(B) = \frac{2\beta N \mu^2}{2 \cosh^2 \left[\beta \frac{\nu \epsilon}{2} \langle s \rangle + \beta \mu B\right]-\beta \nu \epsilon} 
+\end{eqnarray}
+%
+La susceptibilidad magn\'tica, el l\'imite cuando $B=0$ es igual a:
+%
+\begin{eqnarray}
+\chi_{T,N}(0) =\frac{2\beta N \mu^2}{2 \cosh^2 \left[\beta \frac{\nu \epsilon}{2} \langle s \rangle \right]-\beta \nu \epsilon} = \frac{2 N \mu^2}{\nu \epsilon}\frac{\left(\frac{T_c}{T}\right)}{\cosh^2\left(\langle s \rangle \frac{T_c}{T} \right) - \frac{T_c}{T}},
+\end{eqnarray}
+%
+con $\langle s \rangle$ dado en (\ref{espinPromedio}).
+\subsection{Una aplicaci\'on a la ciencia poli\'itca}
+Muchas situaciones en la ciancia pol\'itica pueden ser vistas como agentes jugando el mismo juego una y otra vez. Es de inter\'es estudiar como ciertas pr\'acticas, convenciones y cooperaci\'on se sostienen cuando los involucrados pueden tener alg\'un inventivo en el corto plazo por desviarse de el comportamiento esperado. Por ejemplo: Los tratados de libre comercio. Muchas veces se cree que la econom\'ia global mejorar\'ia si todos los pa\'ises accedieran a el libre comercio, pero que individulmeante les ir\'ia mejor si adoptan medidas proteccionistas. Por ejemplo, se considera la siguiente representaci\'on de las pol\'iticas de comercio entre M\'exico y Estados Unidos:
+%
+\begin{eqnarray}
+    \begin{tabular}{ |c|c|c| } 
+     \hline
+     MX/EU & Libre Mercado & Proteccionismo \\ 
+     \hline
+     Libre Mercado & 10,10 & 1,12 \\ 
+     \hline
+     Proteccionismo & 12,1 & 4,4 \\ 
+     \hline
+    \end{tabular} 
+\end{eqnarray}
+%
+En este caso, si el juego es jugado s\'olo una vez, el equilibrio de Nash se da cuando los dos pa\'ises eligen las pol\'iticas proteccionistas. Al generalizar para un n\'umero infinito de juegos podemos ver que se repite el patr\'on en el que cada pa\'is elige las pol\'iticas proteccionistas.
 
 
 
