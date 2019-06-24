@@ -182,6 +182,7 @@ _minted*
 *.sagetex.sage
 *.sagetex.py
 *.sagetex.scmd
+*.pyc
 
 # scrwfile
 *.wrt

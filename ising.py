@@ -1,68 +1,168 @@
-""" From "A SURVEY OF COMPUTATIONAL PHYSICS", Python eBook Version
-   by RH Landau, MJ Paez, and CC Bordeianu
-   Copyright Princeton University Press, Princeton, 2011; Book  Copyright R Landau, 
-   Oregon State Unv, MJ Paez, Univ Antioquia, C Bordeianu, Univ Bucharest, 2011.
-   Support by National Science Foundation , Oregon State Univ, Microsoft Corp"""  
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib.animation as manimation
+from scipy.misc import factorial
+import io
+from tqdm import tqdm
 
-# Ising.py: Ising model
-from visual import *
-import random
-from visual.graph import *
 
-# Display for the arrows
-scene = display(x=0,y=0,width=700,height=200, range=40,title='Spins')
-engraph = gdisplay(y=200,width=700,height=300, title='E of Spin System',\
-        xtitle='iteration', ytitle='E',xmax=500, xmin=0, ymax=5, ymin=-5)
-enplot = gcurve(color=color.yellow)                 # for the energy plot
-N     = 30                                              # number of spins
-B     = 1.                                               # magnetic field
-mu    = .33                        # g mu (giromag. times Bohrs magneton)
-J     = .20                                             # Exchange energy
-k     = 1.                                            # Boltmann constant
-T     = 100.                                                # Temperature
-state = zeros((N))                 # spins state some up(1) some down (0)
-S     = zeros((N) ,float)                   
-test  = state                                              # a test state
-random.seed()                                     # Seed random generator
+class IsingLattice:
 
-def energy ( S) :                                 # Method to calc energy
-    FirstTerm = 0.
-    SecondTerm = 0.                                         # Sum  energy
-    for  i in range(0,N-2):  FirstTerm += S[i]*S[i + 1]
-    FirstTerm *= -J 
-    for i in range(0,N-1):   SecondTerm += S[i]
-    SecondTerm *= -B*mu; 
-    return (FirstTerm + SecondTerm); 
-		
-ES = energy(state)                                 # State, test's energy
+    _EPOCHS = int(1e6)
 
-def spstate(state):                      # Plots spins according to state
-    for obj in scene.objects: obj.visible=0      #  erase previous arrows
-    j=0    
-    for i in range(-N,N,2):              # 30 spins numbered from 0 to 29
-        if state[j]==-1:  ypos = 5                       # case spin down
-        else:             ypos = 0
-        if  5*state[j]<0: arrowcol = (1,1,1)   # white arrow if spin down
-        else:             arrowcol =(0.7,0.8,0)
-        arrow(pos=(i,ypos,0),axis=(0,5*state[j],0),color=arrowcol)# arrow
-        j +=1
+    def __init__(self, tempature, initial_state='r', size=(100,100), show=False):
+        """
+        """
+        self.sqr_size = size
+        self.size = size[0]
+        self.T = tempature
+        self._build_system(initial_state)
+
+    def _build_system(self, initial_state):
+        """Build the system
+        Build either a randomly distributed system or a homogeneous system (for
+        watching the deterioration of magnetization
+
+        Args
+        ----
+        initial_state (str: "r" or other) : Initial state of the lattice.
+            currently only random ("r") initial state, or uniformly magnetized, 
+            is supported 
+        """
+
+        if initial_state == 'r':
+            system = np.random.randint(0, 1+1, self.sqr_size)
+            system[system==0] = -1
+        else:
+            system = np.ones(self.sqr_size)
+
+        self.system = system
+
+    def _bc(self, i):
+        """Apply periodic boundary condition
+
+        Check if a lattice site coordinate falls out of bounds. If it does, 
+        apply periodic boundary condition 
         
-for  i in range(0 ,N):  state[i] = -1     # initial state, all spins down
+        Assumes lattice is square
 
-for obj in scene.objects:   obj.visible=0
-spstate(state)                      # plots initial state: all spins down
-ES = energy(state)                  # finds the energy of the spin system
-                                    # Here is the Metropolis algorithm
-for  j in range (1,500):            # Change state and test
-      rate(3)                       # to be able to see the flipping
-      test = state                  # test is the previous spin state
-      r = int(N*random.random());   # Flip spin randomly
-      test[r] *= -1                 # flips temporarily that spin
-      ET = energy(test)             # finds energy of the test configur.
-      p = math.exp((ES-ET)/(k*T))   # test with Boltzmann factor
-      enplot.plot(pos=(j,ES))       # adds a segment to the curve of E 
-      if p >= random.random():      # to see if trial config. is accepted
-           state = test
-           spstate(state)
-           ES = ET
-              
+        Args
+        ----
+        i (int) : lattice site coordinate
+
+        Return
+        ------
+        (int) : corrected lattice site coordinate
+        """
+        if i+1 > self.size-1:
+            return 0
+        if i-1 < 0:
+            return self.size-1
+        else:
+            return i
+
+    def _energy(self, N, M):
+        """Calculate the energy of spin interaction at a given lattice site
+        i.e. the interaction of a Spin at lattice site n,m with its 4 neighbors
+
+        - S_n,m*(S_n+1,m + Sn-1,m + S_n,m-1, + S_n,m+1)
+
+        Args
+        ----
+        N (int) : lattice site coordinate
+        M (int) : lattice site coordinate
+
+        Return
+        """
+        return -2*self.system[N,M]*(
+                    self.system[self._bc(N-1), M] 
+                    + self.system[self._bc(N+1), M] 
+                    + self.system[N, self._bc(M-1)] 
+                    + self.system[N, self._bc(M+1)]
+                    )
+
+    @property
+    def internal_energy(self):
+        e=0; E=0; E_2=0
+
+        for i in range(self.size):
+            for j in range(self.size):   
+                e = self._energy(i, j)
+                E += e
+                E_2 += e**2
+
+        U = (1./self.size**2)*E
+        U_2 = (1./self.size**2)*E_2 
+
+        return U, U_2
+
+    '''
+    @staticmethod
+    def _factorial(n):
+        """Calculates N!
+
+        If N is too large, approximate it using Sterling's approximation
+        N! = N*log N - N
+        """
+        if n>100:
+            return n*np.log(n)-n
+        else:
+            return np.log(factorial(n))
+        
+    @property
+    def entropy(self):
+        """Find the entropy of the system
+
+        Calculates N!/(N_up! * Nb_down!)
+        """
+
+        nup = self.system[self.system == 1].size
+
+        return self._factorial(self.size**2) / \
+                (self._factorial(nup)*self._factorial(self.size**2-nup))
+    '''
+
+    @property
+    def magnetization(self):
+        """Find the overall magnetization of the system
+        """
+        return np.abs(np.sum(self.system)/self.size**2)
+
+    def run(self, video=True):
+        """Run the simulation
+        """
+
+        FFMpegWriter = manimation.writers['ffmpeg']
+        writer = FFMpegWriter(fps=10)
+
+        plt.ion()
+        fig = plt.figure()
+
+        with writer.saving(fig, "ising.mp4", 100):
+            for epoch in tqdm(range(self._EPOCHS)):
+                # Randomly select a site on the lattice
+                N, M = np.random.randint(0, self.size, 2)
+
+                # Calculate energy of a flipped spin
+                E = -1*self._energy(N, M)
+                
+                # "Roll the dice" to see if the spin is flipped 
+                if E <= 0.:
+                    self.system[N,M]*=-1
+                elif np.exp(-E/self.T) > np.random.rand():
+                    self.system[N,M]*=-1
+
+                if epoch % (self._EPOCHS//75) == 0: 
+                    if video:
+                        img = plt.imshow(self.system, interpolation='nearest')
+                        writer.grab_frame()
+                        img.remove()
+
+        tqdm.write("Net Magnetization: {:.2f}".format(self.magnetization))
+
+        plt.close('all')
+
+if __name__ == "__main__":
+
+    lattice = IsingLattice(tempature=.50, initial_state="r", size=(100,100))
+    lattice.run()
