@@ -1534,6 +1534,24 @@ En el l\'imite $\beta \to \infty$ para $h<0$ y $J>0$,
 %
 que corresponde al estado en el que ambas part\'iculas tienen espin $-1$ lo cual no contradice los resultados conocidos sobre el equilibrio de Nash.
 
+\subsection{Una aplicaci\'on a la ciencia poli\'itca}
+Muchas situaciones en la ciancia pol\'itica pueden ser vistas como agentes jugando el mismo juego una y otra vez. Es de inter\'es estudiar como ciertas pr\'acticas, convenciones y cooperaci\'on se sostienen cuando los involucrados pueden tener alg\'un inventivo en el corto plazo por desviarse de el comportamiento esperado. Por ejemplo: Los tratados de libre comercio. Muchas veces se cree que la econom\'ia global mejorar\'ia si todos los pa\'ises accedieran a el libre comercio, pero que individulmeante les ir\'ia mejor si adoptan medidas proteccionistas. Por ejemplo, se considera la siguiente representaci\'on de las pol\'iticas de comercio entre M\'exico y Estados Unidos:
+%
+\begin{eqnarray}
+    \begin{tabular}{ |c|c|c| } 
+     \hline
+     MX/EU & Libre Mercado & Proteccionismo \\ 
+     \hline
+     Libre Mercado & 10,10 & 1,12 \\ 
+     \hline
+     Proteccionismo & 12,1 & 4,4 \\ 
+     \hline
+    \end{tabular} 
+\end{eqnarray}
+%
+En este caso, si el juego es jugado s\'olo una vez, el equilibrio de Nash se da cuando los dos pa\'ises eligen las pol\'iticas proteccionistas. Al generalizar para un n\'umero infinito de juegos podemos ver que se repite el patr\'on en el que cada pa\'is elige las pol\'iticas proteccionistas.
+
+
 \section{El modelo de ising bidimensional}
 Considere un enrejado bidimensional como el que se muestra\\
 %
@@ -1851,23 +1869,43 @@ La susceptibilidad magn\'tica, el l\'imite cuando $B=0$ es igual a:
 \end{eqnarray}
 %
 con $\langle s \rangle$ dado en (\ref{espinPromedio}).
-\subsection{Una aplicaci\'on a la ciencia poli\'itca}
-Muchas situaciones en la ciancia pol\'itica pueden ser vistas como agentes jugando el mismo juego una y otra vez. Es de inter\'es estudiar como ciertas pr\'acticas, convenciones y cooperaci\'on se sostienen cuando los involucrados pueden tener alg\'un inventivo en el corto plazo por desviarse de el comportamiento esperado. Por ejemplo: Los tratados de libre comercio. Muchas veces se cree que la econom\'ia global mejorar\'ia si todos los pa\'ises accedieran a el libre comercio, pero que individulmeante les ir\'ia mejor si adoptan medidas proteccionistas. Por ejemplo, se considera la siguiente representaci\'on de las pol\'iticas de comercio entre M\'exico y Estados Unidos:
+\section{Simulaci\'on por computadora.}
+Una simulaci\'on por computadora es muy \'util para evaluar las variables del sistema. Uno de los m\'etodos m\'as usados para hacer simulaciones por computadora es el m\'etodo de Montecarlo. 
+De la simulaci\'on obtenemos lo siguiente:
 %
-\begin{eqnarray}
-    \begin{tabular}{ |c|c|c| } 
-     \hline
-     MX/EU & Libre Mercado & Proteccionismo \\ 
-     \hline
-     Libre Mercado & 10,10 & 1,12 \\ 
-     \hline
-     Proteccionismo & 12,1 & 4,4 \\ 
-     \hline
-    \end{tabular} 
-\end{eqnarray}
+\begin{figure*}
+\centering
+\includegraphics[scale=0.75]{fig/elementosDeDominio.png}
+\caption{\label{elemDom}  En la gr\'afica se muestran los elementos de dominio.}
+\end{figure*}
+% 
+\begin{figure*}
+\centering
+\includegraphics[scale=0.75]{fig/temperaturaVsCalorEspecifico.png}
+\caption{\label{tempVsCe}  Esta gr\'afica corresponde a la temperatura vs calor espec\'ifico.}
+\end{figure*}
 %
-En este caso, si el juego es jugado s\'olo una vez, el equilibrio de Nash se da cuando los dos pa\'ises eligen las pol\'iticas proteccionistas. Al generalizar para un n\'umero infinito de juegos podemos ver que se repite el patr\'on en el que cada pa\'is elige las pol\'iticas proteccionistas.
-
+%
+\begin{figure*}
+\centering
+\includegraphics[scale=0.75]{fig/temperaturaVsEnergia.png}
+\caption{\label{tempVsEnerg}  Esta gr\'afica corresponde a la temperatura vs energia.}
+\end{figure*}
+% 
+%
+\begin{figure*}
+\centering
+\includegraphics[scale=0.75]{fig/temperaturaVSSusceptibilidad.png}
+\caption{\label{tempVsMag}  Esta gr\'afica corresponde a la temperatura vs la susceptibilidad.}
+\end{figure*}
+% 
+%
+\begin{figure*}
+\centering
+\includegraphics[scale=0.75]{fig/temperaturaVsMagnetizacion.png}
+\caption{\label{tempVsSuc}  Esta gr\'afica corresponde a la temperatura vs magnetizacion.}
+\end{figure*}
+% 
 
 
 

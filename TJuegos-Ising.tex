@@ -426,10 +426,32 @@ Muchas situaciones en la ciancia pol\'itica pueden ser vistas como agentes jugan
 Hay datos que indican que, el libre mercado puede implicar un ahorro de el 10\% en los costos al consumidor de alg\'un producto \cite{BMW} y al contrario, imponer restricciones a la importaci\'on de alg\'un producto puede implicar que el consumidor termine pagando 12\% m\'as  \cite{NYT}. Para el caso en que ambos pa\'ises son proteccionistas, se les asigna una ganancia de 4 relacionada con los beneficios para la econom\'ia de la creaci\'on de compañ\'ias que tal vez no podr\'ian compatir en un ambiente de libre mercado.
 
 En este caso, si el juego es jugado s\'olo una vez, el equilibrio de Nash se da cuando los dos pa\'ises eligen las pol\'iticas proteccionistas. Al generalizar para un n\'umero infinito de juegos podemos ver que se repite el patr\'on en el que cada pa\'is elige las pol\'iticas proteccionistas. 
-
-
-
- \begin{thebibliography}{99}
+Veamos qu\'e pasa cuando se repite dos veces el juego de Ising:\\
+%
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{ |c|c|c|c|c|c|c|c|c| } 
+\hline
+$MX/EU$ & $LM_1 LM_2 LM_2$ & $LM_1 LM_2 PT_2$ &$LM_1 PT_2 LM_2$ &$LM_1 PT_2 PT_2$ &$PT_1 LM_2 LM_2$ &$PT_1 PT_2 LM_2$ &$PT_1 PT_2 LM_2$ &$PT_1 PT_2 PT_2$ \\ 
+\hline
+$LM_1 LM_2 LM_2 $& 20,20 & 20,20 & 11, 22& 11, 22& 11, 22& 11,22& 2,24 & 2,24 \\ 
+\hline
+$LM_1 LM_2 PT_2 $& 20,20 & 20,20 & 11, 22& 11,22& 13, 13& 13, 13& 5,16 & 5, 16 \\
+\hline
+$LM_1 PT_2 LM_2$ & 22, 11 & 22,11 & 14,14& 14, 14& 11, 22 & 11, 22& 2,24 & 2,24 \\ 
+\hline
+$LM_1 PT_2PT_2$ & 22, 11 & 22,11& 14,14& 14, 14& 13,13 & 13,13 & 5,16 & 5,16 \\ 
+\hline
+$LM_1 PT_2 PT_2$ & 22,11 & 13,13 & 22,11& 13,13 & 14,14& 5,16 & 14,14 & 5,16 \\ 
+\hline
+$PT_1 LM_2 LM_2 $& 22, 11& 13,13 & 22,11& 13,13 &16,5 & 8,8& 16,5& 8,8 \\ 
+\hline
+$PT_1 LM_2 PT_2$ & 24,2 & 16, 5 & 24,2 & 16,5& 14,14 &5,16 & 14,14 & 5,16\\ 
+\hline
+$PT_1 PT_2 PT_2$ & 24,2 & 16,5 & 24,2 & 16,5 & 16,5 & 8,8 & 16,5 &8,8* \\ 
+\hline
+\end{tabular}}
+Como vemos, de nuevo el equilibrio de Nash se va a dar cuando ambos pa\'ises adopten pol\'iticas proteccionistas. Esto se va a repetir incluso cuando el juego de Ising se repita un n\'umero muy grande de veces, de acuerdo a lo demostrado en la secci\'on anterior.
+\begin{thebibliography}{99}
 
 
 
