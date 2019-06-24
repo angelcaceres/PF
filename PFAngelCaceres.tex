@@ -13,7 +13,7 @@
 \usepackage{pgfplots}
 \usepackage{gensymb}
 \usepackage{subfigure}
-\hbadness=99999 
+\hbadness=999999999
 \DeclareGraphicsExtensions{.bmp,.png,.pdf,.jpg,.gif}
 \addtolength{\hoffset}{-0.5 cm}
 \addtolength{\textwidth}{2 cm}
@@ -771,7 +771,7 @@ A_3 \begin{pmatrix}
 \end{pmatrix}\cos\left(\sqrt{2-\sqrt{2}}\omega_0 t + \phi_3\right) \nonumber. 
 \end{eqnarray}
 %
-\section{Oscilador con $N$ masas}
+\section{Oscilador con \texorpdfstring{$N$}{N} masas}
 Ahora consideremos el caso con n masas entre dos muros unidas con resortes. Las masas son todas iguales a $m$ y las constantes de resorte son iguales a k y los desplazamientos de sus masas iguales a $x_1,x_2,\dots,x_n$. La fuerza en ela en\'esima masa es: 
 %
 \begin{eqnarray}
@@ -920,7 +920,7 @@ donde $\theta$ est\'a determinado por
 \theta \equiv \cos ^{-1} \left(\frac{2\omega_0^2-\omega^2}{2 \omega_0^2}\right)
 \end{eqnarray}
 %
-\section{$N \to \infty$ y la ecuaci\'on de onda}
+\section{\texorpdfstring{$N \to \infty$} y la ecuaci\'on de onda}{lg}
 Ahora consideremos el caso $N \to \infty$ l\'imite para el arreglo de masas y resortes. Lo que obtenemos es un sistema continuo. Ahora $x$ representar\'a las posiciones de las masas en reposo y $\xi$ el desplazamiento de las masas, de esta forma $\xi_n$ es el desplazamiento de la en\'esima masa. Las $x's$ son constantes, s\'olamente son para nombrar las posiciones de quilibrio, que son fijas. La posici\'on de la en\'esima masa es $x_n + \xi_n$ pero s\'olo la parte $\xi_n$ aparece en la ecuaci\'on $F=ma$ ya que s\'olo $\xi_n$ contribuye a la aceleraci\'on. Escribiremos la funci\'on del deplazamiento como $\xi(x_n)$ y por ahora no escribiremos la dependencia temporal.\\
 Sea $\Delta x \equiv x_n - x_{n-1}$ el espacio igual entre las posiciones de equilibrio de todas las masas. Entonces, la ecuaci\'on $F=ma$ se convierte en:
 %
@@ -1646,6 +1646,66 @@ Cerca de $T = T_c$ la capacidad calor\'ifica por esp\'in est\'a dada por:
 \end{eqnarray}
 %
 Entonces se ve que la capacidad calor\'ifica diverge conforme $T->T_c$.
+Por \'ultimo, se encuentran los valores para los exponentes cr\'iticos. Los exponentes cr\'iticos son valores universales que caracterizan las propiedades singulares de las cantidades fisicas. Para explicar los exponentes cr\'iticos del modelo de ising en 2 dimensiones necesitaremos las siguientes defiiciones.\\ 
+\\
+\begin{center}
+\begin{tabular}{ |c|c| } 
+\hline
+$\Psi$ & La magnetizaci\'on en el limite de Curie.\\ 
+\hline
+$\tau$ & $\frac{T-T_c}{T}$.\\ 
+\hline
+$f$ & La energ\'ia libre espec\'ifica.\\
+\hline
+$C$ & El calor espec\'ifico.\\
+\hline
+$J$ & El campo externo.\\
+\hline
+$\chi$ & La susceptibilidad magn\'etica.\\
+\hline
+$\xi$ & La longitud de la correlaci\'on.\\
+\hline
+$d$ & El n\'umero de dimensiones espaciales.\\ 
+\hline
+$\langle \Psi (\vec{x}) \Psi (\vec{y}) \rangle$ & La funci\'on de correlaci\'on. \\
+\hline
+$r$ & La distancia espacial.\\
+\hline
+\end{tabular} 
+\end{center} 
+De ah\'i obtenemos:\\
+\\
+\begin{center}
+Exponentes para $\tau > 0$\\
+\begin{tabular}{ |c|c| } 
+\hline
+$\alpha$ & $C \propto \tau^{-\alpha}$\\
+\hline
+$\gamma$ & $\chi \propto \tau^{-\gamma}$\\
+\hline
+$\nu$ & $\xi \propto \tau^{-\nu}$\\
+\hline
+\end{tabular} 
+\end{center}
+\begin{center}
+Exponentes para $\tau < 0$\\
+\begin{tabular}{ |c|c| } 
+\hline
+$\beta$ & $\Psi \propto (-\tau)^{\beta}$\\
+\hline
+\end{tabular} 
+\end{center} 
+\begin{center}
+Exponentes para $\tau = 0$\\
+\begin{tabular}{ |c|c| } 
+\hline
+$\delta$ & $J \propto \Psi^{\delta}$\\
+\hline
+$\mu$ & $\langle \Psi (\vec{x}) \Psi (\vec{y}) \rangle \propto r^{-d+2-\mu}$\\
+\hline
+\end{tabular} 
+\end{center} 
+
 Los exponentes cr\'iticos obtenidos de la soluci\'on de Onsager \cite{Onsager} son:
 %
 \begin{eqnarray}
@@ -1703,7 +1763,11 @@ Podemos determinar la temperatura cr\'itica $T_c$ a la que el enrejado comienza 
 \langle s \rangle = \tanh \left[\frac{1}{2} \beta \nu \epsilon \langle s \rangle \right] = \tanh \left[ \frac{\nu \epsilon \langle s \rangle}{2k_B T}\right]. \label{magPromedio}
 \end{eqnarray}
 % 
-La ecuaci\'on (\ref{magPromedio}) puede resolverse de manera gr\'afica. Vemos que la ecuaci\'on es de la forma $\tanh(\alpha \langle s \rangle)$. Entonces, tomamos $f\equiv \langle s \rangle$ y graficamos $\tanh (\alpha \langle s \rangle)$ vs $\langle s \rangle$. Y obtenemos las siguientes gr\'aficas para $\alpha <1 $ y $\alpha > 1$. 
+La ecuaci\'on (\ref{magPromedio}) puede resolverse de manera gr\'afica. Vemos que la ecuaci\'on es de la forma $\tanh(\alpha \langle s \rangle)$ con
+\begin{eqnarray}
+\alpha = \left[\beta  \frac{\nu \epsilon}{2}\langle s \rangle + \beta \mu B\right].  
+\end{eqnarray}
+Entonces, tomamos $f\equiv \langle s \rangle$ y graficamos $\tanh (\alpha \langle s \rangle)$ vs $\langle s \rangle$. Y obtenemos las siguientes gr\'aficas para $\alpha <1 $ y $\alpha > 1$. 
 \begin{figure*}
 \centering
 \includegraphics[scale=0.75]{fig/solucion1.jpeg}
@@ -1714,7 +1778,7 @@ La ecuaci\'on (\ref{magPromedio}) puede resolverse de manera gr\'afica. Vemos qu
 \includegraphics[scale=0.75]{fig/solucion2.jpeg}
 \caption{Gr\'afica de (\ref{magPromedio}) para $\alpha > 1$ \label{meanField2}}
 \end{figure*}
-Notamos que para el caso $\alpha <1$ s\'olo se intersectan en un punto, en $\langle s \rangle =0$. Para $\alpha > 1$ se intersectan entres puntos: en $\langle s \rangle = 0 y en \langle s \rangle \pm s_0$. La energ\'ia libre para estos casos est\'a dada por:
+Notamos que para el caso $\alpha <1$ s\'olo se intersectan en un punto, en $\langle s \rangle =0$. Para $\alpha > 1$ se intersectan entres puntos: en $\langle s \rangle = 0 $y en $\langle s \rangle \pm s_0$. La energ\'ia libre para estos casos est\'a dada por:
 %
 \[
   X(m, n) = 
@@ -2217,7 +2281,7 @@ La simetr\'ia $q \leftrightarrow -q$ y $p \leftrightarrow -p$ sugiere que los va
 (\Delta q)^2 = \langle q^2 \rangle, \qquad (\Delta p)^2 = \langle p^2 \rangle
 \end{eqnarray}
 %
-y de (\cite{heise}) obtenemos la siguiente desigualdad:
+y de (\ref{heise}) obtenemos la siguiente desigualdad:
 %
 \begin{eqnarray}
 \langle z_2^2 \rangle \langle z_1^2 \rangle = \omega^2 \langle q^2 \rangle \langle p^2 \rangle \geq  \frac{\hslash^2}{4}\omega^2.
