@@ -1,0 +1,537 @@
+\documentclass[portrait, a0b,final]{a0poster}%landscape
+\usepackage{epsfig}
+%\usepackage{pdf}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{pstricks,pst-grad}
+\usepackage[spanish,activeacute]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{amsthm,amssymb,amsmath,amsfonts}
+\numberwithin{equation}{section}
+\newtheorem{theorem}{Teorema}[section]
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Definition of some variables and colors
+%\renewcommand{\rho}{\varrho}
+%\renewcommand{\phi}{\varphi}
+\setlength{\columnsep}{3cm} \setlength{\columnseprule}{2mm}
+\setlength{\parindent}{0.0cm}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%              UAM-Logo en Latex               %%%
+%%%         Por Ismael Velázquez Ramírez         %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\uamlogo}[3][2pt]{
+    \psset{unit=#2,linewidth=#1 }
+    \psline*[linearc=.25,linecolor=#3](2.8,2)(2,2)(1.8,0)(2.8,2)(3.8,0)(3.6,2)(2,2)(1.8,0)
+    \psline*[linecolor=#3](0,0)(.8,0)(1.8,2)(1,2)(0,0)
+    \psline*[linecolor=#3](4.8,0)(3.8,2)(4.6,2)(5.6,0)(4.8,0)
+    \psline*[linearc=.25,linecolor=#3](3.8,0)(2.8,2)(3.6,2)(4.6,0)(3.8,0)
+    \psline*[linearc=.25,linecolor=#3](4.6,0)(3.8,0)(2.8,2)(3.6,2)(4.6,0)
+    \rput{180}(5.6,2){%
+    \psline*[linearc=.25,linecolor=white](2.8,2)(2,2)(1.8,0)(2.8,2)(3.8,0)(3.6,2)(2,2)(1.8,0)
+    \psline*[linearc=.25,linecolor=white](1,0)(1.8,0)(2.8,2)(2,2)(1,0)
+    \psline*[linearc=.25,linecolor=white](1.8,0)(1,0)(2,2)(2.8,2)(1.8,0)
+    \psline*[linearc=.25,linecolor=white](3.8,0)(2.8,2)(3.6,2)(4.6,0)(3.8,0)
+    \psline*[linearc=.25,linecolor=white](4.6,0)(3.8,0)(2.8,2)(3.6,2)(4.6,0)
+    \psline[linearc=.25,linecolor=#3](1,0)(2,2)(3.6,2)(4.6,0)
+    \psline[linecolor=#3](1,0)(1.8,0)
+    \psline[linearc=.25,linecolor=#3](4.6,0)(3.8,0)
+    \psline[linearc=.25,linecolor=#3](1.8,0)(2.8,2)(3.8,0)}
+    \psline*[linearc=.25,linecolor=#3](1,0)(1.8,0)(2.8,2)(2,2)(1,0)
+    \psline*[linearc=.25,linecolor=#3](1.8,0)(1,0)(2,2)(2.8,2)(1.8,0)}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%               Background                     %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\background}[3]{
+  \newrgbcolor{cgradbegin}{#1}
+  \newrgbcolor{cgradend}{#2}
+  \psframe[fillstyle=gradient,gradend=cgradend,
+  gradbegin=cgradbegin,gradmidpoint=#3](0.,0.)(1.\textwidth,-1.\textheight)
+}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%                Poster                        %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{poster}{
+  \begin{center}
+  \begin{minipage}[c]{0.98\textwidth}
+}{
+  \end{minipage}
+  \end{center}
+}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%                pcolumn                       %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{pcolumn}[1]{
+  \begin{minipage}{#1\textwidth}
+  \begin{center}
+}{
+  \end{center}
+  \end{minipage}
+}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%                pbox                          %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newrgbcolor{lcolor}{0.04 0.58 0.29}
+\newrgbcolor{gcolor1}{1. 1. 1.}
+\newrgbcolor{gcolor2}{.80 .80 1.}
+
+\newcommand{\pbox}[4]{
+\psshadowbox[#3]{
+\begin{minipage}[t][#2][t]{#1}
+#4
+\end{minipage}
+}}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%                myfig                         %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \myfig - replacement for \figure
+% necessary, since in multicol-environment
+% \figure won't work
+
+\newcommand{\myfig}[3][0]{
+\begin{center}
+  \vspace{1.5cm}
+  \includegraphics[width=#3\hsize,angle=#1]{#2}
+  \nobreak\medskip
+\end{center}}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%                mycaption                     %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \mycaption - replacement for \caption
+% necessary, since in multicol-environment \figure and
+% therefore \caption won't work
+
+%\newcounter{figure}
+\setcounter{figure}{1}
+\newcommand{\mycaption}[1]{
+  \vspace{0.5cm}
+  \begin{quote}
+    {{\sc Figura} \arabic{figure}: #1}
+  \end{quote}
+  \vspace{1cm}
+  \stepcounter{figure}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%  INICIO DEL DOCUMENTO
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\background{1.00 0.92 0.59}{1. 1. 1.}{0.1}
+
+\vspace*{2cm}
+
+\definecolor{rojo}{rgb}{0.96,0.45,0.18}
+\newrgbcolor{lightblue}{1.00 0.50 0.00}
+\newrgbcolor{white}{1. 1. 1.}
+%\newrgbcolor{whiteblue}{1.00 0.63 0.26}
+\newrgbcolor{whiteblue}{1 1 1}
+
+\begin{poster}
+\language1
+%%%------------------------------------------------------------------------------------
+%%%                                        INICIA ENCABEZADO
+%%%------------------------------------------------------------------------------------
+\begin{center}
+\begin{pcolumn}{0.98}
+
+\pbox{0.95\textwidth}{}{linewidth=2mm,framearc=0.3,linecolor=lightblue,fillstyle=gradient,gradangle=0,gradbegin=white,gradend=whiteblue,gradmidpoint=1.0,framesep=1em}{
+
+%%%----------------------------------------------------------------------------------------------------------
+%%%                                    LOGO 10° ANIVERSARIO UAM
+%%%----------------------------------------------------------------------------------------------------------
+\begin{minipage}[c][9.5cm][c]{0.15\textwidth}                                % 9.5cm 0.15\tex...
+  \begin{center}
+        \begin{center}
+           \myfig{10cua_variacion1.eps}{1.0}    
+%           \mycaption{ LOGO UAM 10° ANIVERSARIO}
+        \end{center}
+  \end{center}
+\end{minipage}
+%%%---------------------------------------------------------------------------------------------------------
+%%%                                    TÍTULO DEL TRABAJO
+%%%----------------------------------------------------------------------------------------------------------
+\begin{minipage}[c][9.5cm][c]{0.80\textwidth}                                 % 0.65
+  \begin{center}
+    {\sc {\textcolor{rojo}{\Huge Primer Simposio de las Licenciaturas de la División de}}}\\[4mm]
+    {\sc {\textcolor{rojo}{\Huge Ciencias Naturales e Ingeniería}} }\\[8mm]
+    {\sc \Huge Modelaci\'{o}n de consorcios bacterianos}\\[4mm]
+    {\Large Ismael Vel\'{a}zquez Ram\'{\i}rez* y Jorge X. Velasco Hern\'{a}ndez**} \\
+    {\large *Departamento de Matemáticas Aplicadas, veri@correo.cua.uam.mx , **Alumno de Matemáticas Aplicadas, alum@gmail.com} \\%[2mm]
+  \end{center}
+\end{minipage}
+%-----------------------------------------------------------------------------------------------
+%\begin{minipage}[c][9.5cm][c]{0.15\textwidth}                                % 9.5cm 0.15\tex...
+%  \begin{center}
+%    \rput(-4,-1){\uamlogo{2}{rojo}                                          % (-5,-2)
+%    \rput[tl](-.2,-.3){\textcolor{rojo}{\Large Casa abierta al \ tiempo}}   % (-.2,-.3)
+%    \rput[tl](3.6,-.8){Cuajimalpa}}                                         % (3.6,-.8)
+%  \end{center}
+%\end{minipage}
+%%%%%%--------------------------------------------------------------------------------------------------------
+%%                                      TERMINA ENCABEZADO
+%%%%%%--------------------------------------------------------------------------------------------------------
+
+
+}
+\end{pcolumn}
+\end{center}
+
+
+\vspace*{1cm}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%
+%%% Content
+%%%%%%%%%%%%%%%%%%%%%
+\begin{center}
+%%%------------------------------------------------------------------------------------
+%%%%                                     INICIA COLUMNA 1
+%%%------------------------------------------------------------------------------------
+\begin{pcolumn}{0.32}
+\pbox{0.9\textwidth}{95cm}{linewidth=2mm,framearc=0.1,linecolor=lightblue,fillstyle=gradient,gradangle=0,gradbegin=white,gradend=white,gradmidpoint=1.0,framesep=1em}{
+
+%%%%%%%%--------------------------- SECCIÓN 1 -----------------------------------------------
+    \begin{center}
+        \pbox{0.8\textwidth}{}%%
+        {linewidth=2mm,framearc=0.1,linecolor=lightblue,fillstyle=gradient,gradangle=0,%%
+        gradbegin=white,gradend=whiteblue,gradmidpoint=1.0,framesep=1em}{
+        \begin{center}
+            Abstract
+        \end{center}}
+    \end{center}
+    \vspace{1.25cm}
+%%%%%%%%--------------------------- SECCIÓN 1 -----------------------------------------------
+
+El modelo de Ising es un sistema de la F\'isica Estad\'istica el cual se ha usado  para entender diversos fen\'omenos  sociales, como conflictos b\'elicos y comerciales. En en este trabajo se muestra una analog\'ia entre el modelo de Ising y la teor\'ia de juegos. Adem\'as este modelo se usa para estudiar un tratado de libre comercio entre dos pa\'ises. En este ejemplo, los pa\'ises pueden escoger entre seguir pol\'iticas proteccionistas o de libre mercado.
+
+
+%%%%%%%%--------------------------- SECCIÓN 2 -----------------------------------------------
+    \vspace{2cm}
+    \begin{center}
+        \pbox{0.8\textwidth}{}%%
+        {linewidth=2mm,framearc=0.1,linecolor=lightblue,fillstyle=gradient,gradangle=0,%%
+        gradbegin=white,gradend=whiteblue,gradmidpoint=1.0,framesep=1em}{%%
+        \begin{center}
+            Introducci\'{o}n
+        \end{center}}
+    \end{center}
+    \vspace{1.25cm}
+%%%%%%%%--------------------------- SECCIÓN 2 -----------------------------------------------
+
+    Ciertos tipos de consorcios bacterianos denominados
+    gen\'{e}ricamente como biopel\'{\i}culas tienen importancia m\'{e}dica e
+    industrial debido a los efectos tanto positivos como negativos que
+    ejercen en el entorno en que se forman. Las biopel\'{\i}culas pueden
+    crecer casi donde quiera, desde tubos de agua, piedras en los
+    r\'{\i}os, cascos de barcos, dientes, etc. (ver \cite{WA03.1} y
+    \cite{CH01.1})
+
+     Nuestro objetivo es describir un modelo de agregaci\'{o}n de un
+    consorcio bacteriano cuando existe sensibilidad de qu\'{o}rum y
+    existencia de deterioro ambiental inducido por alg\'{u}n bactericida.
+    La estrategia de modelaci\'{o}n que seguiremos consiste en introducir
+    las ecuaciones que describen el crecimiento local de las
+    bacterias, seguidas de la modelaci\'{o}n del proceso quimiot\'{a}ctico
+    considerando el fen\'{o}meno de sensibilidad de qu\'{o}rum, que es el
+    problema central del presente proyecto. Finalmente se modelar\'{a} el
+    deterioro ambiental representado por la acci\'{o}n de un biocida.
+
+%%%%%%%%--------------------------- SECCIÓN 3 -----------------------------------------------
+    \vspace{2cm}
+    \begin{center}
+        \pbox{0.8\textwidth}{}%%
+        {linewidth=2mm,framearc=0.1,linecolor=lightblue,fillstyle=gradient,gradangle=0,%%
+        gradbegin=white,gradend=whiteblue,gradmidpoint=1.0,framesep=1em}{%%
+        \begin{center}
+            Modelo de Ising
+        \end{center}}
+    \end{center}
+    \vspace{1.25cm}
+    \setcounter{section}{3}%
+\setcounter{equation}{0}%
+%%%%%%%%--------------------------- SECCIÓN 3 -----------------------------------------------
+
+El modelo de Ising es uno de los pocos modelos de part\'iculas interactuantes para el cual se conoce una soluci\'on exacta. Es de gran utilidad ya que, aunque originalmente fue formulado para resolver problemas f\'isicos (ferromagnetismo) tiene much\'isima aplicaciones en el modelado de problemas de otras \'areas como la biolog\'ia, finanzas, etc.\\
+
+En una dimensi\'on, el Hamiltoniano del modelo de Ising puede ser escrito como \\
+%
+\begin{eqnarray}
+  \mathbb{H}=-\epsilon\sum_{i=1}^{N}\sigma_i\sigma_{i+1}-\mu B\sum_{i=1}^{N}\sigma_i \label{hamilIsing}
+\end{eqnarray}
+%
+donde $\sigma=\pm1$ y estos valores indican cada uno de los estados posibles: Si la part\'icula apunta hacia arriba o hacia abajo. Se usa tambi\'en la siguiente representaci\'on matricial:
+%
+
+
+
+
+   }
+\end{pcolumn}
+%%%--------------------------------------------------------------------------------
+%%%              TERMINA COLUMNA 1 E INICIA COLUMNA 2
+%%%--------------------------------------------------------------------------------
+\begin{pcolumn}{0.32}
+\pbox{0.9\textwidth}{95cm}{linewidth=2mm,framearc=0.1,linecolor=lightblue,fillstyle=gradient,gradangle=0,gradbegin=white,gradend=white,gradmidpoint=1.0,framesep=1em}{
+
+
+Supongamos que las bacterias, adem\'{a}s de moverse aleatoriamente en
+la regi\'{o}n, tienden a dirigirse a regiones donde la concentraci\'{o}n
+de sustrato es mas elevada, es decir se presenta taxis. Para
+modelar este fen\'{o}meno, al flujo que dedujimos anteriormente debe
+a\~{n}ad\'{\i}rsele el efecto quimiot\'{a}ctico que posee una direcci\'{o}n opuesta
+al del flujo de difusi\'{o}n, es decir
+\[
+J(x,t)=-D\frac{\partial }{\partial x}p_{2}+\mu \frac{\partial
+}{\partial x} p_{2}.
+\]
+En este caso $\mu $, que representa el movimiento de las bacterias
+hacia altas concentraciones de recurso, no es una constante pues
+el flujo inducido por taxis es ciertamente proporcional a la
+densidad local de bacterias. Es aqu\'{\i} precisamente donde
+introduciremos la sensibilidad de qu\'{o}rum. En general tomaremos
+$\mu =\mu (p_{1},p_{2})$. As\'{\i} la ecuaci\'{o}n para la bacteria ser\'{a}
+\[
+\frac{\partial }{\partial t}p_{2}=f(p_{1})p_{2}-\delta
+p_{2}+D_{2}\frac{\partial ^{2}p_{2}}{\partial
+x^{2}}-\frac{\partial }{\partial x}\left(
+\mu(p_{1},p_{2})\frac{\partial p_{1}}{\partial x}\right)
+\]
+En resumen tenemos
+\begin{equation}
+    \left.
+    \begin{aligned}
+        \frac{\partial }{\partial t}p_{1} &=\Lambda
+        -f(p_{1})p_{2}-ep_{1}+D_{1}\nabla ^{2}p_{1},\\
+        \frac{\partial }{\partial t}p_{2} &=f(p_{1})p_{2}-\delta
+        p_{2}+D_{2}\nabla^{2}p_{2}-\\ &\nabla \cdot \left( \mu
+        (p_{1},p_{2})\nabla p_{1}\right),
+    \end{aligned}
+    \right\}\label{sis1.2}
+\end{equation}
+La forma espec\'{\i}fica de $\mu $ e hip\'{o}tesis b\'{a}sicas que nos
+interesan para el an\'{a}lisis del modelo ser\'{a}n especificados a
+continuaci\'{o}n.
+%%%%%%%%--------------------------- SECCIÓN 4 -----------------------------------------------
+\vspace{2cm}
+    \begin{center}
+        \pbox{0.8\textwidth}{}%%
+        {linewidth=2mm,framearc=0.1,linecolor=lightblue,fillstyle=gradient,gradangle=0,%%
+        gradbegin=white,gradend=whiteblue,gradmidpoint=1.0,framesep=1em}{%%
+        \begin{center}
+           Teor\'ia de Juegos 
+        \end{center}}
+    \end{center}
+    \vspace{1.25cm}
+\setcounter{section}{4}%
+\setcounter{equation}{0}%
+%%%%%%%%--------------------------- SECCIÓN 4 -----------------------------------------------
+ En fen\'{o}meno llamado sensibilidad de
+qu\'{o}rum las bacterias responden de manera colectiva y coordinada a
+est\'{\i}mulos del medio cuando la agregaci\'{o}n poblacional, y el
+consecuente incremento local en densidad poblacional, alcanzan un
+cierto umbral. Es posible, en principio, modelar parte de este
+proceso usando como base las ecuaciones (\ref{sis1.2}).
+Consideremos la funci\'{o}n
+\[
+\mu \left( p_{1},p_{2}\right) =\chi (p_{1})\phi (p_{2})p_{2},
+\]
+donde $\chi >0$ es una funci\'{o}n que mide intensidad de atracci\'{o}n
+del sustrato;  $\phi (0)>0$, y existe una $\hat{p}_{2}>0$ tal que
+$\phi (\hat{p}_{2})=0$. La propiedad de acotamiento impuesta a la
+funci\'{o}n $\phi $ constituye una manera de simular el umbral de
+densidad asociado con la sensibilidad de qu\'{o}rum: cuando
+$p_{2}=\hat{p}_{2}$, $\mu =0$ y la actividad de atracci\'{o}n hacia
+zonas de alta concentraci\'{o}n de bacteria o recurso se suspende.
+
+Esto no es todav\'{\i}a suficiente para la modelaci\'{o}n de sensibilidad
+de qu\'{o}rum. Debido a que el operador de difusi\'{o}n permite que una
+bacteria responda a concentraciones de bacterias muy alejadas del
+lugar en que se encuentra, de hecho, responde a concentraciones en
+cualquier regi\'{o}n de $\Omega $. As\'{\i} supondremos que la velocidad de
+dispersi\'{o}n es finita lo que har\'{a} que la respuesta a la densidad
+umbral sea de naturaleza esencialmente local.
+
+Para incorporar este proceso primero consideremos una caminata
+aleatoria para la bacteria en $\Omega$. La bacteria con densidad
+$p_{2}$ tiene una velocidad constante $\gamma$ y una tasa
+constante de cambio de direcci\'{o}n $\kappa$. Si suponemos que
+$p_{2}^{+}(x,t)$ y $p_{2}^{-}(x,t)$ son las densidades de las
+bacterias, cuyo movimiento inicial fue a la derecha o la
+izquierda, en la posici\'{o}n $x$ al tiempo $t$, respectivamente,
+estas dos funciones tienen la siguiente din\'{a}mica en $n=1$(ver
+\cite{KA74.1}, \cite{WE02.1} y \cite{HA98.1}).
+\[\begin{aligned} \frac{\partial
+p_{2}^{+}}{\partial t}+\gamma\frac{\partial p_{2}^{+}}{\partial x}
+&=
+\kappa(p_{2}^{-}-p_{2}^{+})+\frac{1}{2}Q_{2}(p_{1},p_{2}^{+}+p_{2}^{-})\\
+\frac{\partial p_{2}^{-}}{\partial t}-\gamma\frac{\partial
+p_{2}^{+}}{\partial x} &=
+\kappa(p_{2}^{+}-p_{2}^{-})+\frac{1}{2}Q_{2}(p_{1},p_{2}^{+}+p_{2}^{-})
+\end{aligned}\]
+donde las bacterias creadas escogen cualquiera de las dos
+direcciones posibles en $R$ con la misma probabilidad. Resolviendo
+nuestro sistema en t\'{e}rminos de $p_{2}$ y de $q$ obtenemos
+\[\begin{aligned}
+\frac{1}{\kappa}\frac{\partial }{\partial t}q+q
+&=-\frac{\gamma^{2}}{2\kappa}\frac{\partial p_{2}}{\partial x}\\
+\frac{\partial p_{2}}{\partial t}+\frac{\partial q}{\partial x}
+&=Q(p_{1},p_{2})
+\end{aligned}\]
+Cuando $n=2$ las ecuaciones tendr\'{a}n la siguiente forma
+\[\begin{aligned}
+\tau \frac{\partial }{\partial t}q+q &=-D\nabla p_{2}\\
+\frac{\partial }{\partial t}p_{2}+\nabla q &= f(p_{1})p_{2}-\delta
+p_{2}
+\end{aligned}\]
+Para introducir taxis en nuestro modelo, el flujo tendr\'{a} que ser
+$J(x,t)=-D\nabla p_{2}+\mu(p_{1},p_{2}) \nabla p_{2}$ en vez de
+s\'{o}lo $J(x,t)=-D\nabla p_{2} $ por los que nuestro sistema ser\'{a}
+\begin{equation}
+    \left.
+    \begin{aligned}
+        \frac{\partial }{\partial t}p_{1} &=\Lambda
+        -f(p_{1})p_{2}-ep_{1}+D_{1}\nabla ^{2}p_{1},  \\
+        \tau \frac{\partial }{\partial t}q+q &=-D_{2}\nabla p_{2}+\mu
+        (p_{1},p_{2})\nabla p_{1}, \\
+        \frac{\partial }{\partial t}p_{2}+\nabla q &=f(p_{1})p_{2}-\delta
+        p_{2},
+    \end{aligned}
+    \right\}\label{sis2.1}
+\end{equation}
+}
+\end{pcolumn}
+%%%----------------------------------------------------------------------------------
+%%%              TERMINA COLUMNA 2 E INICIA COLUMNA 3
+%%%----------------------------------------------------------------------------------
+\begin{pcolumn}{0.32}
+\pbox{0.9\textwidth}{95cm}{linewidth=2mm,framearc=0.1,linecolor=lightblue,fillstyle=gradient,gradangle=0,gradbegin=white,gradend=white,gradmidpoint=1.0,framesep=1em}{
+
+%%%---------------------------- SECCIÓN 5 ---------------------------------------------
+\begin{center}
+        \pbox{0.8\textwidth}{}%%
+        {linewidth=2mm,framearc=0.1,linecolor=lightblue,fillstyle=gradient,gradangle=0,%%
+        gradbegin=white,gradend=whiteblue,gradmidpoint=1.0,framesep=1em}{
+        \begin{center}
+Aplicaciones:      un tratado bilateral de libre comercio
+        \end{center}}
+\end{center}    
+    \vspace{1.25cm}
+\setcounter{section}{5}%
+\setcounter{equation}{0}%
+%%%---------------------------- SECCIÓN 6 ---------------------------------------------
+
+S\'{o}lo nos resta incorporar la forma en que el biocida (deterioro de
+h\'{a}bitat) ser\'{a} a\~{n}adido. Deterioro significar\'{a} para nosotros no
+falta de sustrato, sino la acci\'{o}n negativa (inhibitoria de
+crecimiento) de una variable ambiental sobre la constituci\'{o}n de la
+biopel\'{\i}cula. Denotemos por $b$ a la concentraci\'{o}n de alg\'{u}n agente
+biocida (un antibi\'{o}tico por ejemplo). Las modificaciones a los
+modelos (\ref{sis1.2}) y (\ref{sis2.1}) quedan entonces como sigue
+para el modelo de reacci\'{o}n difusi\'{o}n
+\begin{equation}
+    \left.
+    \begin{aligned}
+        \frac{\partial }{\partial t}p_{1} &=\Lambda -\theta
+        (b)f(p_{1})p_{2}-ep_{1}+D_{1}\nabla ^{2}p_{1}, \\
+        \frac{\partial }{\partial t}p_{2} &=\theta (b)f(p_{1})p_{2}-\delta
+        p_{2}+D_{2}\nabla ^{2}p_{2}-\\
+        &\nabla \cdot \left( \mu(p_{1},p_{2})\nabla p_{1}\right),\\
+        \frac{\partial }{\partial t}b
+        &=\lambda -eb+D_{b}\nabla ^{2}b.
+    \end{aligned}
+    \right\}
+\end{equation}
+y para el modelo de reacci\'{o}n transporte
+\begin{equation}
+    \left.
+    \begin{aligned}
+        \frac{\partial}{\partial t}p_{1} &=\Lambda
+        -\theta(b)f(p_{1})p_{2}-ep_{1}+\\ &D_{1}\nabla^{2}p_{1}, \\
+        \tau\frac{\partial}{\partial t}q+q &= D_{2}\nabla p_{2}
+        -\mu(p_{1},p_{2})\nabla p_{1},  \\
+        \frac{\partial}{\partial t}p_{2}+\nabla q &=
+        \theta(b)f(p_{1})p_{2}-\delta p_{2},  \\
+        \frac{\partial}{\partial t}b&= \lambda-eb+D_{b}\nabla^{2}b.
+    \end{aligned}
+    \right\}
+\end{equation}
+donde
+\[
+\theta (b)=e^{-\alpha b}.
+\]
+
+La ecuaci\'{o}n para el biocida es simple: \'{e}ste es suministrado a una
+tasa $\lambda $ que puede depender de la concentraci\'{o}n del biocida
+en el caso de que consideremos una biopel\'{\i}cula en un quimi\'{o}stato;
+se pierde a una tasa $e$ igual a la correspondiente del substrato
+y se difunde en el ambiente con coeficiente de difusi\'{o}n $D_{b}$.
+El biocida afecta la tasa del consumo de recurso y, por lo tanto,
+a la tasa de crecimiento de la bacteria a trav\'{e}s del termino
+$\theta (b)$.
+
+Existen varios tipos de frontera que se ocupan en biolog\'{\i}a, sin
+embargo las Neumann son las m\'{a}s indicadas para nuestro sistema
+pues esperamos que la din\'{a}mica de las ecuaciones sea esencialmente
+producto de las ecuaciones y no la inducida por las condiciones de
+la frontera; adem\'{a}s supondremos que las part\'{\i}culas sean reflejadas
+al llegar a la frontera.
+
+%%%---------------------------- SECCIÓN 6 ---------------------------------------------
+\vspace{2cm}
+    \begin{center}
+        \pbox{0.8\textwidth}{}%%
+        {linewidth=2mm,framearc=0.1,linecolor=lightblue,fillstyle=gradient,gradangle=0,%%
+        gradbegin=white,gradend=whiteblue,gradmidpoint=1.0,framesep=1em}{%%
+        \begin{center}
+            Conclusiones
+        \end{center}}
+    \end{center}
+%%%%------------------------------------------------------------------------------------------    
+\begin{center}    
+  \myfig{bacteria.eps}{.75}
+  \mycaption{Densidad de bacterias en un cuadrado con los par\'{a}metros Lambda=300, e=.001 y delta=10 }
+\end{center}
+%%%-----------------------------------------------------------------------------------
+%%%                          Bibliografía
+%%%------------------------------------------------------------------------------------
+\bibliographystyle{alpha}
+\bibliography{add}
+
+AAA
+}
+\end{pcolumn}
+\end{center}
+
+
+
+
+\end{poster}
+
+\end{document}

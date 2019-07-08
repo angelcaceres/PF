@@ -1,0 +1,429 @@
+\documentclass[portrait, a0b,final]{a0poster}%landscape
+\usepackage{epsfig}
+%\usepackage{pdf}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{pstricks,pst-grad}
+\usepackage[spanish,activeacute]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{amsthm,amssymb,amsmath,amsfonts}
+\numberwithin{equation}{section}
+\newtheorem{theorem}{Teorema}[section]
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Definition of some variables and colors
+%\renewcommand{\rho}{\varrho}
+%\renewcommand{\phi}{\varphi}
+\setlength{\columnsep}{3cm} \setlength{\columnseprule}{2mm}
+\setlength{\parindent}{0.0cm}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%              UAM-Logo en Latex               %%%
+%%%         Por Ismael Velázquez Ramírez         %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\uamlogo}[3][2pt]{
+    \psset{unit=#2,linewidth=#1 }
+    \psline*[linearc=.25,linecolor=#3](2.8,2)(2,2)(1.8,0)(2.8,2)(3.8,0)(3.6,2)(2,2)(1.8,0)
+    \psline*[linecolor=#3](0,0)(.8,0)(1.8,2)(1,2)(0,0)
+    \psline*[linecolor=#3](4.8,0)(3.8,2)(4.6,2)(5.6,0)(4.8,0)
+    \psline*[linearc=.25,linecolor=#3](3.8,0)(2.8,2)(3.6,2)(4.6,0)(3.8,0)
+    \psline*[linearc=.25,linecolor=#3](4.6,0)(3.8,0)(2.8,2)(3.6,2)(4.6,0)
+    \rput{180}(5.6,2){%
+    \psline*[linearc=.25,linecolor=white](2.8,2)(2,2)(1.8,0)(2.8,2)(3.8,0)(3.6,2)(2,2)(1.8,0)
+    \psline*[linearc=.25,linecolor=white](1,0)(1.8,0)(2.8,2)(2,2)(1,0)
+    \psline*[linearc=.25,linecolor=white](1.8,0)(1,0)(2,2)(2.8,2)(1.8,0)
+    \psline*[linearc=.25,linecolor=white](3.8,0)(2.8,2)(3.6,2)(4.6,0)(3.8,0)
+    \psline*[linearc=.25,linecolor=white](4.6,0)(3.8,0)(2.8,2)(3.6,2)(4.6,0)
+    \psline[linearc=.25,linecolor=#3](1,0)(2,2)(3.6,2)(4.6,0)
+    \psline[linecolor=#3](1,0)(1.8,0)
+    \psline[linearc=.25,linecolor=#3](4.6,0)(3.8,0)
+    \psline[linearc=.25,linecolor=#3](1.8,0)(2.8,2)(3.8,0)}
+    \psline*[linearc=.25,linecolor=#3](1,0)(1.8,0)(2.8,2)(2,2)(1,0)
+    \psline*[linearc=.25,linecolor=#3](1.8,0)(1,0)(2,2)(2.8,2)(1.8,0)}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%               Background                     %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\background}[3]{
+  \newrgbcolor{cgradbegin}{#1}
+  \newrgbcolor{cgradend}{#2}
+  \psframe[fillstyle=gradient,gradend=cgradend,
+  gradbegin=cgradbegin,gradmidpoint=#3](0.,0.)(1.\textwidth,-1.\textheight)
+}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%                Poster                        %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{poster}{
+  \begin{center}
+  \begin{minipage}[c]{0.98\textwidth}
+}{
+  \end{minipage}
+  \end{center}
+}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%                pcolumn                       %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{pcolumn}[1]{
+  \begin{minipage}{#1\textwidth}
+  \begin{center}
+}{
+  \end{center}
+  \end{minipage}
+}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%                pbox                          %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newrgbcolor{lcolor}{0.04 0.58 0.29}
+\newrgbcolor{gcolor1}{1. 1. 1.}
+\newrgbcolor{gcolor2}{.80 .80 1.}
+
+\newcommand{\pbox}[4]{
+\psshadowbox[#3]{
+\begin{minipage}[t][#2][t]{#1}
+#4
+\end{minipage}
+}}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%                myfig                         %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \myfig - replacement for \figure
+% necessary, since in multicol-environment
+% \figure won't work
+
+\newcommand{\myfig}[3][0]{
+\begin{center}
+  \vspace{1.5cm}
+  \includegraphics[width=#3\hsize,angle=#1]{#2}
+  \nobreak\medskip
+\end{center}}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%                mycaption                     %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \mycaption - replacement for \caption
+% necessary, since in multicol-environment \figure and
+% therefore \caption won't work
+
+%\newcounter{figure}
+\setcounter{figure}{1}
+\newcommand{\mycaption}[1]{
+  \vspace{0.5cm}
+  \begin{quote}
+    {{\sc Figura} \arabic{figure}: #1}
+  \end{quote}
+  \vspace{1cm}
+  \stepcounter{figure}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%  INICIO DEL DOCUMENTO
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\background{1.00 0.92 0.59}{1. 1. 1.}{0.1}
+
+\vspace*{2cm}
+
+\definecolor{rojo}{rgb}{0.96,0.45,0.18}
+\newrgbcolor{lightblue}{1.00 0.50 0.00}
+\newrgbcolor{white}{1. 1. 1.}
+%\newrgbcolor{whiteblue}{1.00 0.63 0.26}
+\newrgbcolor{whiteblue}{1 1 1}
+
+\begin{poster}
+\language1
+%%%------------------------------------------------------------------------------------
+%%%                                        INICIA ENCABEZADO
+%%%------------------------------------------------------------------------------------
+\begin{center}
+\begin{pcolumn}{0.98}
+
+\pbox{0.95\textwidth}{}{linewidth=2mm,framearc=0.3,linecolor=lightblue,fillstyle=gradient,gradangle=0,gradbegin=white,gradend=whiteblue,gradmidpoint=1.0,framesep=1em}{
+
+%%%----------------------------------------------------------------------------------------------------------
+%%%                                    LOGO 10° ANIVERSARIO UAM
+%%%----------------------------------------------------------------------------------------------------------
+\begin{minipage}[c][9.5cm][c]{0.15\textwidth}                                % 9.5cm 0.15\tex...
+  \begin{center}
+        \begin{center}
+           \myfig{10cua_variacion1.eps}{1.0}    
+%           \mycaption{ LOGO UAM 10° ANIVERSARIO}
+        \end{center}
+  \end{center}
+\end{minipage}
+%%%---------------------------------------------------------------------------------------------------------
+%%%                                    TÍTULO DEL TRABAJO
+%%%----------------------------------------------------------------------------------------------------------
+\begin{minipage}[c][9.5cm][c]{0.80\textwidth}                                 % 0.65
+  \begin{center}
+    {\sc {\textcolor{rojo}{\Huge Primer Simposio de las Licenciaturas de la División de}}}\\[4mm]
+    {\sc {\textcolor{rojo}{\Huge Ciencias Naturales e Ingeniería}} }\\[8mm]
+    {\sc \Huge Aplicaci\'{o}n de la Mec\'{a}nica Cu\'{a}ntica a las Finanzas}\\[4mm]
+    {\Large Juan Diego Hern\'andez } \\
+    {\large Departamento de Matemáticas Aplicadas, werlix@outlook.com* } \\%[2mm]
+  \end{center}
+\end{minipage}
+%-----------------------------------------------------------------------------------------------
+%\begin{minipage}[c][9.5cm][c]{0.15\textwidth}                                % 9.5cm 0.15\tex...
+%  \begin{center}
+%    \rput(-4,-1){\uamlogo{2}{rojo}                                          % (-5,-2)
+%    \rput[tl](-.2,-.3){\textcolor{rojo}{\Large Casa abierta al \ tiempo}}   % (-.2,-.3)
+%    \rput[tl](3.6,-.8){Cuajimalpa}}                                         % (3.6,-.8)
+%  \end{center}
+%\end{minipage}
+%%%%%%--------------------------------------------------------------------------------------------------------
+%%                                      TERMINA ENCABEZADO
+%%%%%%--------------------------------------------------------------------------------------------------------
+
+
+}
+\end{pcolumn}
+\end{center}
+
+
+\vspace*{1cm}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%
+%%% Content
+%%%%%%%%%%%%%%%%%%%%%
+\begin{center}
+%%%------------------------------------------------------------------------------------
+%%%%                                     INICIA COLUMNA 1
+%%%------------------------------------------------------------------------------------
+\begin{pcolumn}{0.32}
+\pbox{0.9\textwidth}{95cm}{linewidth=2mm,framearc=0.1,linecolor=lightblue,fillstyle=gradient,gradangle=0,gradbegin=white,gradend=white,gradmidpoint=1.0,framesep=1em}{
+
+%%%%%%%%--------------------------- SECCIÓN 1 -----------------------------------------------
+    \begin{center}
+        \pbox{0.8\textwidth}{}%%
+        {linewidth=2mm,framearc=0.1,linecolor=lightblue,fillstyle=gradient,gradangle=0,%%
+        gradbegin=white,gradend=whiteblue,gradmidpoint=1.0,framesep=1em}{
+        \begin{center}
+           Abstract
+        \end{center}}
+    \end{center}
+    \vspace{1.25cm}
+%%%%%%%%--------------------------- SECCIÓN 1 -----------------------------------------------
+
+  
+Poner el   abstract enviado  
+
+
+
+%%%%%%%%--------------------------- SECCIÓN 2 -----------------------------------------------
+    \vspace{2cm}
+    \begin{center}
+        \pbox{0.8\textwidth}{}%%
+        {linewidth=2mm,framearc=0.1,linecolor=lightblue,fillstyle=gradient,gradangle=0,%%
+        gradbegin=white,gradend=whiteblue,gradmidpoint=1.0,framesep=1em}{%%
+        \begin{center}
+            Introducci\'{o}n
+        \end{center}}
+    \end{center}
+    \vspace{1.25cm}
+%%%%%%%%--------------------------- SECCIÓN 2 -----------------------------------------------
+
+    
+    
+Bachelier,  \\
+
+ Mandelbrot \\
+    
+      }
+\end{pcolumn}
+%%%--------------------------------------------------------------------------------
+%%%              TERMINA COLUMNA 1 E INICIA COLUMNA 2
+%%%--------------------------------------------------------------------------------
+\begin{pcolumn}{0.32}
+\pbox{0.9\textwidth}{95cm}{linewidth=2mm,framearc=0.1,linecolor=lightblue,fillstyle=gradient,gradangle=0,gradbegin=white,gradend=white,gradmidpoint=1.0,framesep=1em}{
+
+
+%%%%%%%%--------------------------- SECCIÓN 3 -----------------------------------------------
+    \vspace{2cm}
+    \begin{center}
+        \pbox{0.8\textwidth}{}%%
+        {linewidth=2mm,framearc=0.1,linecolor=lightblue,fillstyle=gradient,gradangle=0,%%
+        gradbegin=white,gradend=whiteblue,gradmidpoint=1.0,framesep=1em}{%%
+        \begin{center}
+        Ecuaciones de Schrödinger y de Black -Scholes -Merton
+        \end{center}}
+    \end{center}
+    \vspace{1.25cm}
+    \setcounter{section}{3}%
+\setcounter{equation}{0}%
+%%%%%%%%--------------------------- SECCIÓN 3 -----------------------------------------------
+Tomamos la ecuación de Schrödinger:
+$$i\hbar\frac{\partial\Psi}{\partial\tilde{t}}=-\frac{\hbar^2}{2m}\frac{\partial^2\Psi}{\partial x^2}$$
+Si nombramos $\tilde{t}=it,~\sigma^2=\frac{1}{m}, ~\hbar=1$ nuestra ecuación toma la forma:
+%
+\begin{eqnarray}
+\frac{\partial \Psi}{\partial t}=-\frac{\sigma^2}{2}\frac{\partial^2\Psi}{\partial x^2}.\label{eq:I2}
+\end{eqnarray}
+%
+Aqu\'i, $\sigma$ es la volatilidad del activo suyacente.  Usando esta versión de la ecuación de Schrödinger, veremos que podemos obtener la
+ecuaci\'on de Black-Scholes. Primero consideremos las definiciones
+%
+\begin{eqnarray}
+\Psi=e^\vartriangle C(x,t),\quad \vartriangle=-[\frac{1}{\sigma^2}(\frac{\sigma^2}{2}-r)x+\frac{1}{2\sigma^2}(\frac{\sigma^2}{2}+r)^2 t],
+\end{eqnarray}
+%
+donde $r$ es la tasa de inter\'es anualizada y $C$ es el precio de una opci\'on. Usando a $\Psi$ encontramos que 
+%
+\begin{eqnarray}
+\frac{\partial \Psi}{\partial t}&=& e^\vartriangle \left[-\frac{1}{2\sigma^2}(\frac{\sigma^2}{2}+r)^2C(x,t)+\frac{\partial C(x,t)}{\partial t}\right],\qquad \label{eq:I3}\\
+\frac{\partial^2 \Psi}{\partial t^2}&=& e^\vartriangle \Bigg[\frac{1}{4\sigma^4} 
+\left( \frac{\sigma^2}{2}+r \right)^2
+  - \frac{1}{\sigma^2}
+  \left(\frac{\sigma^2}{2}+r\right)^2
+    \frac{\partial }{\partial t} +\frac{\partial^2 }{\partial t^2}\Bigg]C(x,t),  \qquad \\
+     \frac{\partial \Psi}{\partial x}&=&e^\vartriangle 
+\left[ -\frac{1}{\sigma^2}(\frac{\sigma^2}{2}-r) C(x,t) + \frac{\partial C(x,t)}{\partial x}
+\right],\\
+\frac{\partial^2 \Psi}{\partial x^2}&=&e^\vartriangle \Bigg[\frac{1}{\sigma^4}\left(\frac{\sigma^2}{2}-r\right)^2  -\frac{2}{\sigma^2} \left(\frac{\sigma^2}{2}-r\right) \frac{\partial }{\partial x} + \frac{\partial^2 }{\partial x^2}\Bigg]C(x,t).\qquad \label{eq:I1}
+\end{eqnarray}
+%
+Ahora usaremos el cambio de variable 
+$$x= \log S, \qquad S= e^x.$$
+Usamos  $S$ para representar  el precio del activo subyacente.  Si $f$ es una funci\'on, aplicando la regla de la cadena  obtenemos 
+%
+\begin{eqnarray}
+& &\frac{\partial f}{\partial x}=S\frac{\partial f}{\partial S},\\
+& &\frac{\partial^2 f}{\partial x^2}=S\frac{\partial f}{\partial S}+S^2\frac{\partial^2 f}{\partial S^2} .
+\end{eqnarray}
+%
+
+Usando estos resultados en (\ref{eq:I1}) se llega a 
+%
+\begin{eqnarray}
+\frac{\partial^2 \Psi}{\partial x^2}=e^\vartriangle \left[\frac{1}{\sigma^4}\left(\frac{\sigma^2}{2}-r\right)^2  C +\frac{2r}{\sigma^2}S\frac{\partial C}{\partial S}+ S^2 \frac{\partial^2 C}{\partial S^2}\right]
+\end{eqnarray}
+%
+Considerando esta \'ultima ecuaci\'on y (\ref{eq:I3}) en la ecuaci\'on (\ref{eq:I2}) se encuentra 
+%
+\begin{eqnarray}
+& &e^\vartriangle \left[-\frac{1}{2\sigma^2}(\frac{\sigma^2}{2}+r)^2C+\frac{\partial C}{\partial t}\right]\nonumber\\
+& &=-\frac{\sigma^2}{2}e^\vartriangle \left[\frac{1}{\sigma^4}\left(\frac{\sigma^2}{2}-r\right)^2  C +\frac{2r}{\sigma^2}S\frac{\partial C}{\partial S}+ S^2 \frac{\partial^2 C}{\partial S^2}\right].
+\end{eqnarray}
+%
+Esta ecuaci\'on se puede escribir de la forma
+%
+\begin{eqnarray}
+\frac{\partial C(S,t)}{\partial t}=-\frac{\sigma^2}{2}S^2\frac{\partial^2 C(S,t)}{\partial S^2}-rS\frac{\partial C(S,t)}{\partial S}+rC,
+\end{eqnarray}
+%
+la cual es la ecuaci\'on de Black-Scholes. Para opciones Europeas se tiene la soluci\'on 
+%
+\begin{eqnarray}
+C(S,t)=  SN(d_{+})-Ke^{-r(T-t)} N(d_{-}) ,
+\end{eqnarray}
+%  
+que es la f\'ormula de Black-Scholes.
+%%%%%%%%--------------------------- SECCIÓN 4 -----------------------------------------------
+\vspace{1cm}
+    \begin{center}
+        \pbox{0.8\textwidth}{}%%
+        {linewidth=2mm,framearc=0.1,linecolor=lightblue,fillstyle=gradient,gradangle=0,%%
+        gradbegin=white,gradend=whiteblue,gradmidpoint=1.0,framesep=1em}{%%
+        \begin{center}
+            USDMXN
+        \end{center}}
+    \end{center}
+    \vspace{1.25cm}
+\setcounter{section}{4}%
+\setcounter{equation}{0}%
+%%%%%%%%--------------------------- SECCIÓN 4 -----------------------------------------------
+
+
+
+
+}
+\end{pcolumn}
+%%%----------------------------------------------------------------------------------
+%%%              TERMINA COLUMNA 2 E INICIA COLUMNA 3
+%%%----------------------------------------------------------------------------------
+\begin{pcolumn}{0.32}
+\pbox{0.9\textwidth}{95cm}{linewidth=2mm,framearc=0.1,linecolor=lightblue,fillstyle=gradient,gradangle=0,gradbegin=white,gradend=white,gradmidpoint=1.0,framesep=1em}{
+
+Ahora, usando el mapeo
+
+   
+%%%---------------------------- SECCIÓN 5 ---------------------------------------------
+\vspace{2cm}
+\begin{center}
+        \pbox{0.8\textwidth}{}%%
+        {linewidth=2mm,framearc=0.1,linecolor=lightblue,fillstyle=gradient,gradangle=0,%%
+        gradbegin=white,gradend=whiteblue,gradmidpoint=1.0,framesep=1em}{
+        \begin{center}
+            Conclusiones
+        \end{center}}
+\end{center}    
+    \vspace{1.25cm}
+\setcounter{section}{5}%
+\setcounter{equation}{0}%
+%%%---------------------------- SECCIÓN 6 ---------------------------------------------
+
+RESUMEN 
+%%%---------------------------- SECCIÓN 6 ---------------------------------------------
+
+%%%---------------------------- SECCIÓN 6 ---------------------------------------------
+\vspace{2cm}
+    \begin{center}
+        \pbox{0.8\textwidth}{}%%
+        {linewidth=2mm,framearc=0.1,linecolor=lightblue,fillstyle=gradient,gradangle=0,%%
+        gradbegin=white,gradend=whiteblue,gradmidpoint=1.0,framesep=1em}{%%
+        \begin{center}
+          Referencias
+        \end{center}}
+    \end{center}
+%%%%------------------------------------------------------------------------------------------    
+
+%%%-----------------------------------------------------------------------------------
+%%%                          Bibliografía
+%%%------------------------------------------------------------------------------------
+
+
+\bibliographystyle{alpha}
+\bibliography{add}
+
+% \bibitem{black}
+[1] F. Black and  M. Scholes, {\it The pricing options and corporate liabilities,} Journal of Political Economy  {\bf 81},  637 (1973).\\
+ 
+[2] R.C. Merton, {\it Theory of Rational Option Pricing,}  Bell J. Econ. and Management Sci.   {\bf 4},  141 (1973).\\
+
+[ 3] B. E. Baaquie,  {\it Quantum Finance,} Cambridge University Press (2004).
+
+
+}
+\end{pcolumn}
+\end{center}
+
+
+
+
+\end{poster}
+
+\end{document}

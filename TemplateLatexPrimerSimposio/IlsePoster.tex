@@ -1,0 +1,485 @@
+\documentclass[portrait, a0b,final]{a0poster}%landscape
+\usepackage{epsfig}
+%\usepackage{pdf}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{pstricks,pst-grad}
+\usepackage[spanish,activeacute]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{amsthm,amssymb,amsmath,amsfonts}
+\numberwithin{equation}{section}
+\newtheorem{theorem}{Teorema}[section]
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Definition of some variables and colors
+%\renewcommand{\rho}{\varrho}
+%\renewcommand{\phi}{\varphi}
+\setlength{\columnsep}{3cm} \setlength{\columnseprule}{2mm}
+\setlength{\parindent}{0.0cm}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%              UAM-Logo en Latex               %%%
+%%%         Por Ismael Velázquez Ramírez         %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\uamlogo}[3][2pt]{
+    \psset{unit=#2,linewidth=#1 }
+    \psline*[linearc=.25,linecolor=#3](2.8,2)(2,2)(1.8,0)(2.8,2)(3.8,0)(3.6,2)(2,2)(1.8,0)
+    \psline*[linecolor=#3](0,0)(.8,0)(1.8,2)(1,2)(0,0)
+    \psline*[linecolor=#3](4.8,0)(3.8,2)(4.6,2)(5.6,0)(4.8,0)
+    \psline*[linearc=.25,linecolor=#3](3.8,0)(2.8,2)(3.6,2)(4.6,0)(3.8,0)
+    \psline*[linearc=.25,linecolor=#3](4.6,0)(3.8,0)(2.8,2)(3.6,2)(4.6,0)
+    \rput{180}(5.6,2){%
+    \psline*[linearc=.25,linecolor=white](2.8,2)(2,2)(1.8,0)(2.8,2)(3.8,0)(3.6,2)(2,2)(1.8,0)
+    \psline*[linearc=.25,linecolor=white](1,0)(1.8,0)(2.8,2)(2,2)(1,0)
+    \psline*[linearc=.25,linecolor=white](1.8,0)(1,0)(2,2)(2.8,2)(1.8,0)
+    \psline*[linearc=.25,linecolor=white](3.8,0)(2.8,2)(3.6,2)(4.6,0)(3.8,0)
+    \psline*[linearc=.25,linecolor=white](4.6,0)(3.8,0)(2.8,2)(3.6,2)(4.6,0)
+    \psline[linearc=.25,linecolor=#3](1,0)(2,2)(3.6,2)(4.6,0)
+    \psline[linecolor=#3](1,0)(1.8,0)
+    \psline[linearc=.25,linecolor=#3](4.6,0)(3.8,0)
+    \psline[linearc=.25,linecolor=#3](1.8,0)(2.8,2)(3.8,0)}
+    \psline*[linearc=.25,linecolor=#3](1,0)(1.8,0)(2.8,2)(2,2)(1,0)
+    \psline*[linearc=.25,linecolor=#3](1.8,0)(1,0)(2,2)(2.8,2)(1.8,0)}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%               Background                     %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\background}[3]{
+  \newrgbcolor{cgradbegin}{#1}
+  \newrgbcolor{cgradend}{#2}
+  \psframe[fillstyle=gradient,gradend=cgradend,
+  gradbegin=cgradbegin,gradmidpoint=#3](0.,0.)(1.\textwidth,-1.\textheight)
+}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%                Poster                        %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{poster}{
+  \begin{center}
+  \begin{minipage}[c]{0.98\textwidth}
+}{
+  \end{minipage}
+  \end{center}
+}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%                pcolumn                       %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{pcolumn}[1]{
+  \begin{minipage}{#1\textwidth}
+  \begin{center}
+}{
+  \end{center}
+  \end{minipage}
+}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%                pbox                          %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newrgbcolor{lcolor}{0.04 0.58 0.29}
+\newrgbcolor{gcolor1}{1. 1. 1.}
+\newrgbcolor{gcolor2}{.80 .80 1.}
+
+\newcommand{\pbox}[4]{
+\psshadowbox[#3]{
+\begin{minipage}[t][#2][t]{#1}
+#4
+\end{minipage}
+}}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%                myfig                         %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \myfig - replacement for \figure
+% necessary, since in multicol-environment
+% \figure won't work
+
+\newcommand{\myfig}[3][0]{
+\begin{center}
+  \vspace{1.5cm}
+  \includegraphics[width=#3\hsize,angle=#1]{#2}
+  \nobreak\medskip
+\end{center}}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%                mycaption                     %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \mycaption - replacement for \caption
+% necessary, since in multicol-environment \figure and
+% therefore \caption won't work
+
+%\newcounter{figure}
+\setcounter{figure}{1}
+\newcommand{\mycaption}[1]{
+  \vspace{0.5cm}
+  \begin{quote}
+    {{\sc Figura} \arabic{figure}: #1}
+  \end{quote}
+  \vspace{1cm}
+  \stepcounter{figure}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%  INICIO DEL DOCUMENTO
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\background{1.00 0.92 0.59}{1. 1. 1.}{0.1}
+
+\vspace*{2cm}
+
+\definecolor{rojo}{rgb}{0.96,0.45,0.18}
+\newrgbcolor{lightblue}{1.00 0.50 0.00}
+\newrgbcolor{white}{1. 1. 1.}
+%\newrgbcolor{whiteblue}{1.00 0.63 0.26}
+\newrgbcolor{whiteblue}{1 1 1}
+
+\begin{poster}
+\language1
+%%%------------------------------------------------------------------------------------
+%%%                                        INICIA ENCABEZADO
+%%%------------------------------------------------------------------------------------
+\begin{center}
+\begin{pcolumn}{0.98}
+
+\pbox{0.95\textwidth}{}{linewidth=2mm,framearc=0.3,linecolor=lightblue,fillstyle=gradient,gradangle=0,gradbegin=white,gradend=whiteblue,gradmidpoint=1.0,framesep=1em}{
+
+%%%----------------------------------------------------------------------------------------------------------
+%%%                                    LOGO 10° ANIVERSARIO UAM
+%%%----------------------------------------------------------------------------------------------------------
+\begin{minipage}[c][9.5cm][c]{0.15\textwidth}                                % 9.5cm 0.15\tex...
+  \begin{center}
+        \begin{center}
+           \myfig{10cua_variacion1.eps}{1.0}    
+%           \mycaption{ LOGO UAM 10° ANIVERSARIO}
+        \end{center}
+  \end{center}
+\end{minipage}
+%%%---------------------------------------------------------------------------------------------------------
+%%%                                    TÍTULO DEL TRABAJO
+%%%----------------------------------------------------------------------------------------------------------
+\begin{minipage}[c][9.5cm][c]{0.80\textwidth}                                 % 0.65
+  \begin{center}
+    {\sc {\textcolor{rojo}{\Huge Primer Simposio de las Licenciaturas de la División de}}}\\[4mm]
+    {\sc {\textcolor{rojo}{\Huge Ciencias Naturales e Ingeniería}} }\\[8mm]
+    {\sc \Huge Aplicaci\'{o}n de la Mecn\'{a}nica Cu\'{a}ntica a las Finanzas}\\[4mm]
+    {\Large Juan Manuel Romero Sampedro* e Ilse Beatriz Zubieta Mart\'{i}nez**} \\
+    {\large *Departamento de Matemáticas Aplicadas, jromero@correo.cua.uam.mx , **Alumno de Matemáticas Aplicadas, werlix@outlook.com} \\%[2mm]
+  \end{center}
+\end{minipage}
+%-----------------------------------------------------------------------------------------------
+%\begin{minipage}[c][9.5cm][c]{0.15\textwidth}                                % 9.5cm 0.15\tex...
+%  \begin{center}
+%    \rput(-4,-1){\uamlogo{2}{rojo}                                          % (-5,-2)
+%    \rput[tl](-.2,-.3){\textcolor{rojo}{\Large Casa abierta al \ tiempo}}   % (-.2,-.3)
+%    \rput[tl](3.6,-.8){Cuajimalpa}}                                         % (3.6,-.8)
+%  \end{center}
+%\end{minipage}
+%%%%%%--------------------------------------------------------------------------------------------------------
+%%                                      TERMINA ENCABEZADO
+%%%%%%--------------------------------------------------------------------------------------------------------
+
+
+}
+\end{pcolumn}
+\end{center}
+
+
+\vspace*{1cm}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%
+%%% Content
+%%%%%%%%%%%%%%%%%%%%%
+\begin{center}
+%%%------------------------------------------------------------------------------------
+%%%%                                     INICIA COLUMNA 1
+%%%------------------------------------------------------------------------------------
+\begin{pcolumn}{0.32}
+\pbox{0.9\textwidth}{95cm}{linewidth=2mm,framearc=0.1,linecolor=lightblue,fillstyle=gradient,gradangle=0,gradbegin=white,gradend=white,gradmidpoint=1.0,framesep=1em}{
+
+%%%%%%%%--------------------------- SECCIÓN 1 -----------------------------------------------
+    \begin{center}
+        \pbox{0.8\textwidth}{}%%
+        {linewidth=2mm,framearc=0.1,linecolor=lightblue,fillstyle=gradient,gradangle=0,%%
+        gradbegin=white,gradend=whiteblue,gradmidpoint=1.0,framesep=1em}{
+        \begin{center}
+            Resumen
+        \end{center}}
+    \end{center}
+    \vspace{1.25cm}
+%%%%%%%%--------------------------- SECCIÓN 1 -----------------------------------------------
+
+    Una de las bases fundamentales de las ?nanzas está dada por la ecuación de Black-Scholes-Merton. Sin embargo esta ecuación no es válida para diferentes casos importantes. Por ejemplo, no es válida cuando hay arbitraje en el mercado, ni cuando las ?uctuaciones del precio de un activo subyacente dejan de tener una distribución del tipo Gaussiano, tampoco cuando la volatilidad es grande. Por esta razón es importante plantear modi?caciones de ésta que contemplen situaciones más realistas.
+\\\\
+En este trabajo, usando mecánica cuántica relativista, se plantea una ecuación de Black-Scholes-Merton generalizada para la cual tiene sentido estudiar el caso en que la volatilidad es grande.
+
+
+%%%%%%%%--------------------------- SECCIÓN 2 -----------------------------------------------
+    \vspace{2cm}
+    \begin{center}
+        \pbox{0.8\textwidth}{}%%
+        {linewidth=2mm,framearc=0.1,linecolor=lightblue,fillstyle=gradient,gradangle=0,%%
+        gradbegin=white,gradend=whiteblue,gradmidpoint=1.0,framesep=1em}{%%
+        \begin{center}
+            Introducci\'{o}n
+        \end{center}}
+    \end{center}
+    \vspace{1.25cm}
+%%%%%%%%--------------------------- SECCIÓN 2 -----------------------------------------------
+
+     En 1973 se publicó ``\it{Theory of Rational Option Pricing}", aquí se 
+     hizo referencia por primera vez al modelo de Black Scholes Merton. 
+     Éste pretendía estimar el valor de una opción europea. El modelo se 
+     llegó a ampliar para aplicarse a opciones que producen dividendos y 
+     se adoptó posteriormente para el mercado monetario. Aunque puede  
+     optimizar de manera eficaz el precio de estos activos, la ecuación 
+     colapsa en cuanto se consideran volatilidades muy altas.
+     
+     En Mecánica Cuántica se sabe que la posición ni la velocidad de una 
+     partícula pueden ser determinadas a tiempo $t$ de manera exacta, sino 
+     que se puede calcular la probabilidad de que ésta esté en cierta 
+     posición $\vec{x}$ con cierta velocidad $\vec{\dot{x}}$. Es decir, la 
+     partícula se ve como una variable aleatoria, algo que en finanzas 
+     podríamos traducir a que el precio de un activo se comporta como una 
+     partícula
+     
+     Nuestro objetivo es encontrar
+     alternativas a las soluciones de diferentes modelos financieros 
+     (específicamente de Black Scholes Merton) de manera que se busque 
+     minimizar el riesgo de una inversión utilizando herramientas de la 
+     Mecánica Cuántica. De igual manera, queremos analizar el modelo 
+     (Black Scholes Merton) para volatilidades muy grandes y proponer una 
+     solución que no se indetermine con ésto.
+     
+     Hace algunas décadas se mostró que existe un mapeo que relaciona la 
+     ecuación libre de Schrödinger de la mecánica cuántica con la ecuación 
+     de Black-Scholes-Merton. Por lo que usando herramientas de la rama se 
+     pueden estudiar fenómenos ?nancieros a un menor costo y de manera más 
+     precisa.
+     
+     Cabe señalar que, dentro de ésta, también existe la mécanica cuántica 
+     relativista, la cual es gobernada por la ecuación de Klein-Gordon, 
+     que es una generalización de la ecuación de Schrödinger. Por lo 
+     tanto, usando como método el mapeo que relaciona la ecuación de 
+     Schrödinger con la ecuación de Black-Scholes-Merton, construimos una 
+     generalización de la misma y mostramos sus consecuencias.
+
+%%%%%%%%--------------------------- SECCIÓN 3 -----------------------------------------------
+    \vspace{2cm}
+    \begin{center}
+        \pbox{0.8\textwidth}{}%%
+        {linewidth=2mm,framearc=0.1,linecolor=lightblue,fillstyle=gradient,gradangle=0,%%
+        gradbegin=white,gradend=whiteblue,gradmidpoint=1.0,framesep=1em}{%%
+        \begin{center}
+            Propiedades generales de las ecuaciones de Schrödinger y de Black Scholes Merton
+        \end{center}}
+    \end{center}
+    \vspace{1.25cm}
+    \setcounter{section}{3}%
+\setcounter{equation}{0}%
+%%%%%%%%--------------------------- SECCIÓN 3 -----------------------------------------------
+
+La ecuación de Schrödinger describe la evolución temporal de una partícula masiva no relativista. Es de importancia central en la teoría de la mecánica cuántica, donde representa para las partículas microscópicas un papel análogo a la segunda ley de Newton en la mecánica clásica.
+
+
+ En Mecánica Cuántica, la posición de una partícula cuántica es una variable aleatoria. En finanzas, el precio de un activo es una variable aleatoria.
+  El precio de una opción $|C>$ es directamente observable y no necesita una interpretación probabilística. De ahí que, a diferencia de la condición $<\Psi |\Psi>=1$, requerida por las interpretaciones probabilísticas en mecánica cuántica, el valor de $<C|C>$ es arbotrario.
+ La ecuación de Schrödinger requiere una función de estado compleja $|\Psi(t)>$, mientras que la de la ecuación de Black-Scholes-Merton es una ecuación real diferenciable que siempre da una expresión real-valuada para el precio de la opción $C$. Se puede pensar la ecuación de BSM como la ecuación de Schrödinger para tiempo imaginario.
+Todos los hamiltonianos en mecánica cuántica son hermíticos, ésto asegura que todos los eigenvalores sean reales. Otros hamiltonianos junto con BSM que determinan el precio de una opción no son hermíticos, ésto conlleva  a que sus eigenvalores son complejos.
+ Eigenvalores complejos de hamiltonianos en finanzas conllevan a análisis más complicados que uno de mecánica cuántica; en partícular, no hay un proceso bien definido aplicable a todos los hamiltonianos para escoger un conjunto de eigenfunciones que de la ecuación completa. Los casos especiales donde una transformación similar llega a un hamiltoniano hermítico equivalente da una alternativa natural para el conjunto de eigenfunciones completas.
+
+
+%%%%%%%%--------------------------- SECCIÓN 4 -----------------------------------------------
+\vspace{2cm}
+    \begin{center}
+        \pbox{0.8\textwidth}{}%%
+        {linewidth=2mm,framearc=0.1,linecolor=lightblue,fillstyle=gradient,gradangle=0,%%
+        gradbegin=white,gradend=whiteblue,gradmidpoint=1.0,framesep=1em}{%%
+        \begin{center}
+            Mapeo de Schrödinger a Black Scholes Merton
+        \end{center}}
+    \end{center}
+    \vspace{1.25cm}
+\setcounter{section}{4}%
+\setcounter{equation}{0}%
+%%%%%%%%--------------------------- SECCIÓN 4 -----------------------------------------------
+
+Tomamos la ecuación de Schrödinger:
+$$i\hbar\frac{\partial\Psi}{\partial\tilde{t}}=-\frac{\hbar^2}{2m}\frac{\partial^2\Psi}{\partial x^2}$$
+Si nombramos $\tilde{t}=it,~\sigma^2=\frac{1}{m}, ~\hbar=1$ nuestra ecuación toma la forma:
+$$\frac{\partial \Psi}{\partial t}=-\frac{\sigma^2}{2}\frac{\partial^2\Psi}{\partial x^2}$$
+Usando esta versión de la ecuación de Schrödinger, veremos que la función podemos obtener la
+ecuaci\'on de Black-Scholes. Primero consideremos las definiciones
+%
+%\begin{eqnarray}
+%\Psi&=&e^{-[\frac{1}{\sigma^2}(\frac{\sigma^2}{2}-r)x+\frac{1}{2\sigma^2}(\frac{\sigma^2}{2}+r)^2 t]} C(x,t),\\
+%\vartriangle&=&-[\frac{1}{\sigma^2}(\frac{\sigma^2}{2}-r)x+\frac{1}{2\sigma^2}(\frac{\sigma^2}{2}+r)^2 t].
+%\end{eqnarray}
+%
+Primero obtenemos las primeras y segundas derivadas parciales con respecto a $t$ y a $x$.
+\newline
+Nombremos a $-[\frac{1}{\sigma^2}(\frac{\sigma^2}{2}-r)x+\frac{1}{2\sigma^2}(\frac{\sigma^2}{2}+r)^2 t]=\vartriangle$.
+$$\frac{\partial \Psi}{\partial t}= -\frac{1}{2\sigma^2}(\frac{\sigma^2}{2}+r)^2 e^\vartriangle C(x,t)+\frac{\partial C(x,t)}{\partial t}e^\vartriangle = e^\vartriangle \left[-\frac{1}{2\sigma^2}(\frac{\sigma^2}{2}+r)^2C(x,t)+\frac{\partial C(x,t)}{\partial t}\right]$$
+$$\frac{\partial \Psi}{\partial x}=-\frac{1}{\sigma^2}(\frac{\sigma^2}{2}-r) e^\vartriangle C(x,t) + \frac{\partial C(x,t)}{\partial x} e^\vartriangle=e^\vartriangle 
+\left[ -\frac{1}{\sigma^2}(\frac{\sigma^2}{2}-r) C(x,t) + \frac{\partial C(x,t)}{\partial x}
+\right]$$
+$$\frac{\partial^2 \Psi}{\partial t^2}=\frac{1}{4\sigma^4} 
+\left( \frac{\sigma^2}{2}+r \right)^2
+ e^{\vartriangle} C(x,t) - \frac{2}{2\sigma^2}
+  \left(\frac{\sigma^2}{2}+r\right)^2
+   e^\vartriangle \frac{\partial C(x,t)}{\partial t}+\frac{\partial^2 C(x,t)}{\partial t^2} e^\vartriangle$$
+   $$= e^\vartriangle \left[\frac{1}{4\sigma^4} 
+\left( \frac{\sigma^2}{2}+r \right)^2
+ C(x,t) - \frac{1}{\sigma^2}
+  \left(\frac{\sigma^2}{2}+r\right)^2
+    \frac{\partial C(x,t)}{\partial t}+
+    \frac{\partial^2 C(x,t)}{\partial t^2}\right]$$
+$$\frac{\partial^2 \Psi}{\partial x^2}= \frac{1}{\sigma^4}\left(\frac{\sigma^2}{2}-r\right)^2 e^\vartriangle C(x,t)-\frac{2}{\sigma^2} \left(\frac{\sigma^2}{2}-r\right)e^\vartriangle \frac{\partial C(x,t)}{\partial x} + \frac{\partial^2 C(x,t)}{\partial x^2} e^\vartriangle$$
+$$=e^\vartriangle \left[\frac{1}{\sigma^4}\left(\frac{\sigma^2}{2}-r\right)^2  C(x,t)-\frac{2}{\sigma^2} \left(\frac{\sigma^2}{2}-r\right) \frac{\partial C(x,t)}{\partial x} + \frac{\partial^2 C(x,t)}{\partial x^2}\right]$$
+Utilizamos las nuevas variables $x= \log S$, i.e.: $S= e^x$ y aplicamos regla de la cadena para obtener $\frac{\partial f}{\partial x}$ y $\frac{\partial^2 f}{\partial x^2}$ para $f=C(x,t)$
+$$\frac{\partial f}{\partial x}= \frac{\partial S}{\partial x}\frac{\partial f}{\partial S}=e^x\frac{\partial f}{\partial S} = \boxed{S\frac{\partial f}{\partial S}=\frac{\partial f}{\partial x}}$$
+Si nombramos $S\frac{\partial f}{\partial x} = g$
+$$\frac{\partial^2 f}{\partial x^2}=\frac{\partial}{\partial x} \left(\frac{\partial f}{\partial x}\right) = \frac{\partial}{\partial x} \left(S \frac{\partial f}{\partial x}\right)=\frac{\partial}{\partial x}\left(g(x)\right)=S\frac{\partial g(x)}{\partial S}=S\frac{\partial}{\partial S}\left(S\frac{\partial f}{\partial S}\right)$$
+$$=S\left(\frac{\partial f}{\partial S}+S\frac{\partial^2 f}{\partial S^2}\right)=\boxed{S\frac{\partial f}{\partial S}+S^2\frac{\partial^2 f}{\partial S^2}=\frac{\partial^2 f}{\partial x^2}}$$
+
+
+
+}
+\end{pcolumn}
+%%%--------------------------------------------------------------------------------
+%%%              TERMINA COLUMNA 1 E INICIA COLUMNA 2
+%%%--------------------------------------------------------------------------------
+\begin{pcolumn}{0.32}
+\pbox{0.9\textwidth}{95cm}{linewidth=2mm,framearc=0.1,linecolor=lightblue,fillstyle=gradient,gradangle=0,gradbegin=white,gradend=white,gradmidpoint=1.0,framesep=1em}{
+
+
+Sustituímos en $\frac{\partial^2 \Psi}{\partial x^2}$ (usaremos $C=C(x,t)$):
+$$\frac{\partial^2 \Psi}{\partial x^2}=e^\vartriangle \left[\frac{1}{\sigma^4}\left(\frac{\sigma^2}{2}-r\right)^2  C-\frac{2}{\sigma^2} \left(\frac{\sigma^2}{2}-r\right) S\frac{\partial C}{\partial S} + S\frac{\partial C}{\partial S} + S^2 \frac{\partial^2 C}{\partial S^2}\right]$$
+$$=\frac{\partial^2 \Psi}{\partial x^2}=e^\vartriangle \left[\frac{1}{\sigma^4}\left(\frac{\sigma^2}{2}-r\right)^2  C-S\frac{\partial C}{\partial S} +\frac{2r}{\sigma^2}S\frac{\partial C}{\partial S}+ S\frac{\partial C}{\partial S} + S^2 \frac{\partial^2 C}{\partial S^2}\right]$$
+$$=\frac{\partial^2 \Psi}{\partial x^2}=e^\vartriangle \left[\frac{1}{\sigma^4}\left(\frac{\sigma^2}{2}-r\right)^2  C +\frac{2r}{\sigma^2}S\frac{\partial C}{\partial S}+ S^2 \frac{\partial^2 C}{\partial S^2}\right]$$
+Y sustituímos en $\frac{\partial \Psi}{\partial t}=-\frac{\sigma^2}{2}\frac{\partial^2\Psi}{\partial x^2}$
+$$e^\vartriangle \left[-\frac{1}{2\sigma^2}(\frac{\sigma^2}{2}+r)^2C+\frac{\partial C}{\partial t}\right]=-\frac{\sigma^2}{2}\left[e^\vartriangle \left[\frac{1}{\sigma^4}\left(\frac{\sigma^2}{2}-r\right)^2  C +\frac{2r}{\sigma^2}S\frac{\partial C}{\partial S}+ S^2 \frac{\partial^2 C}{\partial S^2}\right]\right]$$
+$$=-\frac{1}{2\sigma^2}(\frac{\sigma^2}{2}+r)^2C+\frac{\partial C}{\partial t}=-\frac{\sigma^2}{2}\left[\frac{1}{\sigma^4}\left(\frac{\sigma^2}{2}-r\right)^2  C +\frac{2r}{\sigma^2}S\frac{\partial C}{\partial S}+ S^2 \frac{\partial^2 C}{\partial S^2}\right]$$
+Eliminamos corchetes y despejamos para $\frac{\partial C}{\partial t}$:
+$$\frac{\partial C}{\partial t}=-\frac{\sigma^2}{2}S^2\frac{\partial^2 C}{\partial S^2}-rS\frac{\partial C}{\partial S}+\left[\frac{1}{2\sigma^2}\left(\frac{\sigma^2}{2}+r\right)^2-\frac{1}{2\sigma^2}\left(\frac{\sigma^2}{2}-r\right)^2\right]C$$
+$$=-\frac{\sigma^2}{2}S^2\frac{\partial^2 C}{\partial S^2}-rS\frac{\partial C}{\partial S}+\frac{1}{2\sigma^2}\left[\left(\frac{\sigma^2}{2}+r\right)^2-\left(\frac{\sigma^2}{2}-r\right)^2\right]C$$
+Y sabemos que $(a^2-b^2)=(a+b)(a-b)$ entonces:
+$$\frac{\partial C}{\partial t}=-\frac{\sigma^2}{2}S^2\frac{\partial^2 C}{\partial S^2}-rS\frac{\partial C}{\partial S}+\frac{1}{2\sigma^2}\left[\left(\frac{\sigma^2}{2}+r+\frac{\sigma^2}{2}-r\right)\left(\frac{\sigma^2}{2}+r-\frac{\sigma^2}{2}+r\right)\right]C$$
+$$\frac{\partial C}{\partial t}=-\frac{\sigma^2}{2}S^2\frac{\partial^2 C}{\partial S^2}-rS\frac{\partial C}{\partial S}+\frac{1}{2\sigma^2}[2\sigma^2 r]C=\boxed{-\frac{\sigma^2}{2}S^2\frac{\partial^2 C}{\partial S^2}-rS\frac{\partial C}{\partial S}+rC=\frac{\partial C}{\partial t}}$$
+Nos da la ecuación de Black-Scholes-Merton.
+
+%%%%%%%%--------------------------- SECCIÓN 4 -----------------------------------------------
+\vspace{2cm}
+    \begin{center}
+        \pbox{0.8\textwidth}{}%%
+        {linewidth=2mm,framearc=0.1,linecolor=lightblue,fillstyle=gradient,gradangle=0,%%
+        gradbegin=white,gradend=whiteblue,gradmidpoint=1.0,framesep=1em}{%%
+        \begin{center}
+            Mapeo de Klein Gordon a Black Scholes Merton
+        \end{center}}
+    \end{center}
+    \vspace{1.25cm}
+\setcounter{section}{4}%
+\setcounter{equation}{0}%
+%%%%%%%%--------------------------- SECCIÓN 4 -----------------------------------------------
+ Ésta describe un campo escalar libre en teoría cuántica de campos.\\
+La ecuación fue llamada así en honor a los físicos Oskar Klein y Walter Gordon, quienes en 1926 propusieron que ella describe a los electrones relativistas. \\A pesar de que la ecuación de Dirac describe al electrón en rotación (spinning), la ecuación de Klein-Gordon describe correctamente a los piones sin espín. Éstos son partículas compuestas; no se han encontrado partículas elementales sin espín todavía, aunque se teoriza la existencia del bosón de Higgs como un bosón de espín cero, de acuerdo con el Modelo Estándar.
+La ecuación de Klein-Gordon fue propuesta originalmente por Erwin Schrödinger como ecuación para la función de onda de una partícula cuántica. Sin embargo, puesto que la ecuación de Klein-Gordon no admitía una interpretación probabilista adecuada entre otros problemas, Schrödinger consideró más adecuado pasar a una versión no relativista de la ecuación que es la que actualmente se conoce como ecuación de Schrödinger.
+Más tarde la función de onda que aparece en la ecuación de Klein-Gordon sería apropiadamente interpretada como la densidad de un campo bosónico cargado de espín cero. Así el hecho de que la "densidad de probabilidad" fuera negativa era interpretada como una densidad de carga negativa y los problemas de interpretación como probabilidades de presencia desaparecían, aunque persistían otros de los problemas mencionados más adelante. Sin embargo, dentro de la teoría cuántica de campos la ecuación de Klein-Gordon sí resultó útil.
+
+Sabemos que cuando $m\rightarrow 0$ la ecuación de Schrödinger no tiene ningún sentido, mientras que si en Black Scholes $\sigma^2$ es muy grande  tampoco sirve. En física, el caso $m\rightarrow 0$ no es estudiado en la mecánica no relativista cuántica, pero lo es el la parte relativista. En esta teoría, la ecuación de Schrödinger es cambiada por la de Klein-Gordon
+$$ -\frac{\bar{h}^2}{c^2}\frac{\partial \psi (x,t)}{\partial^2 \bar{t}^2}+\frac{\partial^2 \psi (x,t)}{\partial x^2} - m^2c^2\psi (x,t) =0$$
+donde $c$ es la velocidad de la luz.
+
+Nótese que cuando $m\rightarrow 0$ la ecuación de Klein Gordon no tiene sentido. De igual manera se puede demostrar que cuando $c\rightarrow \infty$ la ecuación de Klein Gordon se vuelve la de Schrödinger.
+
+Ahora, usando el mapeo
+
+$$\bar{t}=it, ~~~~\bar{h}=1,~~~~m=\frac{1}{\sigma^2},~~~~x=\ln S$$
+$$c^2=q,~~~~\psi(x,t)=e^{-\left(\frac{1}{\sigma^2}\left(\frac{\sigma^2}{2}-r\right)x-\frac{1}{2\sigma^2}\left(\frac{\sigma^2}{2}+r\right)^2 t \right) C_R (x,t)$$
+la ecuación de Klein Gordon se vuelve:
+$$\frac{1}{q}\frac{\partial C_R(S,t)}{\partial t^2}-\frac{1}{q\sigma^2}\left(\frac{\sigma^2}{2}+r\right)^2 \frac{\partial C_R (S,t)}{\partial t}$$
+$$=-S^2 \frac{\partial^2 C_R (S,t)}{\partial S^2}-\frac{2r}{\sigma^2}S \frac{\partial C_R (S,t)}{\partial S} + \left(\frac{q}{\sigma^2}-\frac{1}{\sigma^4}\left(\frac{\sigma^2}{2}-r\right)\right)C_R(S,t)$$
+Ésta es una ecuación de Black Scholes Merton generalizada, nótese que ésta ahora tiene un nuevo parámetro $q$. En base a esto, podemos ver que cuando
+$$C_R(S,t)=e^{\frac{q}{\sigma^2}t} C(S,t)$$
+obtenemos la ecuación:
+$$\frac{\sigma^2}{2q}\frac{\partial^2 C(S,t)}{\partial t^2}+\left(1-\frac{1}{2q}\left(\frac{\sigma^2}{2}+r\right)^2\right)\frac{\partial C(S,t)}{\partial t}$$
+$$=-\frac{\sigma^2}{2}S^2\frac{\partial^2 C(S,t)}{\partial S^2}-rS\frac{\partial C(S,t)}{\partial S}+rC(S,t)$$
+Cuando $q\rightarrow\infty$ obtenemos la ecuación de Black Scholes:
+$$\boxed{\frac{\partial C(S,t)}{\partial t}=-\frac{\sigma^2}{2}S^2 \frac{\partial^2 C(S,t)}{\partial S^2}-rS\frac{\partial C(S,t)}{\partial S}+rC(S,t)$$
+}
+\end{pcolumn}
+%%%----------------------------------------------------------------------------------
+%%%              TERMINA COLUMNA 2 E INICIA COLUMNA 3
+%%%----------------------------------------------------------------------------------
+\begin{pcolumn}{0.32}
+\pbox{0.9\textwidth}{95cm}{linewidth=2mm,framearc=0.1,linecolor=lightblue,fillstyle=gradient,gradangle=0,gradbegin=white,gradend=white,gradmidpoint=1.0,framesep=1em}{
+
+%%%---------------------------- SECCIÓN 5 ---------------------------------------------
+\begin{center}
+        \pbox{0.8\textwidth}{}%%
+        {linewidth=2mm,framearc=0.1,linecolor=lightblue,fillstyle=gradient,gradangle=0,%%
+        gradbegin=white,gradend=whiteblue,gradmidpoint=1.0,framesep=1em}{
+        \begin{center}
+            Conclusiones
+        \end{center}}
+\end{center}    
+    \vspace{1.25cm}
+\setcounter{section}{5}%
+\setcounter{equation}{0}%
+%%%---------------------------- SECCIÓN 6 ---------------------------------------------
+La mecánica cuántica y sus aportaciones han tenido un gran auge los últimos años, a pesar de ser una teoría con casi cien años de haberse propuesto. Como en todas las ciencias, siempre se buscan nuevas maneras de resolver viejos problemas. En este trabajo tratamos de hacer ver la aplicación en el estudio financiero; si bien, hasta ahorita solo hemos trabajado en ubicar de dónde se puede partir para la aplicación de ésta, esperamos seguir indagando de manera de hacer posible el uso de instrumentos cuánticos para cálculos financieros.
+
+Podemos igual ver que si, en un futuro próximo, podemos interpretar bien nuestras nuevas propuestas y/o variables, determinaremos una manera con un costo más bajo de calcular Black-Scholes-Merton para volatilidades muy altas.
+%%%---------------------------- SECCIÓN 6 ---------------------------------------------
+\vspace{2cm}
+    \begin{center}
+        \pbox{0.8\textwidth}{}%%
+        {linewidth=2mm,framearc=0.1,linecolor=lightblue,fillstyle=gradient,gradangle=0,%%
+        gradbegin=white,gradend=whiteblue,gradmidpoint=1.0,framesep=1em}{%%
+        \begin{center}
+            Simulaci\'{o}n
+        \end{center}}
+    \end{center}
+%%%%------------------------------------------------------------------------------------------    
+\begin{center}    
+  %\myfig{bacteria.eps}{.75}
+  %\mycaption{Densidad de bacterias en un cuadrado con los par\'{a}metros Lambda=300, e=.001 y delta=10 }
+\end{center}
+%%%-----------------------------------------------------------------------------------
+%%%                          Bibliografía
+%%%------------------------------------------------------------------------------------
+\bibliographystyle{alpha}
+\bibliography{add}
+
+
+}
+\end{pcolumn}
+\end{center}
+
+
+
+
+\end{poster}
+
+\end{document}
