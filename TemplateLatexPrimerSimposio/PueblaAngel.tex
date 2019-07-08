@@ -308,7 +308,18 @@ Se puede mostrar, de manera an\'alitica que
 Z_N(T,B)= Tr(\bar P^N).
 \end{eqnarray}
 %
-
+Un resultado muy \'util para calcular propiedades del sistema. Por ejemplo, si calculamos los valores propios:
+%
+\begin{eqnarray}
+\lambda_{\pm}=e^{\beta \epsilon}\left[\cosh(\beta\mu B)\pm\sqrt{\cosh^2(\beta\mu B)-2e{-2\beta\epsilon\sinh(2\beta\epsilon)}}\right],
+\end{eqnarray}
+%
+de ah\'i podemos obtener la energ\'ia libre:
+%
+\begin{eqnarray}
+g(T,B)=-\frac{1}{\beta}\log{e^{\beta \epsilon} \cosh(\beta B) + \left[e^{2\beta \epsilon }\cosh^2 (\beta B) - 2\sinh (2\beta B)\right]^{\frac{1}{2}}}.
+\end{eqnarray}
+%
 
 
    }
@@ -319,44 +330,19 @@ Z_N(T,B)= Tr(\bar P^N).
 \begin{pcolumn}{0.32}
 \pbox{0.9\textwidth}{95cm}{linewidth=2mm,framearc=0.1,linecolor=lightblue,fillstyle=gradient,gradangle=0,gradbegin=white,gradend=white,gradmidpoint=1.0,framesep=1em}{
 
+  La magnetizaci\'on por spin est\'a dada por 
+  %
+  \begin{eqnarray}
+  m(T,B)=-\frac{\partial g}{\partial B} = \frac{\sinh(\beta B)}{[\sin^2(\beta B)+ e^{-4 B\epsilon}]\frac{1}{2}}.
+  \end{eqnarray}
+  %
 
-Supongamos que las bacterias, adem\'{a}s de moverse aleatoriamente en
-la regi\'{o}n, tienden a dirigirse a regiones donde la concentraci\'{o}n
-de sustrato es mas elevada, es decir se presenta taxis. Para
-modelar este fen\'{o}meno, al flujo que dedujimos anteriormente debe
-a\~{n}ad\'{\i}rsele el efecto quimiot\'{a}ctico que posee una direcci\'{o}n opuesta
-al del flujo de difusi\'{o}n, es decir
-\[
-J(x,t)=-D\frac{\partial }{\partial x}p_{2}+\mu \frac{\partial
-}{\partial x} p_{2}.
-\]
-En este caso $\mu $, que representa el movimiento de las bacterias
-hacia altas concentraciones de recurso, no es una constante pues
-el flujo inducido por taxis es ciertamente proporcional a la
-densidad local de bacterias. Es aqu\'{\i} precisamente donde
-introduciremos la sensibilidad de qu\'{o}rum. En general tomaremos
-$\mu =\mu (p_{1},p_{2})$. As\'{\i} la ecuaci\'{o}n para la bacteria ser\'{a}
-\[
-\frac{\partial }{\partial t}p_{2}=f(p_{1})p_{2}-\delta
-p_{2}+D_{2}\frac{\partial ^{2}p_{2}}{\partial
-x^{2}}-\frac{\partial }{\partial x}\left(
-\mu(p_{1},p_{2})\frac{\partial p_{1}}{\partial x}\right)
-\]
-En resumen tenemos
-\begin{equation}
-    \left.
-    \begin{aligned}
-        \frac{\partial }{\partial t}p_{1} &=\Lambda
-        -f(p_{1})p_{2}-ep_{1}+D_{1}\nabla ^{2}p_{1},\\
-        \frac{\partial }{\partial t}p_{2} &=f(p_{1})p_{2}-\delta
-        p_{2}+D_{2}\nabla^{2}p_{2}-\\ &\nabla \cdot \left( \mu
-        (p_{1},p_{2})\nabla p_{1}\right),
-    \end{aligned}
-    \right\}\label{sis1.2}
-\end{equation}
-La forma espec\'{\i}fica de $\mu $ e hip\'{o}tesis b\'{a}sicas que nos
-interesan para el an\'{a}lisis del modelo ser\'{a}n especificados a
-continuaci\'{o}n.
+  \begin{center}    
+    \myfig{elementosDeDominio.ps}{.75}
+    \mycaption{Elementos de dominio en modelo de ising bidimensional.}
+  \end{center}
+
+
 %%%%%%%%--------------------------- SECCI�N 4 -----------------------------------------------
 \vspace{2cm}
     \begin{center}
@@ -371,79 +357,65 @@ continuaci\'{o}n.
 \setcounter{section}{4}%
 \setcounter{equation}{0}%
 %%%%%%%%--------------------------- SECCI�N 4 -----------------------------------------------
- En fen\'{o}meno llamado sensibilidad de
-qu\'{o}rum las bacterias responden de manera colectiva y coordinada a
-est\'{\i}mulos del medio cuando la agregaci\'{o}n poblacional, y el
-consecuente incremento local en densidad poblacional, alcanzan un
-cierto umbral. Es posible, en principio, modelar parte de este
-proceso usando como base las ecuaciones (\ref{sis1.2}).
-Consideremos la funci\'{o}n
-\[
-\mu \left( p_{1},p_{2}\right) =\chi (p_{1})\phi (p_{2})p_{2},
-\]
-donde $\chi >0$ es una funci\'{o}n que mide intensidad de atracci\'{o}n
-del sustrato;  $\phi (0)>0$, y existe una $\hat{p}_{2}>0$ tal que
-$\phi (\hat{p}_{2})=0$. La propiedad de acotamiento impuesta a la
-funci\'{o}n $\phi $ constituye una manera de simular el umbral de
-densidad asociado con la sensibilidad de qu\'{o}rum: cuando
-$p_{2}=\hat{p}_{2}$, $\mu =0$ y la actividad de atracci\'{o}n hacia
-zonas de alta concentraci\'{o}n de bacteria o recurso se suspende.
+La teor\'ia de juegos estudia modelos matem\'aticos de conflicto y cooperaci\'on entre tomadores de decisiones racionales. Los problemas en teor\'ia de juegos son descritos generalmente con $N$ jugadores que tienen un conjunto $s_x = {1,2,4,...,N}$ estrategias disponibles. Cada jugador adoptar\'a una estrategia que maximizar\'a su ganancia $u_x$ en el siguiente paso. En casos especiales existe un estado estacionario en el que a ning\'un jugador le favorece cambiar de estrategia. Matem\'aticamente este estado satisface la siguiente condici\'on.
+%
+\begin{eqnarray}
+  u_x \{s_1^*, s_2^*, ..., s_N^*\} \leq u_x\{s_1^*, s_2^*, ...s_x',..., s_N^*\} \qquad \forall x, \forall s_x' \neq s_x*.
+\end{eqnarray}%
+Esto se conoce como el equilibrio de Nash y cuando la desigualdad es estricta se le llama equilibrio puro de Nash.\\
 
-Esto no es todav\'{\i}a suficiente para la modelaci\'{o}n de sensibilidad
-de qu\'{o}rum. Debido a que el operador de difusi\'{o}n permite que una
-bacteria responda a concentraciones de bacterias muy alejadas del
-lugar en que se encuentra, de hecho, responde a concentraciones en
-cualquier regi\'{o}n de $\Omega $. As\'{\i} supondremos que la velocidad de
-dispersi\'{o}n es finita lo que har\'{a} que la respuesta a la densidad
-umbral sea de naturaleza esencialmente local.
-
-Para incorporar este proceso primero consideremos una caminata
-aleatoria para la bacteria en $\Omega$. La bacteria con densidad
-$p_{2}$ tiene una velocidad constante $\gamma$ y una tasa
-constante de cambio de direcci\'{o}n $\kappa$. Si suponemos que
-$p_{2}^{+}(x,t)$ y $p_{2}^{-}(x,t)$ son las densidades de las
-bacterias, cuyo movimiento inicial fue a la derecha o la
-izquierda, en la posici\'{o}n $x$ al tiempo $t$, respectivamente,
-estas dos funciones tienen la siguiente din\'{a}mica en $n=1$(ver
-\cite{KA74.1}, \cite{WE02.1} y \cite{HA98.1}).
-\[\begin{aligned} \frac{\partial
-p_{2}^{+}}{\partial t}+\gamma\frac{\partial p_{2}^{+}}{\partial x}
-&=
-\kappa(p_{2}^{-}-p_{2}^{+})+\frac{1}{2}Q_{2}(p_{1},p_{2}^{+}+p_{2}^{-})\\
-\frac{\partial p_{2}^{-}}{\partial t}-\gamma\frac{\partial
-p_{2}^{+}}{\partial x} &=
-\kappa(p_{2}^{+}-p_{2}^{-})+\frac{1}{2}Q_{2}(p_{1},p_{2}^{+}+p_{2}^{-})
-\end{aligned}\]
-donde las bacterias creadas escogen cualquiera de las dos
-direcciones posibles en $R$ con la misma probabilidad. Resolviendo
-nuestro sistema en t\'{e}rminos de $p_{2}$ y de $q$ obtenemos
-\[\begin{aligned}
-\frac{1}{\kappa}\frac{\partial }{\partial t}q+q
-&=-\frac{\gamma^{2}}{2\kappa}\frac{\partial p_{2}}{\partial x}\\
-\frac{\partial p_{2}}{\partial t}+\frac{\partial q}{\partial x}
-&=Q(p_{1},p_{2})
-\end{aligned}\]
-Cuando $n=2$ las ecuaciones tendr\'{a}n la siguiente forma
-\[\begin{aligned}
-\tau \frac{\partial }{\partial t}q+q &=-D\nabla p_{2}\\
-\frac{\partial }{\partial t}p_{2}+\nabla q &= f(p_{1})p_{2}-\delta
-p_{2}
-\end{aligned}\]
-Para introducir taxis en nuestro modelo, el flujo tendr\'{a} que ser
-$J(x,t)=-D\nabla p_{2}+\mu(p_{1},p_{2}) \nabla p_{2}$ en vez de
-s\'{o}lo $J(x,t)=-D\nabla p_{2} $ por los que nuestro sistema ser\'{a}
-\begin{equation}
-    \left.
-    \begin{aligned}
-        \frac{\partial }{\partial t}p_{1} &=\Lambda
-        -f(p_{1})p_{2}-ep_{1}+D_{1}\nabla ^{2}p_{1},  \\
-        \tau \frac{\partial }{\partial t}q+q &=-D_{2}\nabla p_{2}+\mu
-        (p_{1},p_{2})\nabla p_{1}, \\
-        \frac{\partial }{\partial t}p_{2}+\nabla q &=f(p_{1})p_{2}-\delta
-        p_{2},
-    \end{aligned}
-    \right\}\label{sis2.1}
-\end{equation}
+Un problema b\'asico en teor\'ia de juegos es aquel en el que se tienen dos jugadores y dos estrategias: Cooperaci\'on (C) y deserci\'on (D). La ganancia en esta situaci\'on puede ser representada usando esta matriz:
+%
+\begin{eqnarray}
+\begin{bmatrix}
+  C & D
+\end{bmatrix} \\ \nonumber
+\begin{bmatrix}
+  C\\
+  D
+\end{bmatrix}\nonumber
+\begin{bmatrix}
+  R & S\\
+  T & P
+\end{bmatrix}\label{matrizNash}
+\end{eqnarray}
+%
+donde la fila $(C,D)$ demnota las opciones de estrategia del jugador que estamos intentando determinar y la columna $(C, D)$ las de el otro jugador. $R$ es la recompensa obtenida cuando ambos cooperan, $S$ es el costo que se paga por un jugador cuando \'este coopera y el otro no, $T$ es la ganancia por desertar cuando el otro jugador si coopera y $P$ es el castigo que se paga cuando ambos jugadores desertan.
+En un sistema probabil\'istico con $N$ participantes el inter\'es principal es saber cu\'antos participantes desertan comparado con el n\'umero de participantes. Esto est\'a dado por: 
+%
+\begin{eqnarray}
+m=\frac{P_C - P_D}{N}, \label{mJuegos}
+\end{eqnarray}
+%
+En este sistema, al convertir a os agentes en part\'iculas, cada uno de las estrategias se convierte en un estado del esp\'in: $\sigma = +1$ para la cooperaci\'on y $\sigma = -1$ para la deserci\'on.\\
+La ecuaci\'on (\ref{mJuegos}) se convierte en la ecuaci\'on de la magnetizaci\'on promedio del sistema. \\
+Para \'esto, Sarkar y Benjamin \cite{benjamin}  desarrollaron el siguiente me\'etodo.\\
+La premisa es que el equilibrio de Nash se mantiene intacto si transformamos la matriz (\ref{matrizNash}) de esta forma:
+%
+\begin{eqnarray}
+  U =
+  \begin{bmatrix}
+    R & S\\
+    T & P
+  \end{bmatrix} \to 
+  \begin{bmatrix}
+    R - \lambda & S - \mu \\
+    T - \lambda & P - \mu
+  \end{bmatrix} = U'
+\end{eqnarray}
+%
+EL Hamiltoniano para este sistema est\'a dado por: 
+%
+\begin{eqnarray}
+  \mathbb{H} = -\sum_{i=1}^{N} J\sigma_{i} \sigma_{i+1} - \sum_{i=1}^{n}\frac{h}{2} (\sigma_{i} \sigma_{i+1}).
+\end{eqnarray}
+%
+La funci\'on de partici\'on est\'a dada por 
+%
+\begin{eqnarray}
+  Z= e^{N \beta J}(\cosh(\beta h) + \sqrt{\sinh^2(\beta h) + e^{-4 \beta J}}).
+\end{eqnarray}
+%
 }
 \end{pcolumn}
 %%%----------------------------------------------------------------------------------
@@ -466,61 +438,22 @@ Aplicaciones:      un tratado bilateral de libre comercio
 \setcounter{equation}{0}%
 %%%---------------------------- SECCI�N 6 ---------------------------------------------
 
-S\'{o}lo nos resta incorporar la forma en que el biocida (deterioro de
-h\'{a}bitat) ser\'{a} a\~{n}adido. Deterioro significar\'{a} para nosotros no
-falta de sustrato, sino la acci\'{o}n negativa (inhibitoria de
-crecimiento) de una variable ambiental sobre la constituci\'{o}n de la
-biopel\'{\i}cula. Denotemos por $b$ a la concentraci\'{o}n de alg\'{u}n agente
-biocida (un antibi\'{o}tico por ejemplo). Las modificaciones a los
-modelos (\ref{sis1.2}) y (\ref{sis2.1}) quedan entonces como sigue
-para el modelo de reacci\'{o}n difusi\'{o}n
-\begin{equation}
-    \left.
-    \begin{aligned}
-        \frac{\partial }{\partial t}p_{1} &=\Lambda -\theta
-        (b)f(p_{1})p_{2}-ep_{1}+D_{1}\nabla ^{2}p_{1}, \\
-        \frac{\partial }{\partial t}p_{2} &=\theta (b)f(p_{1})p_{2}-\delta
-        p_{2}+D_{2}\nabla ^{2}p_{2}-\\
-        &\nabla \cdot \left( \mu(p_{1},p_{2})\nabla p_{1}\right),\\
-        \frac{\partial }{\partial t}b
-        &=\lambda -eb+D_{b}\nabla ^{2}b.
-    \end{aligned}
-    \right\}
-\end{equation}
-y para el modelo de reacci\'{o}n transporte
-\begin{equation}
-    \left.
-    \begin{aligned}
-        \frac{\partial}{\partial t}p_{1} &=\Lambda
-        -\theta(b)f(p_{1})p_{2}-ep_{1}+\\ &D_{1}\nabla^{2}p_{1}, \\
-        \tau\frac{\partial}{\partial t}q+q &= D_{2}\nabla p_{2}
-        -\mu(p_{1},p_{2})\nabla p_{1},  \\
-        \frac{\partial}{\partial t}p_{2}+\nabla q &=
-        \theta(b)f(p_{1})p_{2}-\delta p_{2},  \\
-        \frac{\partial}{\partial t}b&= \lambda-eb+D_{b}\nabla^{2}b.
-    \end{aligned}
-    \right\}
-\end{equation}
-donde
-\[
-\theta (b)=e^{-\alpha b}.
-\]
+Muchas situaciones en la ciancia pol\'itica pueden ser vistas como agentes jugando el mismo juego una y otra vez. Es de inter\'es estudiar como ciertas pr\'acticas, convenciones y cooperaci\'on se sostienen cuando los involucrados pueden tener alg\'un inventivo en el corto plazo por desviarse de el comportamiento esperado. Por ejemplo: Los tratados de libre comercio. Muchas veces se cree que la econom\'ia global mejorar\'ia si todos los pa\'ises accedieran a el libre comercio, pero que individulmeante les ir\'ia mejor si adoptan medidas proteccionistas. Por ejemplo, se considera la siguiente representaci\'on de las pol\'iticas de comercio entre M\'exico y Estados Unidos:
+%
+\begin{eqnarray}
+  \begin{tabular}{ |c|c|c| } 
+   \hline
+   MX/EU & Libre Mercado & Proteccionismo \\ 
+   \hline
+   Libre Mercado & 10,10 & 1,12 \\ 
+   \hline
+   Proteccionismo & 12,1 & 4,4 \\ 
+   \hline
+  \end{tabular} 
+\end{eqnarray}
+%
+En este caso, si el juego es jugado s\'olo una vez, el equilibrio de Nash se da cuando los dos pa\'ises eligen las pol\'iticas proteccionistas. Al generalizar para un n\'umero infinito de juegos podemos ver que se repite el patr\'on en el que cada pa\'is elige las pol\'iticas proteccionistas.
 
-La ecuaci\'{o}n para el biocida es simple: \'{e}ste es suministrado a una
-tasa $\lambda $ que puede depender de la concentraci\'{o}n del biocida
-en el caso de que consideremos una biopel\'{\i}cula en un quimi\'{o}stato;
-se pierde a una tasa $e$ igual a la correspondiente del substrato
-y se difunde en el ambiente con coeficiente de difusi\'{o}n $D_{b}$.
-El biocida afecta la tasa del consumo de recurso y, por lo tanto,
-a la tasa de crecimiento de la bacteria a trav\'{e}s del termino
-$\theta (b)$.
-
-Existen varios tipos de frontera que se ocupan en biolog\'{\i}a, sin
-embargo las Neumann son las m\'{a}s indicadas para nuestro sistema
-pues esperamos que la din\'{a}mica de las ecuaciones sea esencialmente
-producto de las ecuaciones y no la inducida por las condiciones de
-la frontera; adem\'{a}s supondremos que las part\'{\i}culas sean reflejadas
-al llegar a la frontera.
 
 %%%---------------------------- SECCI�N 6 ---------------------------------------------
 \vspace{2cm}
@@ -533,10 +466,9 @@ al llegar a la frontera.
         \end{center}}
     \end{center}
 %%%%------------------------------------------------------------------------------------------    
-\begin{center}    
-  \myfig{bacteria.eps}{.75}
-  \mycaption{Densidad de bacterias en un cuadrado con los par\'{a}metros Lambda=300, e=.001 y delta=10 }
-\end{center}
+Vemos que el modelo de Ising es muy \'util para resolver problemas incluso en las ciencias sociales.
+
+
 %%%-----------------------------------------------------------------------------------
 %%%                          Bibliograf�a
 %%%------------------------------------------------------------------------------------
