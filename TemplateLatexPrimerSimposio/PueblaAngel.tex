@@ -181,8 +181,8 @@
     {\sc {\textcolor{rojo}{\Huge Congreso internacional de}}}\\[4mm]
     {\sc {\textcolor{rojo}{\Huge Matem\'aticas y sus aplicaciones.}} }\\[8mm]
     {\sc \Huge El modelo de Ising aplicado a la ciencia pol\'itica}\\[4mm]
-    {\Large Juan Manuel Romero Sanpedro* y \'Angel C\'aceres Licona**} \\
-    {\large *Departamento de Matem\'aticas Aplicadas, veri@correo.cua.uam.mx , **Alumno de Matem\'aticas Aplicadas, angelcaceres@outlook.com} \\%[2mm]
+    {\Large \'Angel C\'aceres Licona y Juan Manuel Romero Sanpedro} \\
+    {\large Departamento de Matem\'aticas Aplicadas, angelcaceres@outlook.com} \\%[2mm]
   \end{center}
 \end{minipage}
 %-----------------------------------------------------------------------------------------------
@@ -293,35 +293,11 @@ Una funci\'on muy \'util para describir el sistema, y que a partir de ella se pu
   Z_{N}(T,B)=\sum_{\sigma_{1}=\pm 1}\cdots\sum_{\sigma_{N=\pm 1}}e^{\beta\sum{i=1^N\left[\epsilon\sigma_{i}\sigma_{i+1}+\frac{1}{2}\mu \beta (\sigma_{i}\sigma{i+1}) \right]}} .\label{partising}
 \end{eqnarray}
 %
-La funci\'on de partici\'on puede ser escrita en t\'erminos de la siguiente matriz, que es conocida como matriz de transferencia:
+\begin{center}    
+  \myfig{ising1d.ps}{.75}
+  \mycaption{El modelo de ising unidimensional.}
+\end{center}
 %
-\begin{eqnarray}
-\bar P= \begin{pmatrix}
-e^{\beta(\epsilon + \mu \beta )} && e^{-\beta \epsilon} \\
-e^{-\beta \epsilon} && e^{\beta(\epsilon - \mu \beta )}
-\end{pmatrix},\label{matrizP}
-\end{eqnarray}
-%
-Se puede mostrar, de manera an\'alitica que
-%
-\begin{eqnarray}
-Z_N(T,B)= Tr(\bar P^N).
-\end{eqnarray}
-%
-Un resultado muy \'util para calcular propiedades del sistema. Por ejemplo, si calculamos los valores propios:
-%
-\begin{eqnarray}
-\lambda_{\pm}=e^{\beta \epsilon}\left[\cosh(\beta\mu B)\pm\sqrt{\cosh^2(\beta\mu B)-2e{-2\beta\epsilon\sinh(2\beta\epsilon)}}\right],
-\end{eqnarray}
-%
-de ah\'i podemos obtener la energ\'ia libre:
-%
-\begin{eqnarray}
-g(T,B)=-\frac{1}{\beta}\log{e^{\beta \epsilon} \cosh(\beta B) + \left[e^{2\beta \epsilon }\cosh^2 (\beta B) - 2\sinh (2\beta B)\right]^{\frac{1}{2}}}.
-\end{eqnarray}
-%
-
-
    }
 \end{pcolumn}
 %%%--------------------------------------------------------------------------------
@@ -381,41 +357,12 @@ Un problema b\'asico en teor\'ia de juegos es aquel en el que se tienen dos juga
 \end{eqnarray}
 %
 donde la fila $(C,D)$ demnota las opciones de estrategia del jugador que estamos intentando determinar y la columna $(C, D)$ las de el otro jugador. $R$ es la recompensa obtenida cuando ambos cooperan, $S$ es el costo que se paga por un jugador cuando \'este coopera y el otro no, $T$ es la ganancia por desertar cuando el otro jugador si coopera y $P$ es el castigo que se paga cuando ambos jugadores desertan.
-En un sistema probabil\'istico con $N$ participantes el inter\'es principal es saber cu\'antos participantes desertan comparado con el n\'umero de participantes. Esto est\'a dado por: 
-%
-\begin{eqnarray}
-m=\frac{P_C - P_D}{N}, \label{mJuegos}
-\end{eqnarray}
-%
-En este sistema, al convertir a os agentes en part\'iculas, cada uno de las estrategias se convierte en un estado del esp\'in: $\sigma = +1$ para la cooperaci\'on y $\sigma = -1$ para la deserci\'on.\\
-La ecuaci\'on (\ref{mJuegos}) se convierte en la ecuaci\'on de la magnetizaci\'on promedio del sistema. \\
-Para \'esto, Sarkar y Benjamin \cite{benjamin}  desarrollaron el siguiente me\'etodo.\\
-La premisa es que el equilibrio de Nash se mantiene intacto si transformamos la matriz (\ref{matrizNash}) de esta forma:
-%
-\begin{eqnarray}
-  U =
-  \begin{bmatrix}
-    R & S\\
-    T & P
-  \end{bmatrix} \to 
-  \begin{bmatrix}
-    R - \lambda & S - \mu \\
-    T - \lambda & P - \mu
-  \end{bmatrix} = U'
-\end{eqnarray}
-%
-EL Hamiltoniano para este sistema est\'a dado por: 
-%
-\begin{eqnarray}
-  \mathbb{H} = -\sum_{i=1}^{N} J\sigma_{i} \sigma_{i+1} - \sum_{i=1}^{n}\frac{h}{2} (\sigma_{i} \sigma_{i+1}).
-\end{eqnarray}
-%
-La funci\'on de partici\'on est\'a dada por 
-%
-\begin{eqnarray}
-  Z= e^{N \beta J}(\cosh(\beta h) + \sqrt{\sinh^2(\beta h) + e^{-4 \beta J}}).
-\end{eqnarray}
-%
+
+%\begin{center}    
+%  \myfig{NashEquilibrium.ps}{.75}
+%  \mycaption{El modelo de ising puede ser usado para estudiar relaciones bilaterales como las de EEUU y China.}
+%\end{center}
+
 }
 \end{pcolumn}
 %%%----------------------------------------------------------------------------------
@@ -468,6 +415,10 @@ En este caso, si el juego es jugado s\'olo una vez, el equilibrio de Nash se da 
 %%%%------------------------------------------------------------------------------------------    
 Vemos que el modelo de Ising es muy \'util para resolver problemas incluso en las ciencias sociales.
 
+\begin{center}    
+  \myfig{manos.ps}{.75}
+  \mycaption{El modelo de ising puede ser usado para estudiar relaciones bilaterales como las de EEUU y China.}
+\end{center}
 
 %%%-----------------------------------------------------------------------------------
 %%%                          Bibliograf�a
@@ -475,7 +426,11 @@ Vemos que el modelo de Ising es muy \'util para resolver problemas incluso en la
 \bibliographystyle{alpha}
 \bibliography{add}
 
-AAA
+S. Sarkar y C. Benjamin {\it Emergence of Cooperation in the thermodynamic limit,} ArXiv e-prints, arXiv:1803.10083 (2018).
+L. Onsager, \it{Crystal statistics. I. A two-dimensional model with an order-disorder transition}, Physical Review, Series II, 65 (3–4): 117–149 (1944).
+N. McCarty, A. Meirowitz, {\it Political Game Theory: An Introduction (Analytical Methods for Social Research),} First Edition, (Cambridge University Press, Cambridge, 2007).
+P. M. Chaikin,  T. C. Lubensky, {\it Principles of Condensed Matter Physics
+,} First Edition, (Cambridge University Press, Cambridge, 1995).
 }
 \end{pcolumn}
 \end{center}
