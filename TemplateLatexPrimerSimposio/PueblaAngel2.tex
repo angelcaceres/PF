@@ -5,7 +5,7 @@
 \usepackage{multicol}
 \usepackage{pstricks,pst-grad}
 \usepackage[spanish,activeacute]{babel}
-\usepackage[latin1]{inputenc}
+%\usepackage[latin1]{inputenc}
 \usepackage{amsthm,amssymb,amsmath,amsfonts}
 \numberwithin{equation}{section}
 \newtheorem{theorem}{Teorema}[section]
@@ -246,7 +246,7 @@ El modelo de Ising es un sistema de la F\'isica Estad\'istica el cual se ha usad
 %%%%%%%%--------------------------- SECCI�N 2 -----------------------------------------------
 
     El modelo de Ising es un modelo f\'isico originalmente propuesto para estudiar el comportamiento de materiales ferromagn\'eticos.
-    El modelo de Ising fue propuesto por Wilhelm Lenz que lo concibi\'o como un problema para su alumno Ernst Ising. Ising logr\'o resolver el modelo unidimensional para su tesis de 1924 y el modelo bidimensional fue resuelto por Lars Onsager hasta 1944. En el modelo de Ising tenemos $N$ part\'iculas en una matriz cuadrada. Cada part\'icula puede esyat apuntando hacia arriba o hacia abajo y a cada una de esas orientaciones se le llama \textit{esp\'in de la part\'icula}. El sentido de este esp\'in es determinado por la interacc\'on de la part\'icula con sus vecinas. \\
+    El modelo de Ising fue propuesto por Wilhelm Lenz que lo concibi\'o como un problema para su alumno Ernst Ising. Ising logr\'o resolver el modelo unidimensional para su tesis de 1924 y el modelo bidimensional fue resuelto por Lars Onsager hasta 1944. En el modelo de Ising tenemos $N$ part\'iculas en una matriz cuadrada. Cada part\'icula puede estar apuntando hacia arriba o hacia abajo y a cada una de esas orientaciones se le llama \textit{esp\'in de la part\'icula}. El sentido de este esp\'in es determinado por la interacc\'on de la part\'icula con sus vecinas. \\
 
     El modelo de Ising es uno de los pocos modelos de part\'iculas interactuantes para el cual se conoce una soluci\'on exacta. Es de gran utilidad ya que, aunque originalmente fue formulado para resolver problemas f\'isicos (ferromagnetismo) tiene much\'isima aplicaciones en el modelado de problemas de otras \'areas como la biolog\'ia, finanzas, etc como se mostrar\'a.\\
 
@@ -267,7 +267,7 @@ El modelo de Ising es un sistema de la F\'isica Estad\'istica el cual se ha usad
 \setcounter{equation}{0}%
 %%%%%%%%--------------------------- SECCI�N 3 -----------------------------------------------
 
-En una dimensi\'on, el Hamiltoniano del modelo de Ising puede ser escrito como \\
+En una dimensi\'on, el Hamiltoniano del modelo de Ising, que nos da la energía del sistema, puede ser escrito como \\
 %
 \begin{eqnarray}
   \mathbb{H}=-\epsilon\sum_{i=1}^{N}\sigma_i\sigma_{i+1}-\mu B\sum_{i=1}^{N}\sigma_i \label{hamilIsing}
@@ -287,10 +287,10 @@ $$
 $$
 %
 lo cual equivale a resolver el problema en un anillo.\\
-Una funci\'on muy \'util para describir el sistema, y que a partir de ella se pueden calcular propiedades del sistema como la energ\'ia libre, temperatura del sistema, etc. En el caso del modelo de Ising la funci\'on de partici\'on est\'a dada por: 
+Una funci\'on muy \'util para describir el sistema es la llamada funci\'on de partici\'on. A partir de ella se pueden calcular propiedades del sistema como la energ\'ia libre, temperatura del sistema, etc. La función de partici\'on para el modelo de Ising unidimensional es la siguiente:
 %
 \begin{eqnarray}
-  Z_{N}(T,B)=\sum_{\sigma_{1}=\pm 1}\cdots\sum_{\sigma_{N=\pm 1}}e^{\beta\sum{i=1^N\left[\epsilon\sigma_{i}\sigma_{i+1}+\frac{1}{2}\mu \beta (\sigma_{i}\sigma{i+1}) \right]}} .\label{partising}
+  Z_{N}(T,B)=\sum_{\sigma_{1}=\pm 1}\cdots\sum_{\sigma_{N=\pm 1}}e^{\beta\sum_{i=1}^{N}\left[\epsilon\sigma_{i}\sigma_{i+1}+\frac{1}{2}\mu \beta (\sigma_{i}\sigma{i+1}) \right]} .\label{partising}
 \end{eqnarray}
 %
 \begin{center}    
@@ -305,19 +305,27 @@ Una funci\'on muy \'util para describir el sistema, y que a partir de ella se pu
 %%%--------------------------------------------------------------------------------
 \begin{pcolumn}{0.32}
 \pbox{0.9\textwidth}{95cm}{linewidth=2mm,framearc=0.1,linecolor=lightblue,fillstyle=gradient,gradangle=0,gradbegin=white,gradend=white,gradmidpoint=1.0,framesep=1em}{
-
-  La magnetizaci\'on por spin est\'a dada por 
+  Para el caso bidimensional se tiene una matriz como la siguiente: 
   %
-  \begin{eqnarray}
-  m(T,B)=-\frac{\partial g}{\partial B} = \frac{\sinh(\beta B)}{[\sin^2(\beta B)+ e^{-4 B\epsilon}]\frac{1}{2}}.
+\begin{eqnarray}
+  \begin{matrix}
+  n+1 && \cdot && \cdot && \cdot && \cdot  \\
+  \vdots && \cdot && \cdot && \cdot && \cdot  \\
+    && \cdot && \cdot && \cdot && \cdot  \\
+  3 && \cdot && \cdot && \cdot && \cdot  \\
+  2 && \cdot && \cdot && \cdot && \cdot  \\
+  1 && 2 &&   \dots&&  && n+1
+  \end{matrix}, \nonumber
   \end{eqnarray}
   %
+  donde en cada entrada tenemos una partícula que también puede estar apuntando hacia arriba o hacia abajo. En simulaciones por computadora se puede visualizar como una cuadrícula donde, por ejemplo, una part\'icula con esp\'in +1 es representada con un cuadrado negro y las que tienen esp\'in -1 con un cuadrado blanco. As\'i se pueden observar elementos de dominio como en la siguiente imagen.
 
   \begin{center}    
     \myfig{elementosDeDominio.ps}{.75}
     \mycaption{Elementos de dominio en modelo de ising bidimensional.}
   \end{center}
 
+  Uno de los algoritmos m\'as usado para estas simulaciones es el algoritmo Metr\'opolis.
 
 %%%%%%%%--------------------------- SECCI�N 4 -----------------------------------------------
 \vspace{2cm}
@@ -385,7 +393,7 @@ Aplicaciones:      un tratado bilateral de libre comercio
 \setcounter{equation}{0}%
 %%%---------------------------- SECCI�N 6 ---------------------------------------------
 
-Muchas situaciones en la ciancia pol\'itica pueden ser vistas como agentes jugando el mismo juego una y otra vez. Es de inter\'es estudiar como ciertas pr\'acticas, convenciones y cooperaci\'on se sostienen cuando los involucrados pueden tener alg\'un inventivo en el corto plazo por desviarse de el comportamiento esperado. Por ejemplo: Los tratados de libre comercio. Muchas veces se cree que la econom\'ia global mejorar\'ia si todos los pa\'ises accedieran a el libre comercio, pero que individulmeante les ir\'ia mejor si adoptan medidas proteccionistas. Por ejemplo, se considera la siguiente representaci\'on de las pol\'iticas de comercio entre M\'exico y Estados Unidos:
+Muchas situaciones en la ciencia pol\'itica pueden ser vistas como agentes jugando el mismo juego una y otra vez. Es de inter\'es estudiar como ciertas pr\'acticas, convenciones y cooperaci\'on se sostienen cuando los involucrados pueden tener alg\'un inventivo en el corto plazo por desviarse de el comportamiento esperado. Por ejemplo: Los tratados de libre comercio. Muchas veces se cree que la econom\'ia global mejorar\'ia si todos los pa\'ises accedieran a el libre comercio, pero que individulmeante les ir\'ia mejor si adoptan medidas proteccionistas. Por ejemplo, se considera la siguiente representaci\'on de las pol\'iticas de comercio entre M\'exico y Estados Unidos:
 %
 \begin{eqnarray}
   \begin{tabular}{ |c|c|c| } 
@@ -399,8 +407,13 @@ Muchas situaciones en la ciancia pol\'itica pueden ser vistas como agentes jugan
   \end{tabular} 
 \end{eqnarray}
 %
-En este caso, si el juego es jugado s\'olo una vez, el equilibrio de Nash se da cuando los dos pa\'ises eligen las pol\'iticas proteccionistas. Al generalizar para un n\'umero infinito de juegos podemos ver que se repite el patr\'on en el que cada pa\'is elige las pol\'iticas proteccionistas.
+En este caso, si el juego es jugado s\'olo una vez, el equilibrio de Nash se da cuando los dos pa\'ises eligen las pol\'iticas proteccionistas. 
 
+La forma de generalizar esto es mediante el modelo de Ising. En este caso, cada uno de los espines representa una estrategia que puede seguir cada uno de los agentes. En este caso las estrategias son: libre comercio y proteccionismo. Se ve que, como es sabido, el equilibrio de Nash para N iteraciones corresponde al caso en el que ambos pa\'ises escogen las po\'iticas proteccionistas.
+\begin{center}    
+  \myfig{trump.ps}{.75}
+  \mycaption{Hay muchos ejemplos en la vida real de pa\'ises que adoptan medidas proteccionistas buscando un beneficio a corto plazo.}
+\end{center}
 
 %%%---------------------------- SECCI�N 6 ---------------------------------------------
 \vspace{2cm}
@@ -413,7 +426,8 @@ En este caso, si el juego es jugado s\'olo una vez, el equilibrio de Nash se da 
         \end{center}}
     \end{center}
 %%%%------------------------------------------------------------------------------------------    
-Vemos que el modelo de Ising es muy \'util para resolver problemas incluso en las ciencias sociales.
+La analogía entre la teoría de juegos y el modelo de Ising ya ha sido estudiada y a estos sistemas se le llaman Juegos de Ising. Se puede resolver anal\'iticamente ya que las soluciones exactas para el modelo de Ising de hasta dos dimensiones son conocidas. Tambi\'en pueden ser resueltos num\'ericamente mediante simulaciones por computadora usando el algoritmo Metropolis.
+Los resultados obtenidos usando el modelo de ising coincoden con los resultados ya conocidos para el equilibrio de Nash obtenidas mediante m\'etodos tradicionales.
 
 \begin{center}    
   \myfig{manos.ps}{.75}
@@ -425,13 +439,13 @@ Vemos que el modelo de Ising es muy \'util para resolver problemas incluso en la
 %%%------------------------------------------------------------------------------------
 \bibliographystyle{alpha}
 \bibliography{file}
-[1] F. Black and  M. Scholes, {\it The pricing options and corporate liabilities,} Journal of Political Economy  {\bf 81},  637 (1973).\\
- 
-[2] R.C. Merton, {\it Theory of Rational Option Pricing,}  Bell J. Econ. and Management Sci.   {\bf 4},  141 (1973).\\
+[1] S. Sarkar y C. Benjamin {\it Emergence of Cooperation in the thermodynamic limit,} ArXiv e-prints, arXiv:1803.10083 (2018).\\
 
-[ 3] B. E. Baaquie,  {\it Quantum Finance,} Cambridge University Press (2004).
+[2] L. Onsager, {\it Crystal statistics. I. A two-dimensional model with an order-disorder transition}, Physical Review, Series II, 65 (3–4): 117–149 (1944).\\
 
+[3] N. McCarty, A. Meirowitz, {\it Political Game Theory: An Introduction (Analytical Methods for Social Research),} First Edition, (Cambridge University Press, Cambridge, 2007).\\
 
+[4] P. M. Chaikin,  T. C. Lubensky, {\it Principles of Condensed Matter Physics,} First Edition, (Cambridge University Press, Cambridge, 1995).
 
 }
 \end{pcolumn}
